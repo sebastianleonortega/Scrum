@@ -1,0 +1,101 @@
+cllient Update Json
+
+{
+  "clientId": "0a619a1d-4465-4e31-95a7-f46f420a6993",
+  "clientName": "Ferxxo Poco",
+  "projects": [
+    {
+      "projectId": "3c8f481e-5066-4d00-ba06-72bc0253f55c",
+      "projectName": "MERCADEO",
+      "areaId": "5ab04800-77be-49d2-b4fd-7469bca92546",
+      "clientId": "0a619a1d-4465-4e31-95a7-f46f420a6993",
+      "area": {
+        "areaId": "5ab04800-77be-49d2-b4fd-7469bca92546",
+        "areaName": "Carro",
+        "employees": [
+          {
+            "employee_id": "c45c0afd-534e-4074-8038-cf8bd1d884c4",
+            "employee_name": "DANIEL",
+            "employee_charge": "COCINERO",
+            "employee_email": "DANIEL@GMAIL.COM",
+            "employee_knowledge": "SCRUM-MASTER",
+            "areas": [
+              "areaId": "5837e303-a62c-4cd2-bcef-63eaa0b5855b",
+              "areaName": "Bakendes Fronten"
+            ],
+            "teams": [
+              {
+                "teamId": "04de5c57-16d4-488c-8089-4bf103a8cda9",
+                "teamName": "BACK SOLUTION",
+                "areaId": "5837e303-a62c-4cd2-bcef-63eaa0b5855b",
+                "area": "Bakendes Fronten",
+                "employees": [
+                  "employee_id": "c45c0afd-534e-4074-8038-cf8bd1d884c4",
+                  "employee_name": "DANIEL",
+                  "employee_charge": "COCINERO",
+                  "employee_email": "DANIEL@GMAIL.COM",
+                  "employee_knowledge": "SCRUM-MASTER"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "client": "Sebastian Leon",
+      "subProjects": [
+        {
+          "subProjectId": "526f0c4d-fb14-4c7e-b161-8361f03970bb",
+          "subProjectName": "Banco BBVA",
+          "projectId": "b9ca771f-c869-4cb6-8b36-337c5f6d6721",
+          "project": "BANCARIO",
+          "userStories": [
+            {
+              "userStoryId": "222e5c1d-239b-48a2-bc07-222ff598c457",
+              "userStoryName": "DISEÑO DE FRONED",
+              "userStoryScore": 3,
+              "userStoryArchive": "FRONED",
+              "userStoryStateId": 1,
+              "subProjectId": "526f0c4d-fb14-4c7e-b161-8361f03970bb",
+              "userStoryState": {
+                "userStoryStateId": 1,
+                "userStoryStateName": "Activo",
+                "userStories": [
+                  "string"
+                ]
+              },
+              "subProject": "Banco BBVA"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+UPDATE AREA ID
+{
+  "employees": [
+    {
+       "employee_id": "89d6314c-91c0-4ef3-b4c6-852a8a3fb5fc",
+    "employee_name": "ARMANDO",
+    "employee_charge": "GERENTE",
+    "employee_email": "ARMANDO@GMAIL.COM",
+    "employee_knowledge": "BACKLOG"
+    }
+  ],
+  "areaName": "Bakendes Fronten"
+}
+
+UPDATE AREA EMPLOYEE
+[
+  {
+    "employee_id": "3c0e99dc-f639-4f6d-8891-f3eb19ba2725",
+    "employee_name": "ARMANDO",
+    "employee_charge": "GERENTE",
+    "employee_email": "ARMANDO@GMAIL.COM",
+    "employee_knowledge": "BACKLOG"
+  }
+]
+
+
+
