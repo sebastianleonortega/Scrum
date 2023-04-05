@@ -36,7 +36,7 @@ public class TeamService {
     public Team updateTeam(UUID teamId, Team team){
         return teamRepository.findById(teamId).map(team1 -> {
             team1.setTeamName((team.getTeamName()!=null)? team.getTeamName() : team1.getTeamName());
-            return teamRepository.save(team);
+            return teamRepository.save(team1);
         }).orElse(null);
     }
 

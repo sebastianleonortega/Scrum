@@ -1,12 +1,8 @@
 package com.wposs.scrum_back.userstory.service;
 
-import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.userstory.entity.UserStory;
 import com.wposs.scrum_back.userstory.repository.UserStoryRepository;
 import org.springframework.stereotype.Service;
-
-import javax.management.openmbean.OpenDataException;
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

@@ -23,12 +23,9 @@ public class UserStoryDto {
 
     private String userStoryArchive;
 
-    @JsonIgnore
     private Long userStoryStateId;
 
     private UUID subProjectId;
-
-    private UserStoryStatusDto userStoryStatusDto;
 
     public UUID getUserStoryId() {
         return userStoryId;

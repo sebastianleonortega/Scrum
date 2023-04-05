@@ -75,6 +75,8 @@ public class ClientController {
         Map<String, Object> map = new HashMap<>();
         map.put("message","Datos invalidos");
         if(clientService.findById(clientId).isPresent()){
+            System.out.println(client.getClientId());
+            System.out.println(client.getClientName());
             map.put("message", modelMapper.map(clientService.updateClient(clientId, client), ClientDto.class));
             return new ResponseEntity<>(map, HttpStatus.OK);
         }

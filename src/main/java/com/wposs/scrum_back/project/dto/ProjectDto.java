@@ -37,6 +37,7 @@ public class ProjectDto {
     @JsonIgnore
     private ClientDto client;
 
+
     public UUID getProjectId() {
         return projectId;
     }

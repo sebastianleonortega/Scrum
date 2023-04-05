@@ -63,14 +63,15 @@ public class EmployeeController {
             @ApiResponse(responseCode = "200",description = "Return the updated employee"),
             @ApiResponse(responseCode = "404",description = "Employe Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateEmployee(@RequestBody Employee employee, @PathVariable("id") UUID employeeId) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("message", "Datos invalidos");
-        if (employeeService.findById(employeeId).isPresent()) {
-            map.put("message", modelMapper.map(employeeService.updateEmployee(employeeId, employee), EmployeeDto.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String, Object>> updateEmployee(@PathVariable("id") UUID employeeId,@RequestBody @Valid EmployeeDto employee) {
+        HashMap<String,Object> respuesta = new HashMap<>();
+        respuesta.put("message","NO SE PUDO ACTUALIZAR EL EMLEADO");
+        if(employeeService.findById(employeeId).isPresent()){
+            Employee employee1 = modelMapper.map(employee,Employee.class);
+            respuesta.put("message",employeeService.updateEmployee(employeeId,employee1));
+            return new ResponseEntity<>(respuesta,HttpStatus.OK);
+            }
+        return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
     }
 
 //    @PutMapping("/savetaskonemployee/{employeeId}")

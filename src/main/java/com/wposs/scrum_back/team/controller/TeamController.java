@@ -69,14 +69,15 @@ public class TeamController {
             @ApiResponse(responseCode = "200",description = "Return the updated team"),
             @ApiResponse(responseCode = "404",description = "Project Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateProject(@RequestBody Team team, @PathVariable("id") UUID teamId){
-        Map<String, Object> map = new HashMap<>();
-        map.put("message","Datos invalidos");
-        if(teamService.finById(teamId).isPresent()){
-            map.put("message", modelMapper.map(teamService.updateTeam(teamId, team), TeamDto.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
+    public ResponseEntity<Map<String, Object>> updateTeam(@RequestBody TeamDto team, @PathVariable("id") UUID teamId){
+        HashMap<String,Object> respuesta = new HashMap<>();
+        respuesta.put("message","ERROR AL ACTUALIZAR EL TEAM");
+        if (teamService.finById(teamId).isPresent()){
+            Team team1 = modelMapper.map(team,Team.class);
+            respuesta.put("message",modelMapper.map(teamService.updateTeam(teamId,team1),TeamDto.class));
+            return new ResponseEntity<>(respuesta,HttpStatus.OK);
         }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/area/{areaId}")
@@ -98,10 +99,6 @@ public class TeamController {
         Team team = this.teamService.findByUuid(id);
         List<Employee> employeeList = employeeDtos.stream()
                 .map(employeeDto -> modelMapper.map(employeeDto, Employee.class)).collect(Collectors.toList());
-         for (Employee e:employeeList) {
-             System.out.println(e.getEmployeeName());
-             System.out.println(e.getAreas());
-         }
         team.setEmployees(employeeList);
         return  new ResponseEntity<>(modelMapper.map(teamService.save(team), TeamDto.class), HttpStatus.OK);
     }

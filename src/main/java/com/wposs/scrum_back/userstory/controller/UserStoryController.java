@@ -64,16 +64,17 @@ public class UserStoryController {
     @Operation(summary = "Update the userStory")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "the updated User story"),
-            @ApiResponse(responseCode = "404",description = "Story Not Found")
+            @ApiResponse(responseCode = "400",description = "Story Not Found")
     })
     public ResponseEntity<Map<String, Object>> updateUserStory(@RequestBody UserStoryDto userStoryDto, @PathVariable("id") UUID userStoryId){
-        Map<String, Object> map = new HashMap<>();
-        map.put("message","Datos invalidos");
-        if(userStoryService.findById(userStoryId).isPresent()){
-            map.put("message", modelMapper.map(userStoryService.updateUserStory(userStoryId, modelMapper.map(userStoryDto, UserStory.class)), UserStory.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
+        HashMap<String,Object> respuesta = new HashMap<>();
+        respuesta.put("message","ERROR AL INTENTAR ACTUALIZAR HISTORIA DE USUARIO");
+        if(userStoryService.findById(userStoryId).isPresent()) {
+            UserStory story = modelMapper.map(userStoryDto, UserStory.class);
+            respuesta.put("message", modelMapper.map(userStoryService.updateUserStory(userStoryId, story), UserStoryDto.class));
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
         }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/subproject/{subprojectId}")
