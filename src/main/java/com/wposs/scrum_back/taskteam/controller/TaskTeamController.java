@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -56,13 +57,35 @@ public class TaskTeamController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-//    @GetMapping("/team/{teamId}")
-//    @ApiOperation("Get all task by team id")
-//    @ApiResponses({@ApiResponse(code = 200, message = "success")})
-//    public ResponseEntity<List<TaskTeamDto>> findByTeamId(@PathVariable UUID teamId){
-//        List<TaskTeam> taskTeams = taskTeamService.getByTeam(teamId);
-//        return new ResponseEntity<>(taskTeams.stream().map(taskTeam -> modelMapper.map(taskTeam,TaskTeamDto.class))
-//                .collect(Collectors.toList()), HttpStatus.OK);
-//    }
+    @PutMapping("/updatetask/{id}")
+    @Operation(summary = "Update Task Team")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Update Task Team Success"),
+            @ApiResponse(responseCode = "400",description = "Update Task Team Bad Request")
+    })
+    public ResponseEntity<HashMap<String,Object>> updateTaskTeam(@RequestBody TaskTeamDto taskTeamDto,@PathVariable("id") UUID idTaskTeam){
+        HashMap<String,Object> respuesta = new HashMap<>();
+        respuesta.put("message","ERROR AL INTENTAR ACTUALIZAR TASK TEAM");
+        if(taskTeamService.getTaskTeam(idTaskTeam).isPresent()){
+            TaskTeam taskTeam = modelMapper.map(taskTeamDto,TaskTeam.class);
+            respuesta.put("message",modelMapper.map(taskTeamService.update(idTaskTeam,taskTeam),TaskTeamDto.class));
+            return new ResponseEntity<>(respuesta,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/deleteTaskTeam/{id}")
+    @Operation(summary = "Delete Task Team To Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Delete Success"),
+            @ApiResponse(responseCode = "404",description = "Task Team Not Found")
+    })
+    public ResponseEntity deleteTaskTeam(@PathVariable("id") UUID idTaskTeam){
+        if (taskTeamService.getTaskTeam(idTaskTeam).isPresent()){
+            taskTeamService.deleteTaskTeam(idTaskTeam);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }

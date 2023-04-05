@@ -29,12 +29,16 @@ private final TaskTeamRepository taskTeamRepository;
     public TaskTeam update(UUID taskTeamId, TaskTeam taskTeam){
        return taskTeamRepository.findById(taskTeamId).map(taskTeam1 -> {
             taskTeam1.setTaskTeamName((taskTeam.getTaskTeamName()!=null)? taskTeam.getTaskTeamName() : taskTeam1.getTaskTeamName());
-            return  taskTeamRepository.save(taskTeam);
+            return  taskTeamRepository.save(taskTeam1);
         }).orElse(null);
     }
 
     public TaskTeam save(TaskTeam taskTeamDto){
         return taskTeamRepository.save(taskTeamDto);
+    }
+
+    public void deleteTaskTeam(UUID idTaskTeam){
+        taskTeamRepository.deleteById(idTaskTeam);
     }
 
 }
