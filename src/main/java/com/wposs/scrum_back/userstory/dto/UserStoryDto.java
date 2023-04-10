@@ -25,7 +25,17 @@ public class UserStoryDto {
 
     private Long userStoryStateId;
 
+    private String userStoryStateName;
+
     private UUID subProjectId;
+
+    public String getUserStoryStateName() {
+        return userStoryStateName;
+    }
+
+    public void setUserStoryStateName(String userStoryStateName) {
+        this.userStoryStateName = userStoryStateName;
+    }
 
     public UUID getUserStoryId() {
         return userStoryId;
