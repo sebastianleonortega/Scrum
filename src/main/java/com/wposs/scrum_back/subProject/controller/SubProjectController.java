@@ -43,10 +43,9 @@ public class SubProjectController {
     @GetMapping("/all")
     @Operation(summary = "Get all subprojects")
     @ApiResponse(responseCode = "200",description = "success")
-    public ResponseEntity<List<SubProjectDto>> findAll(){
+    public ResponseEntity<List<SubProject>> findAll(){
         List<SubProject> subProjects = subProjectService.getAll();
-        return new ResponseEntity<>(subProjects.stream().map(subProject  -> modelMapper.map(subProject,SubProjectDto.class))
-                .collect(Collectors.toList()),HttpStatus.OK);
+        return new ResponseEntity<>(subProjects, HttpStatus.OK);
     }
 
     @PostMapping("/save")

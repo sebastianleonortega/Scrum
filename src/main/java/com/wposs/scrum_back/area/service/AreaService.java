@@ -45,4 +45,13 @@ public class AreaService {
         return areaRepository.existsByAreaName(areaName);
     }
 
+    public Boolean deleteArea(UUID idArea){
+        Optional<Area> area = Optional.ofNullable(areaRepository.findByAreaId(idArea));
+        if(area.isPresent()){
+            areaRepository.deleteById(idArea);
+            return true;
+        }
+        return false;
+    }
+
 }

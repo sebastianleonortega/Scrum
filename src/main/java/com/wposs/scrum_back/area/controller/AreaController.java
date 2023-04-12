@@ -99,5 +99,17 @@ public class AreaController {
         Area areaUpdate = this.areaService.save(area);
         return  new ResponseEntity<>(modelMapper.map(areaUpdate, AreaDto.class), HttpStatus.OK);
     }
+    @DeleteMapping("/deletearea/{id}")
+    @Operation(description = "DELETE AREA TO ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "DELETE SUCCESS"),
+            @ApiResponse(responseCode = "404",description = "AREA NOT FOUND")
+    })
+    public ResponseEntity deleteArea(@PathVariable("id")UUID idArea){
+        if (areaService.deleteArea(idArea)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }

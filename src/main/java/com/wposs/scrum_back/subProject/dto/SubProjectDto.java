@@ -1,7 +1,10 @@
 package com.wposs.scrum_back.subProject.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wposs.scrum_back.project.dto.ProjectDto;
+import com.wposs.scrum_back.project.entity.Project;
 
 
 import javax.validation.constraints.NotEmpty;
@@ -24,12 +27,22 @@ public class SubProjectDto {
     @JsonProperty(value = "projectId")
     private UUID projectId;
 
+    private ProjectDto project;
+
     public UUID getSubProjectId() {
         return subProjectId;
     }
 
     public void setSubProjectId(UUID subProjectId) {
         this.subProjectId = subProjectId;
+    }
+
+    public ProjectDto getProjectName() {
+        return project;
+    }
+
+    public void setProjectName(ProjectDto projectName) {
+        this.project = projectName;
     }
 
     public String getSubProjectName() {
