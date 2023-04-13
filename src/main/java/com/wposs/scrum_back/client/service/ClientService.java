@@ -25,11 +25,11 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Optional<Client> findById(UUID clientId){
+    public Optional<Client> findById(String clientId){
         return clientRepository.findById(clientId);
     }
 
-    public Client updateClient(UUID id, Client client){
+    public Client updateClient(String id, Client client){
         return clientRepository.findById(id).map(client1 -> {
             client1.setClientName((client.getClientName()!=null)? client.getClientName() : client1.getClientName());
             return clientRepository.save(client1);

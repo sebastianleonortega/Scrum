@@ -10,11 +10,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "client", schema = "wposs")
 public class Client {
+
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "client_id")
-    private UUID clientId;
+    private String clientId;
 
     @Column(name = "client_name", nullable = false, length = 100)
     private String clientName;
@@ -22,11 +21,11 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Project> projects;
 
-    public UUID getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 

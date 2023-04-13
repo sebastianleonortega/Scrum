@@ -13,24 +13,26 @@ import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientDto {
-
-    @JsonProperty(value ="client_id", access = JsonProperty.Access.READ_ONLY)
-    private UUID clientId;
+    @JsonProperty(value = "NIT CLIENTE")
+    @NotNull
+    @NotEmpty
+    @Size(max = 20)
+    private String clientId;
 
     @JsonProperty(value = "client_name")
     @NotNull
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 20)
     private String clientName;
 
     @JsonIgnore
     private List<Project> projects;
 
-    public UUID getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 

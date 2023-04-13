@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, UUID>, JpaRepository<Client, UUID> {
+public interface ClientRepository extends JpaRepository<Client, String> {
 
     Boolean existsByClientName(String clientName);
 

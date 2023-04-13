@@ -27,7 +27,7 @@ public class Project {
     private UUID areaId;
 
     @Column(name = "client_id")
-    private UUID clientId;
+    private String clientId;
 
     @ManyToOne
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
@@ -72,11 +72,11 @@ public class Project {
         this.areaId = areaId;
     }
 
-    public UUID getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 

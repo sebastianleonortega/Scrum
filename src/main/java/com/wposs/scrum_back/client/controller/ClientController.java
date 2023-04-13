@@ -32,9 +32,9 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get client by UUID")
+    @Operation(summary = "Get client by String")
     @ApiResponse(responseCode = "200",description = "successful search")
-    public ResponseEntity<ClientDto> findById(@PathVariable UUID id){
+    public ResponseEntity<ClientDto> findById(@PathVariable String id){
         return clientService.findById(id).map(client -> new ResponseEntity<>(modelMapper.map(client, ClientDto.class), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -71,7 +71,7 @@ public class ClientController {
             @ApiResponse(responseCode = "400",description = "Returns the data sent is invalid"),
             @ApiResponse(responseCode = "404",description = "Cliente Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateClient(@RequestBody Client client, @PathVariable("id") UUID clientId){
+    public ResponseEntity<Map<String, Object>> updateClient(@RequestBody Client client, @PathVariable("id") String clientId){
         Map<String, Object> map = new HashMap<>();
         map.put("message","Datos invalidos");
         if(clientService.findById(clientId).isPresent()){

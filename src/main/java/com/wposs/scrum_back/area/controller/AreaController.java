@@ -79,7 +79,6 @@ public class AreaController {
         Map<String, Object> map = new HashMap<>();
         map.put("message","Datos invalidos");
         if(areaService.findById(areaId).isPresent()){
-
                 map.put("message", modelMapper.map(areaService.updateArea(areaId, modelMapper.map(areaDto, Area.class)), AreaDto.class));
                 return new ResponseEntity<>(map, HttpStatus.OK);
         }
