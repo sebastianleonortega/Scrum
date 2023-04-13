@@ -1,11 +1,9 @@
 package com.wposs.scrum_back.client.entity;
 
 import com.wposs.scrum_back.project.entity.Project;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "client", schema = "wposs")
