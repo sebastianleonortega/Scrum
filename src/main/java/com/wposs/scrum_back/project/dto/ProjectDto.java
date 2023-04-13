@@ -29,7 +29,7 @@ public class ProjectDto {
     private UUID areaId;
 
     @JsonProperty(value = "clientId")
-    private UUID clientId;
+    private String clientId;
 
     @JsonIgnore
     private AreaDto area;
@@ -74,11 +74,11 @@ public class ProjectDto {
         this.client = client;
     }
 
-    public UUID getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 

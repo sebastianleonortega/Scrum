@@ -1,7 +1,5 @@
 server:
-    port: 8090
-    servlet:
-        context-path: /scrum
+    port: 8020
 spring:
     datasource:
         password: Profeta2

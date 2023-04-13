@@ -32,6 +32,8 @@ public class ProjectService {
     public Project updateProject(UUID projectId, Project project){
         return projectRepository.findById(projectId).map(project1 -> {
             project1.setProjectName((project.getProjectName()!=null)? project.getProjectName() : project1.getProjectName());
+            project1.setAreaId((project.getAreaId()!=null)?project.getAreaId():project1.getAreaId());
+            project1.setClientId((project.getClientId()!=null)?project.getClientId():project1.getClientId());
             return projectRepository.save(project1);
         }).orElse(null);
     }
