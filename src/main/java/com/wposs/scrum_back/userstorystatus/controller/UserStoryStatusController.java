@@ -19,7 +19,7 @@ public class UserStoryStatusController {
     @Autowired
     private UserStoryStatusService userStoryStatusService;
 
-    @GetMapping("statusall")
+    @GetMapping("/statusall")
     @Operation(description = "GET ALL STATUS")
     @ApiResponse(responseCode = "200",description = "ALL USER STORY STATUS")
     public ResponseEntity<List<UserStoryStatusDto>> getAllStatus(){
