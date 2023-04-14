@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.userstorystatus.service;
 
 import com.wposs.scrum_back.userstorystatus.dto.UserStoryStatusDto;
+import com.wposs.scrum_back.userstorystatus.entity.UserStoryStatus;
 import com.wposs.scrum_back.userstorystatus.repository.UserStoryStatusRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,11 @@ public class UserStoryStatusServiceImpl implements UserStoryStatusService {
             return modelMapper.map(userStoryStatusRepository1,UserStoryStatusDto.class);
         }).collect(Collectors.toList());
     }
+
+    @Override
+    public UserStoryStatusDto saveStatus(UserStoryStatusDto userStoryStatusDto) {
+        return modelMapper.map(userStoryStatusRepository.save(modelMapper.map(userStoryStatusDto, UserStoryStatus.class)),UserStoryStatusDto.class);
+    }
+
+
 }

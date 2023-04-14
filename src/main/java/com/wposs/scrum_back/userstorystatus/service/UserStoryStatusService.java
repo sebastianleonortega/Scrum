@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserStoryStatusService {
     List<UserStoryStatusDto> gatAll();
+    UserStoryStatusDto saveStatus(UserStoryStatusDto userStoryStatusDto);
 }
