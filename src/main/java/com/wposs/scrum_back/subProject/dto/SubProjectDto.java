@@ -27,6 +27,15 @@ public class SubProjectDto {
     @JsonProperty(value = "projectId")
     private UUID projectId;
 
+    private String projectName;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public UUID getSubProjectId() {
         return subProjectId;

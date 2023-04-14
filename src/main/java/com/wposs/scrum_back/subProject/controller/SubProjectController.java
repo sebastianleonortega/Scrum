@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -43,9 +40,12 @@ public class SubProjectController {
     @GetMapping("/all")
     @Operation(summary = "Get all subprojects")
     @ApiResponse(responseCode = "200",description = "success")
-    public ResponseEntity<List<SubProject>> findAll(){
-        List<SubProject> subProjects = subProjectService.getAll();
-        return new ResponseEntity<>(subProjects, HttpStatus.OK);
+    public ResponseEntity<List<SubProjectDto>> findAll(){
+        List<SubProjectDto> subProjectDtos = subProjectService.getAll().stream()
+                .map(subProject -> {
+                   return modelMapper.map(subProject,SubProjectDto.class);
+                }).toList();
+        return new ResponseEntity<>(subProjectDtos,HttpStatus.OK);
     }
 
     @PostMapping("/save")
