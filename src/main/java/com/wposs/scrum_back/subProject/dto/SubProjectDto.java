@@ -15,7 +15,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubProjectDto {
 
-    @JsonProperty(value ="subProjectId", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "subProjectId", access = JsonProperty.Access.READ_ONLY)
     private UUID subProjectId;
 
     @JsonProperty(value = "subProjectName")
@@ -27,7 +27,6 @@ public class SubProjectDto {
     @JsonProperty(value = "projectId")
     private UUID projectId;
 
-    private ProjectDto project;
 
     public UUID getSubProjectId() {
         return subProjectId;
@@ -35,14 +34,6 @@ public class SubProjectDto {
 
     public void setSubProjectId(UUID subProjectId) {
         this.subProjectId = subProjectId;
-    }
-
-    public ProjectDto getProjectName() {
-        return project;
-    }
-
-    public void setProjectName(ProjectDto projectName) {
-        this.project = projectName;
     }
 
     public String getSubProjectName() {

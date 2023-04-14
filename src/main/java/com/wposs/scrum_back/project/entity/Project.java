@@ -1,6 +1,5 @@
 package com.wposs.scrum_back.project.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.client.entity.Client;
 import com.wposs.scrum_back.subProject.entity.SubProject;
