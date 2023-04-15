@@ -29,5 +29,12 @@ public class UserStoryStatusServiceImpl implements UserStoryStatusService {
         return modelMapper.map(userStoryStatusRepository.save(modelMapper.map(userStoryStatusDto, UserStoryStatus.class)),UserStoryStatusDto.class);
     }
 
-
+    @Override
+    public Boolean deleteProducto(Long idStatus) {
+        if (userStoryStatusRepository.findById(idStatus).isPresent()){
+            userStoryStatusRepository.deleteById(idStatus);
+            return true;
+        }
+        return false;
+    }
 }

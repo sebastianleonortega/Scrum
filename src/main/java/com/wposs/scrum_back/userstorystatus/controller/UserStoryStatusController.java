@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/userstorystatus")
@@ -44,5 +43,21 @@ public class UserStoryStatusController {
         }catch (Exception e){
             return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("/deletestatus/{id}")
+    @Operation(description = "DELETE STATUS")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",description = "Delete Success"),
+            @ApiResponse(responseCode = "404",description = "Status Not Found")
+    })
+    public ResponseEntity<HashMap<String,String>> deleteStatus(@PathVariable("id") Long idStatus) {
+        HashMap<String, String> respuesta = new HashMap<>();
+        respuesta.put("message","No se encontro el statdo a eliminar");
+        if(userStoryStatusService.deleteProducto(idStatus)) {
+        respuesta.put("message","Eliminado Satisfactoriamente");
+            return new ResponseEntity<>(respuesta,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(respuesta,HttpStatus.NOT_FOUND);
     }
 }
