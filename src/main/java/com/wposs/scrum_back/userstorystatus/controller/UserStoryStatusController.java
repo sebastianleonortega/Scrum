@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.userstorystatus.controller;
 
+import com.wposs.scrum_back.Exception.BadRequestException;
 import com.wposs.scrum_back.userstorystatus.dto.UserStoryStatusDto;
 import com.wposs.scrum_back.userstorystatus.service.UserStoryStatusService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.validation.Valid;
 import java.util.HashMap;

@@ -17,7 +17,7 @@ public class UserStoryStatusDto {
     @NotNull
     @NotEmpty
     @Size(max = 100)
-    private String userStoryStatusName;
+    private String userStoryStateName;
 
     public Long getUserStoryStateId() {
         return userStoryStateId;
@@ -27,11 +27,11 @@ public class UserStoryStatusDto {
         this.userStoryStateId = userStoryStateId;
     }
 
-    public String getUserStoryStatusName() {
-        return userStoryStatusName;
+    public String getUserStoryStateName() {
+        return userStoryStateName;
     }
 
-    public void setUserStoryStatusName(String userStoryStatusName) {
-        this.userStoryStatusName = userStoryStatusName;
+    public void setUserStoryStateName(String userStoryStateName) {
+        this.userStoryStateName = userStoryStateName;
     }
 }
