@@ -3,8 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AreaService} from "@app/data/services/area/area.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
-import {MatDialogRef} from '@angular/material/dialog';
-import {AreaComponent} from '@app/modules/area/pages/area/area.component';
 
 @Component({
   selector: 'app-area-edit',
@@ -21,7 +19,7 @@ export class AreaEditComponent implements OnInit {
     public areaService: AreaService,
     private route: ActivatedRoute,
     public route1: Router,
-    public dialog: MatDialogRef<AreaComponent>
+
     ) {
 
   }
@@ -62,16 +60,9 @@ export class AreaEditComponent implements OnInit {
           })
           this.areaEditForm.reset();
           this.route1.navigateByUrl('app/area').then();
-          this.dialog.close();
         },
        );
     }
   }
-
-  deleteArea(id: string){
-    this.areaService.deleteArea(id);
-    console.log(id);
-  }
-
 
 }
