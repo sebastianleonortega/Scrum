@@ -23,7 +23,7 @@ public class Area {
     @Column(name = "areaName", nullable = false, length = 100)
     private String areaName;
     @JsonIgnore
-    @OneToMany(mappedBy = "area")
+    @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Project> projects;
     @JsonIgnore
     @OneToMany(mappedBy = "area")

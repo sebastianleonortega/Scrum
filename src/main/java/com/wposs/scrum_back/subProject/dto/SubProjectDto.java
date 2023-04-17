@@ -1,10 +1,7 @@
 package com.wposs.scrum_back.subProject.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import  com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wposs.scrum_back.project.dto.ProjectDto;
-import com.wposs.scrum_back.project.entity.Project;
 
 
 import javax.validation.constraints.NotEmpty;

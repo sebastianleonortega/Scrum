@@ -48,9 +48,7 @@ public class AreaController {
     @ApiResponse(responseCode = "200",description = "Get All List Success")
     public ResponseEntity<List<AreaDto>> findAll(){
         List<Area> areas = areaService.getAll();
-        //return new ResponseEntity<>(areas.stream().map(area -> modelMapper.map(areas,AreaDto.class)).collect(Collectors.toList()),HttpStatus.OK);
-        return new ResponseEntity<>(areas.stream().map(area -> modelMapper.map(area,AreaDto.class))
-              .collect(Collectors.toList()),HttpStatus.OK);
+        return new ResponseEntity<>(areas.stream().map(area -> modelMapper.map(area,AreaDto.class)).collect(Collectors.toList()),HttpStatus.OK);
     }
 
     @PostMapping("/save/")
