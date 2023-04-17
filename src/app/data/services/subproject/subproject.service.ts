@@ -26,4 +26,8 @@ export class SubprojectService {
   updateSubProject(idSubProyect:string,dataSubProyect:any){
     return this.httpClient.put(this.API_SERVER+"/"+idSubProyect,dataSubProyect);
   }
+
+  getProyecto():Observable<any>{
+    return this.httpClient.get('http://localhost:8020/project/all');
+  }
 }

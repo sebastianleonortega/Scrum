@@ -16,7 +16,7 @@
         <label class="mr-sm ">Razón social</label>
         <label class="col-sm-3">
           <input type="text" class="form-control" placeholder="Ingrese la razón social"
-                 formControlName="clientName">
+                 formControlName="client_name">
         </label>
       </div>
       <button class="btn btn btn-primary mb-2 " type="submit" [disabled]="customerForm.invalid">Editar</button>
@@ -24,25 +24,3 @@
   </div>
 </div>
 
-
-<!--<div class="container">-->
-<!--  <div>-->
-<!--    <form [formGroup]="customerForm" (ngSubmit)="edit()">-->
-<!--      <div class="input-group">-->
-<!--        <div class="input-fill_file">-->
-<!--          <span>NIT de la Empresa</span>-->
-<!--          <input type="text" placeholder="Dijite el Nit" formControlName="clientNit">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="input-group">-->
-<!--        <div class="input-fill_file">-->
-<!--          <span>Razón Social</span>-->
-<!--          <input type="text" placeholder="Dijite la Razon social" formControlName="clientName">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <button mat-flat-button class="btn-login" [disabled]="customerForm.invalid">Editar</button>-->
-<!--    </form>-->
-<!--  </div>-->
-
-<!--</div>-->

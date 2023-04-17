@@ -8,7 +8,7 @@
       <div class="form-group col-sm-4">
         <span>Seleccionar área</span>
         <select class="form-select" formControlName="sprintsArea" (change)="selectArea()">
-          <option value="{{area.areaId}}" *ngFor="let area of areas">{{area.areaName}}</option>
+          <option value="{{area.areaId}}" *ngFor="let area of areas">{{area.area_name}}</option>
         </select>
         <div *ngIf="sprintsForm.get('sprintsArea')?.dirty || sprintsForm.get('sprintsArea')?.touched">
           <p *ngIf="sprintsForm.get('sprintsArea')?.hasError('required')" style="color: red">

@@ -32,7 +32,9 @@ export class SubprojetcAddComponent implements OnInit {
       subProjectName: new FormControl(null, [Validators.required]),
       projectId: new FormControl(null, [Validators.required])
     });
-    this.getAllProjects();
+    this.subprojectService.getProyecto().subscribe((data) =>{
+      this.projects = data;
+    })
 
   }
 
@@ -48,6 +50,7 @@ export class SubprojetcAddComponent implements OnInit {
       const data = {
         subProjectName: this.subprojectAddForm.get('subProjectName')?.value,
         projectId:this.subprojectAddForm.get('projectId')?.value
+
       }
 
       this.subprojectService.saveSubProject(data).subscribe((resp) => {
@@ -60,8 +63,7 @@ export class SubprojetcAddComponent implements OnInit {
         })
 
         this.subprojectAddForm.reset()
-        // this.dialogRef.close();
-        // location.reload();
+        location.reload();
       },);
     }
   }

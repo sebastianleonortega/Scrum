@@ -31,7 +31,7 @@ export class AreaEditComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('areaId');
     this.getArea(this.id);
     this.areaEditForm = new FormGroup({
-      areaName: new FormControl(null, [Validators.required])
+      area_name: new FormControl(null, [Validators.required])
     });
   }
 
@@ -39,7 +39,7 @@ export class AreaEditComponent implements OnInit {
     this.areaService.getArea(id).subscribe(resp => {
         this.areaEdit = resp;
         this.areaEditForm.patchValue({
-          areaName: this.areaEdit.areaName
+          area_name: this.areaEdit.area_name
         });
       },
     );
@@ -48,7 +48,7 @@ export class AreaEditComponent implements OnInit {
   editArea() {
     if (this.areaEditForm.valid) {
       const data = {
-        areaName: this.areaEditForm.get('areaName')?.value,
+        area_name: this.areaEditForm.get('area_name')?.value,
       }
 
       this.areaService.updateArea(this.id, data).subscribe(
@@ -73,8 +73,5 @@ export class AreaEditComponent implements OnInit {
     console.log(id);
   }
 
-  closeModal(){
-   this.dialog.close();
-  }
 
 }

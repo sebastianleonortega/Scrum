@@ -49,20 +49,5 @@ export class ProyectComponent implements OnInit {
     dialogRef.afterClosed().subscribe(resul =>  {
     })
   }
-
-
-
-  //
-  // upload_image(event: any) {
-  //   console.log(event.target.files);
-  //   let archive = event.target.files
-  //   let reader = new FileReader();
-  //
-  //   reader.readAsDataURL(archive[0])
-  //   reader.onloadend = () => {
-  //     console.log(reader.result);
-  //   }
-  //
-  // }
 }
 

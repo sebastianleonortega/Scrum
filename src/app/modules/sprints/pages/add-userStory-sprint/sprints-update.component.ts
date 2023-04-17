@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SprintsService} from "@app/data/services/sprints/sprints.service";
 import {AreaService} from "@app/data/services/area/area.service";
-import {Area} from "@app/data/interfaces/interface-area";
+import {AreaInterface} from "@app/data/interfaces/interface-area";
 import {FormBuilder} from "@angular/forms";
 import Swal from "sweetalert2";
 
@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./sprints-update.component.css']
 })
 export class SprintsUpdateComponent implements OnInit {
-  public areas: Area[] = [];
+  public areas: AreaInterface[] = [];
   areaId: string | null = '';
   teamId: string | null = '';
   arrayStory: any[] = [];

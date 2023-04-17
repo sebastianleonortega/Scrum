@@ -1,21 +1,4 @@
-export interface Area{
-
+export interface AreaInterface{
   areaId: string;
-  areaName: string;
-  employees:[{
-    empId:string;
-  }],
-  teams: [
-    {
-      areaId: string;
-      employees: [
-        {
-          empId: string;
-        }
-      ],
-      teamId: string;
-      teamName: string;
-    }
-  ]
-
+  area_name: string;
 }

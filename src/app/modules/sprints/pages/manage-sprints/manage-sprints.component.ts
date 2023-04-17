@@ -4,7 +4,7 @@ import {SprintsService} from "@app/data/services/sprints/sprints.service";
 import {AreaService} from "@app/data/services/area/area.service";
 import {TeamsService} from "@app/modules/teams/shared/teams.service";
 import {Team} from "@app/modules/teams/shared/team";
-import {Area} from "@app/data/interfaces/interface-area";
+import {AreaInterface} from "@app/data/interfaces/interface-area";
 import Swal from "sweetalert2";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 export class ManageSprintsComponent implements OnInit {
   sprintsForm: FormGroup = new FormGroup({});
   teams: Team[] = [];
-  areas: Area[] = [];
+  areas: AreaInterface[] = [];
   areaId: string = '';
   sprints: any;
   elapsedDays: any

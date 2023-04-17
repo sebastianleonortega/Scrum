@@ -27,7 +27,7 @@ export class CustomerEditFormComponent implements OnInit {
 
     this.customerForm = this.formBuilder.group({
       clientNit: new FormControl(null, [Validators.required]),
-      clientName: new FormControl(null, [Validators.required])
+      client_name: new FormControl(null, [Validators.required])
     });
     this.id = this.route.snapshot.paramMap.get('clientId');
     this.getCustomerById(this.id)
@@ -39,7 +39,7 @@ export class CustomerEditFormComponent implements OnInit {
       this.customer = resp;
       this.customerForm.patchValue({
         clientNit: this.customer.clientNit,
-        clientName: this.customer.clientName
+        client_name: this.customer.client_name
       });
     })
   }
@@ -48,7 +48,7 @@ export class CustomerEditFormComponent implements OnInit {
     if (this.customerForm.valid){
       const data ={
         clientNit:this.customerForm.get('clientNit')?.value,
-        clientName:this.customerForm.get('clientName')?.value,
+        client_name:this.customerForm.get('client_name')?.value,
       }
       this.customerService.updateCustomer(this.id,data).subscribe(
         (resp) =>{

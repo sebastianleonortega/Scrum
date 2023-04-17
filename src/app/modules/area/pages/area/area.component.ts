@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Area} from "@app/data/interfaces/interface-area";
+import {AreaInterface} from "@app/data/interfaces/interface-area";
 import {AreaService} from "@app/data/services/area/area.service";
 import Swal from 'sweetalert2';
-import {MatDialog} from '@angular/material/dialog';
-import {AreaEditComponent} from '@app/modules/area/pages/area-edit/area-edit.component';
 
 @Component({
   selector: 'app-area',
@@ -14,25 +12,25 @@ import {AreaEditComponent} from '@app/modules/area/pages/area-edit/area-edit.com
 export class AreaComponent implements OnInit {
 
   areaForm: FormGroup = new FormGroup({});
-  area: Area | any;
-  employees = [];
-  teams = [];
+  area: AreaInterface | any;
 
 
   constructor(
     public formBuilder: FormBuilder,
     public areaService: AreaService,
-    public dialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
     this.areaForm = this.formBuilder.group({
       areaId: new FormControl(null,),
-      areaName: new FormControl(null, [Validators.required]),
+      area_name: new FormControl(null, [Validators.required]),
     });
-    this.getAllAreas()
+    this.areaService.getAllArea().subscribe(resp => {
+      this.area = resp;
+    })
   }
+
   getAllAreas(){
     this.areaService.getAllArea().subscribe(resp => {
         this.area = resp;
@@ -44,8 +42,8 @@ export class AreaComponent implements OnInit {
 
     if (this.areaForm.valid) {
       const data = {
-
-        areaName: this.areaForm.get('areaName')?.value
+        areaId: this.areaForm.get('areaId')?.value,
+        area_name: this.areaForm.get('area_name')?.value
       }
       this.areaService.saveArea(data).subscribe(
         () => {
@@ -79,9 +77,7 @@ export class AreaComponent implements OnInit {
         );
   }
 
-  abriModalArea(): void {
-    const dialogRef = this.dialog.open(AreaEditComponent);
-  }
+
 
 
 }

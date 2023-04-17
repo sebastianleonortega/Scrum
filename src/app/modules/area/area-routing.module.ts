@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AreaComponent
   },
   {
-    path: 'edit-area/:areaId',
+    path: 'edit_area/:areaId',
     component: AreaEditComponent
   }
 ];
