@@ -25,13 +25,6 @@ public class AreaDto {
     @Size(max = 100)
     private String areaName;
 
-    @JsonIgnore
-    private List<ProjectDto> projects;
-
-    @JsonIgnore
-    private List<TeamDto> teams;
-
-    private List<EmployeeDto> employees;
 
 
     public UUID getAreaId() {
@@ -50,27 +43,4 @@ public class AreaDto {
         this.areaName = areaName;
     }
 
-    public List<ProjectDto> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<ProjectDto> projects) {
-        this.projects = projects;
-    }
-
-    public List<TeamDto> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<TeamDto> teams) {
-        this.teams = teams;
-    }
-
-    public List<EmployeeDto> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<EmployeeDto> employees) {
-        this.employees = employees;
-    }
 }

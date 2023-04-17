@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.client.service;
 
 import com.wposs.scrum_back.area.entity.Area;
+import com.wposs.scrum_back.client.dto.ClientDto;
 import com.wposs.scrum_back.client.entity.Client;
 import com.wposs.scrum_back.client.repository.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,9 @@ public class ClientService {
         return clientRepository.findById(clientId);
     }
 
-    public Client updateClient(String id, Client client){
+    public Client updateClient(String id, ClientDto clientDto){
         return clientRepository.findById(id).map(client1 -> {
-            client1.setClientName((client.getClientName()!=null)? client.getClientName() : client1.getClientName());
+            client1.setClientName((clientDto.getClientName()!=null)? clientDto.getClientName() : client1.getClientName());
             return clientRepository.save(client1);
         }).orElse(null);
     }

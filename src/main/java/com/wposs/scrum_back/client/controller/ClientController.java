@@ -71,14 +71,13 @@ public class ClientController {
             @ApiResponse(responseCode = "400",description = "Returns the data sent is invalid"),
             @ApiResponse(responseCode = "404",description = "Cliente Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateClient(@RequestBody Client client, @PathVariable("id") String clientId){
+    public ResponseEntity<Map<String, Object>> updateClient(@RequestBody ClientDto clientDto, @PathVariable("id") String clientId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("message","Datos invalidos");
-        if(clientService.findById(clientId).isPresent()){
-            System.out.println(client.getClientId());
-            System.out.println(client.getClientName());
-            map.put("message", modelMapper.map(clientService.updateClient(clientId, client), ClientDto.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
+        map.put("message", "Datos invalidos");
+        ClientDto clientDto1 = modelMapper.map(clientService.updateClient(clientId, clientDto), ClientDto.class);
+        if(clientDto1!=null){
+            map.put("message",clientDto1);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
         return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
     }

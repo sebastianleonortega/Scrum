@@ -24,9 +24,6 @@ public class ClientDto {
     @Size(max = 20)
     private String clientName;
 
-    @JsonIgnore
-    private List<Project> projects;
-
     public String getClientId() {
         return clientId;
     }
@@ -41,13 +38,5 @@ public class ClientDto {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public List<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
     }
 }

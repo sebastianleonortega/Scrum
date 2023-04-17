@@ -31,11 +31,7 @@ public class ProjectDto {
     @JsonProperty(value = "clientId")
     private String clientId;
 
-    @JsonIgnore
-    private AreaDto area;
 
-    @JsonIgnore
-    private ClientDto client;
 
 
     public UUID getProjectId() {
@@ -62,27 +58,11 @@ public class ProjectDto {
         this.areaId = areaId;
     }
 
-    public AreaDto getArea() {
-        return area;
-    }
-
-    public void setArea(AreaDto area) {
-        this.area = area;
-    }
-
-    public void setClient(ClientDto client) {
-        this.client = client;
-    }
-
     public String getClientId() {
         return clientId;
     }
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
-    }
-
-    public ClientDto getClient() {
-        return client;
     }
 }
