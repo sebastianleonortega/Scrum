@@ -24,7 +24,7 @@ export class AreaComponent implements OnInit {
   ngOnInit(): void {
     this.areaForm = this.formBuilder.group({
       areaId: new FormControl(null,),
-      area_name: new FormControl(null, [Validators.required]),
+      areaName: new FormControl(null, [Validators.required]),
     });
     this.areaService.getAllArea().subscribe(resp => {
       this.area = resp;
@@ -43,7 +43,7 @@ export class AreaComponent implements OnInit {
     if (this.areaForm.valid) {
       const data = {
         areaId: this.areaForm.get('areaId')?.value,
-        area_name: this.areaForm.get('area_name')?.value
+        areaName: this.areaForm.get('areaName')?.value
       }
       this.areaService.saveArea(data).subscribe(
         () => {
