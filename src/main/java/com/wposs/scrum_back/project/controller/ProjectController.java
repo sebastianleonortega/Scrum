@@ -70,15 +70,16 @@ public class ProjectController {
             @ApiResponse(responseCode = "200",description = "Return the updated project"),
             @ApiResponse(responseCode = "404",description = "Project Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateProject(@RequestBody Project project, @PathVariable("id") UUID projectId){
+    public ResponseEntity<Map<String, Object>> updateProject(@Valid @RequestBody ProjectDto projectDto, @PathVariable("id") UUID projectId){
         Map<String, Object> map = new HashMap<>();
         map.put("message","Datos invalidos");
-        if(projectService.finById(projectId).isPresent()){
-            map.put("message", modelMapper.map(projectService.updateProject(projectId, project), ProjectDto.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
+        ProjectDto projectDto1 = modelMapper.map(projectService.updateProject(projectId,projectDto),ProjectDto.class);
+        if(projectDto1!=null){
+            map.put("message",projectDto1);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-        }
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    }
 
     @GetMapping("/area/{areaId}")
     @Operation(summary = "Get all projects by area id")

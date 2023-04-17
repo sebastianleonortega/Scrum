@@ -31,9 +31,6 @@ public class ProjectDto {
     @JsonProperty(value = "clientId")
     private String clientId;
 
-
-
-
     public UUID getProjectId() {
         return projectId;
     }

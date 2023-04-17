@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.project.service;
 
+import com.wposs.scrum_back.project.dto.ProjectDto;
 import com.wposs.scrum_back.project.entity.Project;
 import com.wposs.scrum_back.project.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,11 @@ public class ProjectService {
         return projectRepository.findById(projectId);
     }
 
-    public Project updateProject(UUID projectId, Project project){
+    public Project updateProject(UUID projectId, ProjectDto projectDto){
         return projectRepository.findById(projectId).map(project1 -> {
-            project1.setProjectName((project.getProjectName()!=null)? project.getProjectName() : project1.getProjectName());
-            project1.setAreaId((project.getAreaId()!=null)?project.getAreaId():project1.getAreaId());
-            project1.setClientId((project.getClientId()!=null)?project.getClientId():project1.getClientId());
+            project1.setProjectName((projectDto.getProjectName()!=null)? projectDto.getProjectName() : project1.getProjectName());
+            project1.setAreaId((projectDto.getAreaId()!=null)?projectDto.getAreaId():project1.getAreaId());
+            project1.setClientId((projectDto.getClientId()!=null)?projectDto.getClientId():project1.getClientId());
             return projectRepository.save(project1);
         }).orElse(null);
     }
