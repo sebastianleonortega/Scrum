@@ -54,14 +54,14 @@ public class SubProjectController {
             @ApiResponse(responseCode = "201",description = "subproject created"),
             @ApiResponse(responseCode = "400",description = "subproject bad request")
     })
-    public ResponseEntity<?> create(@Valid @RequestBody SubProjectDto subProjectDto){
-        HashMap<String, String> map = new HashMap<>();
+    public ResponseEntity<HashMap<String,Object>> create(@Valid @RequestBody SubProjectDto subProjectDto){
+        HashMap<String, Object> map = new HashMap<>();
         if (subProjectService.existSubProjectByName(subProjectDto.getSubProjectName())){
             map.put("message", "Este nombre de subproyecto ya existe");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
-        SubProject subProject = subProjectService.save(modelMapper.map(subProjectDto, SubProject.class));
-        return new ResponseEntity<>(modelMapper.map(subProject, ProjectDto.class), HttpStatus.CREATED);
+        map.put("message",modelMapper.map(subProjectService.save(modelMapper.map(subProjectDto,SubProject.class)),SubProjectDto.class));
+        return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
