@@ -1,88 +1,69 @@
 package com.wposs.scrum_back.area.controller;
 
 import com.wposs.scrum_back.area.dto.AreaDto;
-import com.wposs.scrum_back.area.entity.Area;
-import com.wposs.scrum_back.area.service.AreaService;
-import com.wposs.scrum_back.employee.dto.EmployeeDto;
-import com.wposs.scrum_back.employee.entity.Employee;
+import com.wposs.scrum_back.area.service.AreaServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @RestController
 @RequestMapping("/area")
 public class AreaController {
 
-    private final AreaService areaService;
-
-
-    private final ModelMapper modelMapper;
-
-
-    public AreaController(AreaService areaService, ModelMapper modelMapper) {
-        this.areaService = areaService;
-        this.modelMapper = modelMapper;
-    }
+    @Autowired
+    private AreaServiceImpl areaService;
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Area to Id")
-    @ApiResponse(responseCode = "200",description = "Area Success")
-    public ResponseEntity<AreaDto> findById(@PathVariable UUID id){
-        return areaService.findById(id).map(area -> new ResponseEntity<>(modelMapper.map(area, AreaDto.class), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @ApiResponse(responseCode = "200", description = "Area Success")
+    public ResponseEntity<AreaDto> findById(@PathVariable UUID id) {
+        return areaService.getAreaId(id).map(areaDto -> new ResponseEntity<>(areaDto, HttpStatus.OK)).orElse(null);
     }
 
     @GetMapping("/all")
     @Operation(summary = "Get all areas")
-    @ApiResponse(responseCode = "200",description = "Get All List Success")
-    public ResponseEntity<List<AreaDto>> findAll(){
-        List<Area> areas = areaService.getAll();
-        return new ResponseEntity<>(areas.stream().map(area -> modelMapper.map(area,AreaDto.class)).collect(Collectors.toList()),HttpStatus.OK);
+    @ApiResponse(responseCode = "200", description = "Get All List Success")
+    public ResponseEntity<List<AreaDto>> findAll() {
+        List<AreaDto> areaDtos = areaService.getAllArea();
+        if (!areaDtos.isEmpty()) {
+            return new ResponseEntity<>(areaDtos, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/save/")
     @Operation(summary = "Create Area")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201",description = "Created Area"),
-            @ApiResponse(responseCode = "400",description = "Area Bad Request")
+            @ApiResponse(responseCode = "201", description = "Created Area"),
+            @ApiResponse(responseCode = "400", description = "Area Bad Request")
     })
-    public ResponseEntity<?> create(@Valid @RequestBody AreaDto areaDto){
-        HashMap<String, String> map = new HashMap<>();
-        if (areaService.existAreaByName(areaDto.getAreaName())){
-            map.put("message", "Este nombre de area ya existe");
-            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<AreaDto> create(@Valid @RequestBody AreaDto areaDto) {
+        try {
+            return new ResponseEntity<>(areaService.saveArea(areaDto), HttpStatus.CREATED);
+        }catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Area area = areaService.save(modelMapper.map(areaDto, Area.class));
-        return new ResponseEntity<>(modelMapper.map(area, AreaDto.class), HttpStatus.CREATED);
+
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update the area")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Return the updated area"),
+            @ApiResponse(responseCode = "200", description = "Return the updated area"),
             @ApiResponse(responseCode = "404", description = "Area Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateArea(@RequestBody AreaDto areaDto,@PathVariable("id") UUID areaId){
-        Map<String, Object> map = new HashMap<>();
-        map.put("message","Datos invalidos");
-        if(areaService.findById(areaId).isPresent()){
-                map.put("message", modelMapper.map(areaService.updateArea(areaId, modelMapper.map(areaDto, Area.class)), AreaDto.class));
-                return new ResponseEntity<>(map, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<AreaDto> updateArea(@RequestBody AreaDto areaDto, @PathVariable("id") UUID areaId) {
+        return new ResponseEntity<>(areaService.updateArea(areaId, areaDto), HttpStatus.OK);
     }
-    @PutMapping("/saveemployeeonarea/{id}")
+
+/* @PutMapping("/saveemployeeonarea/{id}")
     @Operation(summary = "Update Area to Employe ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Return the updated area"),
@@ -95,7 +76,8 @@ public class AreaController {
         area.setEmployees(employeeList);
         Area areaUpdate = this.areaService.save(area);
         return  new ResponseEntity<>(modelMapper.map(areaUpdate, AreaDto.class), HttpStatus.OK);
-    }
+    }*/
+
     @DeleteMapping("/deletearea/{id}")
     @Operation(description = "DELETE AREA TO ID")
     @ApiResponses(value = {
@@ -104,9 +86,8 @@ public class AreaController {
     })
     public ResponseEntity deleteArea(@PathVariable("id")UUID idArea){
         if (areaService.deleteArea(idArea)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

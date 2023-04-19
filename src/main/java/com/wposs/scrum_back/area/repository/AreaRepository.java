@@ -14,7 +14,5 @@ public interface AreaRepository extends JpaRepository<Area, UUID> {
 
     Boolean existsByAreaName(String areaName);
 
-    Area findByAreaId(UUID areaId);
-
 
 }

@@ -1,6 +1,5 @@
 package com.wposs.scrum_back.userstorystatus.controller;
 
-import com.wposs.scrum_back.Exception.BadRequestException;
 import com.wposs.scrum_back.userstorystatus.dto.UserStoryStatusDto;
 import com.wposs.scrum_back.userstorystatus.service.UserStoryStatusService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/userstorystatus")

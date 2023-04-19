@@ -1,7 +1,5 @@
 package com.wposs.scrum_back.employee.service;
 
-import com.wposs.scrum_back.area.entity.Area;
-import com.wposs.scrum_back.area.service.AreaService;
 import com.wposs.scrum_back.employee.entity.Employee;
 import com.wposs.scrum_back.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
