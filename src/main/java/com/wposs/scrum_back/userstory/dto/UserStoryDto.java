@@ -7,6 +7,7 @@ import com.wposs.scrum_back.userstorystatus.dto.UserStoryStatusDto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.UUID;
 
 public class UserStoryDto {
@@ -29,6 +30,16 @@ public class UserStoryDto {
     private String userStoryStateName;
 
     private UUID subProjectId;
+
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getUserStoryStateName() {
         return userStoryStateName;

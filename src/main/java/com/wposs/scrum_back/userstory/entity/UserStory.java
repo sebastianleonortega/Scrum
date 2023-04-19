@@ -5,6 +5,7 @@ import com.wposs.scrum_back.userstorystatus.entity.UserStoryStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -28,6 +29,9 @@ public class UserStory {
 
     @Column(name = "user_story_status_id")
     private Long userStoryStateId;
+
+    @Column(name = "fecha_maxima",nullable = false)
+    private Date date;
 
     @Column(name = "sub_project_id", nullable = false)
     private UUID subProjectId;
@@ -105,4 +109,11 @@ public class UserStory {
         this.subProject = subProject;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

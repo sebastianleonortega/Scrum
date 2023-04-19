@@ -1,13 +1,14 @@
 package com.wposs.scrum_back.subProject.controller;
 
-import com.wposs.scrum_back.project.dto.ProjectDto;
 import com.wposs.scrum_back.subProject.dto.SubProjectDto;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.subProject.service.SubProjectService;
+import com.wposs.scrum_back.subProject.service.SubProjectServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,33 +20,25 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/subproject")
 public class SubProjectController {
-
-    private final SubProjectService subProjectService;
-
-    private final ModelMapper modelMapper;
-
-    public SubProjectController(SubProjectService subProjectService, ModelMapper modelMapper) {
-        this.subProjectService = subProjectService;
-        this.modelMapper = modelMapper;
-    }
+    @Autowired
+    private SubProjectService subProjectService;
 
     @GetMapping("/{id}")
     @Operation(summary = "Get subproject by UUID")
     @ApiResponse(responseCode = "200",description = "successful search")
     public ResponseEntity<SubProjectDto> findById(@PathVariable UUID id){
-        return subProjectService.finById(id).map(subProject -> new ResponseEntity<>(modelMapper.map(subProject, SubProjectDto.class), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return subProjectService.gatSubProjectId(id).map(subProjectDto -> new ResponseEntity<>(subProjectDto,HttpStatus.OK)).orElse(null);
     }
 
     @GetMapping("/all")
     @Operation(summary = "Get all subprojects")
     @ApiResponse(responseCode = "200",description = "success")
     public ResponseEntity<List<SubProjectDto>> findAll(){
-        List<SubProjectDto> subProjectDtos = subProjectService.getAll().stream()
-                .map(subProject -> {
-                   return modelMapper.map(subProject,SubProjectDto.class);
-                }).toList();
-        return new ResponseEntity<>(subProjectDtos,HttpStatus.OK);
+       List<SubProjectDto> subProjectDtos = subProjectService.gatAllSubProject();
+       if (!subProjectDtos.isEmpty()){
+           return new ResponseEntity<>(subProjectDtos,HttpStatus.OK);
+       }
+       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/save")
@@ -54,14 +47,8 @@ public class SubProjectController {
             @ApiResponse(responseCode = "201",description = "subproject created"),
             @ApiResponse(responseCode = "400",description = "subproject bad request")
     })
-    public ResponseEntity<HashMap<String,Object>> create(@Valid @RequestBody SubProjectDto subProjectDto){
-        HashMap<String, Object> map = new HashMap<>();
-        if (subProjectService.existSubProjectByName(subProjectDto.getSubProjectName())){
-            map.put("message", "Este nombre de subproyecto ya existe");
-            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-        }
-        map.put("message",modelMapper.map(subProjectService.save(modelMapper.map(subProjectDto,SubProject.class)),SubProjectDto.class));
-        return new ResponseEntity<>(map, HttpStatus.CREATED);
+    public ResponseEntity<SubProjectDto> create(@Valid @RequestBody SubProjectDto subProjectDto){
+        return new ResponseEntity<>(subProjectService.saveSubProject(subProjectDto),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -70,23 +57,19 @@ public class SubProjectController {
             @ApiResponse(responseCode = "200",description = "Return the updated subproject"),
             @ApiResponse(responseCode = "404",description = "Project Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateSubProject(@RequestBody SubProject subProject, @PathVariable("id") UUID subProjectId){
-        Map<String, Object> map = new HashMap<>();
-        map.put("message","Datos invalidos");
-        if(subProjectService.finById(subProjectId).isPresent()){
-            map.put("message", modelMapper.map(subProjectService.updateSubProject(subProjectId, subProject), SubProjectDto.class));
-            return new ResponseEntity<>(map, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<SubProjectDto> updateSubProject(@RequestBody SubProjectDto subProject, @PathVariable("id") UUID subProjectId){
+        return new ResponseEntity<>(subProjectService.updateSubProject(subProjectId,subProject),HttpStatus.OK);
     }
 
     @GetMapping("/project/{projectId}")
     @Operation(summary = "Get all subprojects by project id")
     @ApiResponse(responseCode = "200",description = "success")
     public ResponseEntity<List<SubProjectDto>> findAllSubProjectsByProjectId(@PathVariable UUID projectId){
-        List<SubProject> subProjects = subProjectService.getSubProjectByProjectId(projectId);
-        return new ResponseEntity<>(subProjects.stream().map(subProject -> modelMapper.map(subProject,SubProjectDto.class))
-                .collect(Collectors.toList()), HttpStatus.OK);
+        List<SubProjectDto> subProjectDtos = subProjectService.getSubProjectToProject(projectId);
+        if(!subProjectDtos.isEmpty()){
+            return new ResponseEntity<>(subProjectDtos,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
