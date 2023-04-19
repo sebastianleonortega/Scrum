@@ -1,6 +1,6 @@
 package com.wposs.scrum_back.employee.controller;
 
-import com.wposs.scrum_back.employee.dto.EmployeeDto;
+import com.wposs.scrum_back.employee.dto.EmployeDto;
 import com.wposs.scrum_back.employee.entity.Employee;
 import com.wposs.scrum_back.employee.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,17 +32,17 @@ public class EmployeeController {
     @GetMapping("/{id}")
     @Operation(summary = "Get employee by UUID")
     @ApiResponse(responseCode = "200",description = "success")
-    public ResponseEntity<EmployeeDto> findById(@PathVariable UUID id) {
-        return employeeService.findById(id).map(employee -> new ResponseEntity<>(modelMapper.map(employee, EmployeeDto.class), HttpStatus.OK))
+    public ResponseEntity<EmployeDto> findById(@PathVariable UUID id) {
+        return employeeService.findById(id).map(employee -> new ResponseEntity<>(modelMapper.map(employee, EmployeDto.class), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/all")
     @Operation(summary = "Get all employees")
     @ApiResponse(responseCode = "200",description = "success")
-    public ResponseEntity<List<EmployeeDto>> findAll() {
+    public ResponseEntity<List<EmployeDto>> findAll() {
         List<Employee> employees = employeeService.getAll();
-        return new ResponseEntity<>(employees.stream().map(employee -> modelMapper.map(employee, EmployeeDto.class))
+        return new ResponseEntity<>(employees.stream().map(employee -> modelMapper.map(employee, EmployeDto.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
@@ -52,9 +52,9 @@ public class EmployeeController {
             @ApiResponse(responseCode = "201",description = "employee created"),
             @ApiResponse(responseCode = "400",description = "employee bad request")
     })
-    public ResponseEntity<?> create(@Valid @RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<?> create(@Valid @RequestBody EmployeDto employeeDto) {
         Employee employee = employeeService.save(modelMapper.map(employeeDto, Employee.class));
-        return new ResponseEntity<>(modelMapper.map(employee, EmployeeDto.class), HttpStatus.CREATED);
+        return new ResponseEntity<>(modelMapper.map(employee, EmployeDto.class), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -63,7 +63,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "200",description = "Return the updated employee"),
             @ApiResponse(responseCode = "404",description = "Employe Not Found")
     })
-    public ResponseEntity<Map<String, Object>> updateEmployee(@PathVariable("id") UUID employeeId,@RequestBody @Valid EmployeeDto employee) {
+    public ResponseEntity<Map<String, Object>> updateEmployee(@PathVariable("id") UUID employeeId,@RequestBody @Valid EmployeDto employee) {
         HashMap<String,Object> respuesta = new HashMap<>();
         respuesta.put("message","NO SE PUDO ACTUALIZAR EL EMLEADO");
         if(employeeService.findById(employeeId).isPresent()){

@@ -2,7 +2,7 @@ package com.wposs.scrum_back.team.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wposs.scrum_back.employee.dto.EmployeeDto;
+import com.wposs.scrum_back.employee.dto.EmployeDto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -23,7 +23,7 @@ public class TeamDto {
 
     private UUID areaId;
 
-    private List<EmployeeDto> employees;
+    private List<EmployeDto> employees;
 
     public UUID getTeamId() {
         return teamId;
@@ -49,11 +49,11 @@ public class TeamDto {
         this.areaId = areaId;
     }
 
-    public List<EmployeeDto> getEmployees() {
+    public List<EmployeDto> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<EmployeeDto> employees) {
+    public void setEmployees(List<EmployeDto> employees) {
         this.employees = employees;
     }
 }

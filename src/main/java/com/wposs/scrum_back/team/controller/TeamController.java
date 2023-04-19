@@ -3,7 +3,7 @@ package com.wposs.scrum_back.team.controller;
 import com.wposs.scrum_back.team.dto.TeamDto;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.team.service.TeamService;
-import com.wposs.scrum_back.employee.dto.EmployeeDto;
+import com.wposs.scrum_back.employee.dto.EmployeDto;
 import com.wposs.scrum_back.employee.entity.Employee;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -95,7 +95,7 @@ public class TeamController {
             @ApiResponse(responseCode = "200",description = "updated area success"),
             @ApiResponse(responseCode = "404",description = "Employe Not Found")
     })
-    public ResponseEntity<TeamDto> updateTeamEmployeById(@Valid @RequestBody List<EmployeeDto> employeeDtos, @PathVariable("id") UUID id){
+    public ResponseEntity<TeamDto> updateTeamEmployeById(@Valid @RequestBody List<EmployeDto> employeeDtos, @PathVariable("id") UUID id){
         Team team = this.teamService.findByUuid(id);
         List<Employee> employeeList = employeeDtos.stream()
                 .map(employeeDto -> modelMapper.map(employeeDto, Employee.class)).collect(Collectors.toList());

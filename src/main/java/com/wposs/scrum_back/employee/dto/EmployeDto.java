@@ -2,39 +2,37 @@ package com.wposs.scrum_back.employee.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wposs.scrum_back.taskteam.entity.TaskTeam;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EmployeeDto {
+public class EmployeDto {
 
-    @JsonProperty(value ="employee_id")
+    @JsonProperty(value ="employeeId")
     private UUID employeeId;
 
-    @JsonProperty(value = "employee_name")
+    @JsonProperty(value = "employeeName")
     @NotNull
     @NotEmpty
     @Size(max = 100)
     private String employeeName;
 
-    @JsonProperty(value = "employee_charge")
+    @JsonProperty(value = "employeeCharge")
     @NotNull
     @NotEmpty
     @Size(max = 100)
     private String employeeCharge;
 
-    @JsonProperty(value = "employee_email")
+    @JsonProperty(value = "employeeEmail")
     @NotNull
     @NotEmpty
     @Size(max = 100)
     private String employeeEmail;
 
-    @JsonProperty(value = "employee_knowledge")
+    @JsonProperty(value = "employeeKnowledge")
     @NotNull
     @NotEmpty
     @Size(max = 200)
