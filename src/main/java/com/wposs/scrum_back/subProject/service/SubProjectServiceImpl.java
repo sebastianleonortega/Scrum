@@ -46,7 +46,8 @@ public class SubProjectServiceImpl implements SubProjectService{
     @Override
     public SubProjectDto saveSubProject(SubProjectDto subProjectDto) {
         SubProject subProject = modelMapper.map(subProjectDto,SubProject.class);
-        Boolean subProjectDto1 = subProjectRepository.findBySubProjectName(subProject.getSubProjectName());
+        SubProject subProjectDto1 = subProjectRepository.findBySubProjectName(subProject.getSubProjectName());
+        System.out.println(subProjectDto1.getProjectId());
         /*if(subProjectRepository.existsBySubProjectName(subProjectDto.getProjectId(),subProjectDto.getSubProjectName())){
             System.out.println("hola");
         }*/

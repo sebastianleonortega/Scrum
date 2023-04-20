@@ -15,7 +15,7 @@ public interface SubProjectRepository  extends JpaRepository<SubProject, UUID> {
    /* @Query(value = "SELECT * FROM wposs.sub_project WHERE sub_project_name=?1",nativeQuery = true)
     SubProjectDto projectExis(String subProjectName);*/
 
-    Boolean findBySubProjectName(String subProjectName);
+    SubProject findBySubProjectName(String subProjectName);
 
     List<SubProject> getByProjectId(UUID projectId);
 }
