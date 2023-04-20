@@ -61,9 +61,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of employee">
-        <td>{{item.employee_name}}</td>
-        <td>{{item.employee_charge}}</td>
-        <td>{{item.employee_knowledge}}</td>
+        <td>{{item.employeeName}}</td>
+        <td>{{item.employeeCharge}}</td>
+        <td>{{item.employeeKnowledge}}</td>
         <td class="icon">
           <button type="button" class="btn btn-success" [routerLink]="['employee-edit-form',item.employeeId]">
             <i class="fas fa-edit"></i></button>

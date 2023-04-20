@@ -17,7 +17,7 @@ export class EmployeesService {
   }
 
   public saveEmployee(employee: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER + "/save", employee);
+    return this.httpClient.post(this.API_SERVER + "/save/", employee);
   }
 
   getEmployeeById(id: string | null): Observable<any> {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EmployeesService} from "@app/data/services/employees/employees.service";
 import {Employee} from "@app/data/interfaces/employee";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee',
@@ -46,7 +47,15 @@ export class EmployeeComponent implements OnInit {
         employeeEmail: this.employeeForm.get('employeeEmail')?.value,
         employeeKnowledge: this.employeeForm.get('employeeKnowledge')?.value
       }
-      this.employeesService.saveEmployee(data).subscribe((resp => {
+      this.employeesService.saveEmployee(data).subscribe(
+        (resp => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Empleado creado',
+            showConfirmButton: false,
+            timer: 1500
+          })
         this.employeeForm.reset();
         this.getAllEmployee();
       }))

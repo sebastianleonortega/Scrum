@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EmployeesService} from "@app/data/services/employees/employees.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-edit-form',
@@ -53,7 +54,15 @@ export class EmployeeEditFormComponent implements OnInit {
         employeeEmail: this.employeeEditForm.get('employeeEmail')?.value,
         employeeKnowledge: this.employeeEditForm.get('employeeKnowledge')?.value,
       }
-     this.employeesService.updateEmployee(this.id,data).subscribe(resp=>{
+     this.employeesService.updateEmployee(this.id,data).subscribe(
+      resp=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Empleado editado',
+          showConfirmButton: false,
+          timer: 1500
+        })
        this.employeeEditForm.reset();
        this.routeurl.navigateByUrl('app/employees').then();
      })
