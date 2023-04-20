@@ -25,7 +25,7 @@ export class ManageTeamsEditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('teamName');
+    this.id = this.route.snapshot.paramMap.get('teamId');
     this.getManageTeamById(this.id);
     this.teamsEditForm =  new FormGroup({
       teamName: new FormControl(null, [Validators.required]),
