@@ -3,6 +3,7 @@ package com.wposs.scrum_back.subProject.entity;
 import com.wposs.scrum_back.project.entity.Project;
 import com.wposs.scrum_back.userstory.entity.UserStory;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,12 +17,14 @@ public class SubProject {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "sub_project_id")
+    @Type(type="pg-uuid")
     private UUID subProjectId;
 
     @Column(name = "sub_project_name", length = 30)
     private String subProjectName;
 
     @Column(name="project_id")
+    @Type(type="pg-uuid")
     private UUID projectId;
 
     @ManyToOne

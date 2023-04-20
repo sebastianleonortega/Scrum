@@ -45,14 +45,20 @@ public class SubProjectServiceImpl implements SubProjectService{
 
     @Override
     public SubProjectDto saveSubProject(SubProjectDto subProjectDto) {
-        if ((subProjectDto.getProjectName()!=null) || subProjectRepository.existsBySubProjectName(subProjectDto.getSubProjectName())){
+        SubProject subProject = modelMapper.map(subProjectDto,SubProject.class);
+        Boolean subProjectDto1 = subProjectRepository.findBySubProjectName(subProject.getSubProjectName());
+        /*if(subProjectRepository.existsBySubProjectName(subProjectDto.getProjectId(),subProjectDto.getSubProjectName())){
+            System.out.println("hola");
+        }*/
+        /*if ((subProjectDto.getSubProjectName()!=null) && subProjectRepository.existsBySubProjectName(subProjectDto.getProjectId(),subProjectDto.getSubProjectName())){
             throw new MessageGeneric("Ya existe un SubProjecto con este nombre: "+subProjectDto.getProjectName(),"409",HttpStatus.CONFLICT);
-        }
+        }*/
         try {
             return modelMapper.map(subProjectRepository.save(modelMapper.map(subProjectDto,SubProject.class)),SubProjectDto.class);
         }catch (Exception ex){
             throw new InternalServerException("Error inesperado al intentar registrar el SubProyecto,JSON mal estructurado","500",HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        //return null;
     }
 
     @Override

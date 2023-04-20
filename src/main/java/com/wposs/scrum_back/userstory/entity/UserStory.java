@@ -3,8 +3,11 @@ package com.wposs.scrum_back.userstory.entity;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.userstorystatus.entity.UserStoryStatus;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -31,7 +34,8 @@ public class UserStory {
     private Long userStoryStateId;
 
     @Column(name = "fecha_maxima",nullable = false)
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaMaxima;
 
     @Column(name = "sub_project_id", nullable = false)
     private UUID subProjectId;
@@ -109,11 +113,11 @@ public class UserStory {
         this.subProject = subProject;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getFechaMaxima() {
+        return fechaMaxima;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setFechaMaxima(Date fechaMaxima) {
+        this.fechaMaxima = fechaMaxima;
     }
 }
