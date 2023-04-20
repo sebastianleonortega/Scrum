@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TeamsService} from "@app/modules/teams/shared/teams.service";
-import {AreaService} from "@app/data/services/area/area.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Team} from "@app/modules/teams/shared/team";
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teams-edit-form',
@@ -12,41 +11,34 @@ import {Team} from "@app/modules/teams/shared/team";
   styleUrls: ['./manage-teams-edit-form.component.css']
 })
 export class ManageTeamsEditFormComponent implements OnInit {
-  teamsForm: FormGroup = new FormGroup({});
-  areas: any;
+  teamsEditForm: FormGroup = new FormGroup({});
   id: any;
   team: any;
   data : Team | any;
 
   constructor(
     private formBuilder: FormBuilder,
-    public areaService: AreaService,
     public manageTeamService: TeamsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public route1: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.teamsForm = this.formBuilder.group({
-      areaId: new FormControl(null, [Validators.required]),
+    this.id = this.route.snapshot.paramMap.get('teamName');
+    this.getManageTeamById(this.id);
+    this.teamsEditForm =  new FormGroup({
       teamName: new FormControl(null, [Validators.required]),
     });
-    this.id = this.route.snapshot.paramMap.get('teamId');
-    this.getManageTeamById(this.id)
-    this.getAllAreaSelect()
+
   }
 
-  getAllAreaSelect() {
-    this.areaService.getAllArea().subscribe(resp => {
-      this.areas = resp
-    });
-  }
+
 
   getManageTeamById(id: string | null) {
     this.manageTeamService.getTeamById(id).subscribe(resp => {
       this.team = resp;
-      this.teamsForm.patchValue({
-        areaId: this.team.areaId,
+      this.teamsEditForm.patchValue({
         teamName: this.team.teamName,
       });
 
@@ -55,13 +47,21 @@ export class ManageTeamsEditFormComponent implements OnInit {
   }
 
   edit() {
-    if (this.teamsForm.valid) {
+    if (this.teamsEditForm.valid) {
       this.data = {
-        areaId: this.teamsForm.get('areaId')?.value,
-        teamName: this.teamsForm.get('teamName')?.value,
+        teamName: this.teamsEditForm.get('teamName')?.value,
       }
-      this.manageTeamService.updateTeam(this.id, this.data).subscribe((resp) => {
-        this.teamsForm.reset();
+      this.manageTeamService.updateTeam(this.id, this.data).subscribe(
+        (resp) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Nombre del equipo aditada',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.teamsEditForm.reset();
+          this.route1.navigateByUrl('app/teams').then();
       });
     }
   }

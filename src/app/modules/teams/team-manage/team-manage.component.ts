@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamsService} from "@app/modules/teams/shared/teams.service";
 import {AreaService} from "@app/data/services/area/area.service";
 import {Team} from "@app/modules/teams/shared/team";
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teams',
@@ -67,6 +67,13 @@ export class TeamManageComponent implements OnInit {
       }
       this.manageTeamsService.saveTeam(data).subscribe(
         () => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Equipo creado',
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.manageTeamsForm.reset();
           this.getAllTeams();
         },

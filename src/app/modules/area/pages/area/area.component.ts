@@ -73,7 +73,6 @@ export class AreaComponent implements OnInit {
             })
                 this.areaForm.reset();
                 this.getAllAreas();
-                console.log()
           },
         );
   }

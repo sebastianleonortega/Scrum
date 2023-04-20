@@ -9,7 +9,7 @@ import {TeamEmployee} from "@app/modules/teams/shared/team-employees";
 })
 export class TeamsService {
 
-  private API_SERVER = 'http://localhost:8020/teams';
+  private API_SERVER = 'http://localhost:8020/team';
 
   constructor(
     private httpClient: HttpClient
