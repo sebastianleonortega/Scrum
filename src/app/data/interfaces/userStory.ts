@@ -5,5 +5,5 @@ export interface UserStory {
   userStoryState: {userStoryStateName:string};
   userStoryArchive: string;
   userStoryName: string;
-
+  fechaMaxima: Date;
 }

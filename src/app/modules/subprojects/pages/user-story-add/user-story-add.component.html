@@ -21,14 +21,7 @@
         <input type="text" class="form-control" placeholder="Ingrese el nombre" formControlName="userStoryName">
       </div>
 
-      <div class="input-group mb-3 ">
-        <span class="mr-sm ">Estado 1</span>
-        <div class="label-text">
-          <select class="form-select" formControlName="userStoryStateId">
-            <option *ngFor= "let item of userStoryState " value="{{item.userStoryStateId}}">{{item.userStoryStateName}}</option>
-          </select>
-        </div>
-      </div>
+
 
       <div class="form-group mb-3" >
         <span class="mr-sm">Estado</span>
@@ -40,12 +33,8 @@
       </div>
 
       <div class="form-group mb-3">
-        <form action="">
-          <span>Fecha Maxima</span>
-          <div class="label text">
-            <input type="date" id="dia" name="dia">
-          </div>
-        </form>
+        <span>Fecha final</span>
+        <input type="date" class="form-control" formControlName="sprintEnd">
       </div>
 
 
