@@ -23,14 +23,17 @@
         <th scope="row" class="title_table">Nombre de la historia</th>
         <th scope="row" class="title_table">Estado</th>
         <th scope="row" class="title_table">Fecha maxima</th>
+        <th scope="row" class="title_table icon">Puntos</th>
         <th scope="row" class="title_table icon">Acciones</th>
+
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let item of userStory">
         <td>{{item.userStoryName}}</td>
-        <td>{{item.userStoryStateName}}</td>
+        <td>{{item.userStoryStateId}}</td>
         <td>{{item.fechaMaxima}}</td>
+        <td>{{item.userStoryScore}}</td>
         <td class="icon">
           <button type="button" class="btn btn-success" [routerLink]="['user_story_management_form',item.userStoryId]">
             <i class="fas fa-edit"></i></button>
