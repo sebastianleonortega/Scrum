@@ -91,7 +91,7 @@ export class ProyectEditComponent implements OnInit {
       this.proyectService.updateProyect(this.projectId, data).subscribe(
         (resp) => {
           this.proyectEditForm.reset();
-          this.routeurl.navigateByUrl('app/proyect').then(r => console.log());
+          this.routeurl.navigateByUrl('app/proyect').then();
           Swal.fire({
             position: 'top-end',
             icon: 'success',

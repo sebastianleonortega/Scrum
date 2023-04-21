@@ -37,10 +37,10 @@ export class EmployeeEditFormComponent implements OnInit {
     this.employeesService.getEmployeeById(id).subscribe(resp => {
       this.employee = resp;
       this.employeeEditForm.patchValue({
-        employeeName: this.employee.employeeName,
-        employeeCharge: this.employee.employeeCharge,
-        employeeEmail: this.employee.employeeEmail,
-        employeeKnowledge: this.employee.employeeKnowledge,
+        employeeName: resp.employeeName,
+        employeeCharge: resp.employeeCharge,
+        employeeEmail: resp.employeeEmail,
+        employeeKnowledge: resp.employeeKnowledge,
       })
     })
   }
@@ -55,7 +55,7 @@ export class EmployeeEditFormComponent implements OnInit {
         employeeKnowledge: this.employeeEditForm.get('employeeKnowledge')?.value,
       }
      this.employeesService.updateEmployee(this.id,data).subscribe(
-      resp=>{
+      (resp)=>{
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -63,9 +63,9 @@ export class EmployeeEditFormComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-       this.employeeEditForm.reset();
-       this.routeurl.navigateByUrl('app/employees').then();
-     })
+        this.employeeEditForm.reset();
+        this.routeurl.navigateByUrl('app/employees').then();
+      })
 
 
     }

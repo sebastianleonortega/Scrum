@@ -1,26 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {EmployeesService} from "@app/data/services/employees/employees.service";
 import {Employee} from "@app/data/interfaces/employee";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import { EmployeeAddComponent } from '../employee-add/employee-add.component';
-import {MatDialog} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  selector: 'app-employee-add',
+  templateUrl: './employee-add.component.html',
+  styleUrls: ['./employee-add.component.css']
 })
-export class EmployeeComponent implements OnInit {
+export class EmployeeAddComponent implements OnInit {
 
   employeeForm: FormGroup = new FormGroup({});
   employee: Employee | any;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private employeesService: EmployeesService,
-    public dialog: MatDialog,
   ) {
   }
 
@@ -61,16 +57,9 @@ export class EmployeeComponent implements OnInit {
           })
         this.employeeForm.reset();
         this.getAllEmployee();
+        location.reload();
       }))
     }
   }
-
-  abrirModalEmployee(): void {
-    const dialogRef = this.dialog.open(EmployeeAddComponent);
-
-    dialogRef.afterClosed().subscribe(resul =>  {
-    })
-  }
-
 
 }

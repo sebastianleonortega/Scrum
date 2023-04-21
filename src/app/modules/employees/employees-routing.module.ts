@@ -9,8 +9,11 @@ const routes: Routes = [
   component: EmployeeComponent
   },
   {
-    path: 'employee-edit-form/:employeeId',
+    path: 'employee-edit/:employeeId',
     component: EmployeeEditFormComponent
+  },
+  {
+    path: 'empli'
   }
 
 ];

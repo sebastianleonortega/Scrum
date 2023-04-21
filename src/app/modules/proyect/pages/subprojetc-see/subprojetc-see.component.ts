@@ -37,6 +37,7 @@ export class SubprojetcSeeComponent implements OnInit {
     this.subprojectService.getSubProjectById(id).subscribe({
       next:(res)=> {
           this.subproject = res;
+          console.log(res)
       },
     });
   }
