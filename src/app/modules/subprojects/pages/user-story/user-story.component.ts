@@ -30,7 +30,9 @@ export class UserStoryComponent implements OnInit {
       userStoryName: new FormControl(null, [Validators.required]),
       userStoryArchive: new FormControl(null, [Validators.required]),
       userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryStoryId: new FormControl()
+      userStoryState: new FormControl(null, [Validators.required]),
+      userStoryScore: new FormControl(null, Validators.required),
+      fechaMaxima: new FormControl(null, Validators.required)
     });
 
     this.getAllSubprojects()
