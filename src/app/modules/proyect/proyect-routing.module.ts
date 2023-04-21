@@ -6,6 +6,7 @@ import { ProyectAddComponent } from "@app/modules/proyect/pages/proyect-add/proy
 import { SubprojetcComponent } from "@app/modules/proyect/pages/subprojetc/subprojetc.component";
 import { SubprojetcAddComponent } from "@app/modules/proyect/pages/subprojetc-add/subprojetc-add.component";
 import { SubprojetcEditComponent } from "@app/modules/proyect/pages/subprojetc-edit/subprojetc-edit.component";
+import { SubprojetcSeeComponent } from './pages/subprojetc-see/subprojetc-see.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'subproject-edit/:subProjectId',
     component: SubprojetcEditComponent
+  },
+  {
+    path: 'subprojectc-see/:subProjectId',
+    component: SubprojetcSeeComponent
   }
 ];
 

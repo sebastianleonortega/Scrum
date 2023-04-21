@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import { SubprojectById } from '@app/data/interfaces/subprojects';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class SubprojectService {
     return this.httpClient.post(this.API_SERVER+"/save",subProyect);
   }
 
-  getSubProjectById(idSubProyect:string | null):Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"/"+idSubProyect);
+  getSubProjectById(idSubProyect:string | null):Observable<SubprojectById>{
+    return this.httpClient.get<SubprojectById>(this.API_SERVER+"/"+idSubProyect);
   }
   updateSubProject(idSubProyect:string,dataSubProyect:any){
     return this.httpClient.put(this.API_SERVER+"/"+idSubProyect,dataSubProyect);

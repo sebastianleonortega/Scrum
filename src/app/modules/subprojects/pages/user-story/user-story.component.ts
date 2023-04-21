@@ -57,8 +57,10 @@ export class UserStoryComponent implements OnInit {
         subProjectId: this.userStoryForm.get('subProjectId')?.value,
         userStoryArchive: this.userStoryForm.get('userStoryArchive')?.value,
         userStoryName: this.userStoryForm.get('userStoryName')?.value,
-        userStoryScore: 0,
-        userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value
+        userStoryScore: this.userStoryForm.get('userStoryScore')?.value,
+        userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value,
+        fechaMaxima: this.userStoryForm.get('fechaMaxima')?.value,
+        userStoryState: this.userStoryForm.get('userStoryStateName')
       }
       this.userStoryService.saveUser_story(data).subscribe(
         (resp) => {
