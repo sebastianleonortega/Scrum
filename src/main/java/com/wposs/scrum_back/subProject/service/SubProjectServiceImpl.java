@@ -1,7 +1,7 @@
 package com.wposs.scrum_back.subProject.service;
 
-import com.wposs.scrum_back.Exception.exceptions.InternalServerException;
 import com.wposs.scrum_back.Exception.exceptions.MessageGeneric;
+import com.wposs.scrum_back.Exception.exceptions.RequestException;
 import com.wposs.scrum_back.subProject.dto.SubProjectDto;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.subProject.repository.SubProjectRepository;
@@ -46,20 +46,14 @@ public class SubProjectServiceImpl implements SubProjectService{
     @Override
     public SubProjectDto saveSubProject(SubProjectDto subProjectDto) {
         SubProject subProject = modelMapper.map(subProjectDto,SubProject.class);
-        SubProject subProjectDto1 = subProjectRepository.findBySubProjectName(subProject.getSubProjectName());
-        System.out.println(subProjectDto1.getProjectId());
-        /*if(subProjectRepository.existsBySubProjectName(subProjectDto.getProjectId(),subProjectDto.getSubProjectName())){
-            System.out.println("hola");
-        }*/
-        /*if ((subProjectDto.getSubProjectName()!=null) && subProjectRepository.existsBySubProjectName(subProjectDto.getProjectId(),subProjectDto.getSubProjectName())){
-            throw new MessageGeneric("Ya existe un SubProjecto con este nombre: "+subProjectDto.getProjectName(),"409",HttpStatus.CONFLICT);
-        }*/
-        try {
-            return modelMapper.map(subProjectRepository.save(modelMapper.map(subProjectDto,SubProject.class)),SubProjectDto.class);
-        }catch (Exception ex){
-            throw new InternalServerException("Error inesperado al intentar registrar el SubProyecto,JSON mal estructurado","500",HttpStatus.INTERNAL_SERVER_ERROR);
+        if(subProjectRepository.existsBySubProjectName(subProject.getSubProjectName())){
+            throw new MessageGeneric("Ya existe este SubProjecto: "+subProject.getSubProjectName()+" Registrado","409",HttpStatus.CONFLICT);
         }
-        //return null;
+        try {
+            return modelMapper.map(subProjectRepository.save(subProject),SubProjectDto.class);
+        }catch (Exception ex){
+            throw new RequestException("Error al intentar Registrar el SubProjecto,JSON mal Estructurado","400",HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

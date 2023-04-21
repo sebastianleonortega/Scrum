@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, UUID>, JpaRepository<Project, UUID> {
 
-    Boolean existsByProjectName(String projectName);
+    Boolean existsByProjectNameAndAreaId(String projectName,UUID idArea);
     List<Project> getByAreaId(UUID areaId);
 
 }
