@@ -15,7 +15,7 @@ export interface UserStory {
 
   subProjectId: number;
   userStoryId: number;
-  userStoryState: {userStoryStateName:string};
+  userStoryStateId: number;
   userStoryArchive: string;
   userStoryName: string;
   fechaMaxima: Date;

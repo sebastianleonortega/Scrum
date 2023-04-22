@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 import {User_storyService} from "@app/data/services/user_story/user_story.service";
 import {UserStory} from "@app/data/interfaces/userStory";
 import {SubprojectService} from "@app/data/services/subproject/subproject.service";
@@ -32,9 +32,8 @@ export class UserStoryAddComponent implements OnInit {
     this.userStoryForm = this.formBuilder.group({
       subProjectId: new FormControl(null, [Validators.required]),
       userStoryName: new FormControl(null, [Validators.required]),
-      userStoryArchive: new FormControl(null, [Validators.required]),
+      userStoryArchive: new FormControl(),
       userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryState: new FormControl(null, [Validators.required]),
       userStoryScore: new FormControl(null, Validators.required),
       fechaMaxima: new FormControl(null, Validators.required)
     });
@@ -62,6 +61,7 @@ export class UserStoryAddComponent implements OnInit {
     })
   }
 
+
   saveStory(): void {
     if (this.userStoryForm.valid) {
       const data = {
@@ -71,9 +71,18 @@ export class UserStoryAddComponent implements OnInit {
         userStoryScore: this.userStoryForm.get('userStoryScore')?.value,
         userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value,
         fechaMaxima: this.userStoryForm.get('fechaMaxima')?.value
+
       }
+
       this.userStoryService.saveUser_story(data).subscribe(
         (resp) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Historia de Usuario creada',
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.userStoryForm.reset();
           this. getAllUserStory()
         },
@@ -81,6 +90,7 @@ export class UserStoryAddComponent implements OnInit {
     }
 
   };
+
 
   upload_image(event: any) {
     let archive = event.target.files

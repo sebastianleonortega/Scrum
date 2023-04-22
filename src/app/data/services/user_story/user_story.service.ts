@@ -7,17 +7,16 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class User_storyService {
- private API_SERVER='http://localhost:8020/userstory/userstory/all';
+ private API_SERVER='http://localhost:8020/userstory';
   constructor(
     private httpClient:HttpClient
   ) { }
 
   public getAllUser_story():Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"/");
+    return this.httpClient.get(this.API_SERVER+"/userstory/all");
   }
   public saveUser_story(user_story:any):Observable<any>{
-    console.log(user_story)
-    return this.httpClient.post(this.API_SERVER+"/",user_story);
+    return this.httpClient.post(this.API_SERVER+"/save",user_story);
   }
   getUserStoryById(id:string | null):Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/"+id);
