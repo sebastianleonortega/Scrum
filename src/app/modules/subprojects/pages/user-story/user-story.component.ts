@@ -30,7 +30,7 @@ export class UserStoryComponent implements OnInit {
       userStoryName: new FormControl(null, [Validators.required]),
       userStoryArchive: new FormControl(null, [Validators.required]),
       userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryState: new FormControl(null, [Validators.required]),
+      userStoryStateName: new FormControl(null, [Validators.required]),
       userStoryScore: new FormControl(null, Validators.required),
       fechaMaxima: new FormControl(null, Validators.required)
     });
@@ -60,7 +60,7 @@ export class UserStoryComponent implements OnInit {
         userStoryScore: this.userStoryForm.get('userStoryScore')?.value,
         userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value,
         fechaMaxima: this.userStoryForm.get('fechaMaxima')?.value,
-        userStoryState: this.userStoryForm.get('userStoryStateName')
+        userStoryStateName: this.userStoryForm.get('userStoryStateName')
       }
       this.userStoryService.saveUser_story(data).subscribe(
         (resp) => {

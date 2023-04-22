@@ -4,7 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angu
 import {User_storyService} from "@app/data/services/user_story/user_story.service";
 import {UserStory} from "@app/data/interfaces/userStory";
 import {SubprojectService} from "@app/data/services/subproject/subproject.service";
-import {UserStoyStatusService} from '@app/data/services/user-story-status/user-stoy-status.service';
+import { UserStoyStatusService } from '@app/data/services/user-story-status/user-stoy-status.service';
 
 @Component({
   selector: 'app-user-story-add',
@@ -23,7 +23,7 @@ export class UserStoryAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
     private subProjectService : SubprojectService,
-    private UserStoyStatusService : UserStoyStatusService
+    private userStoryStatusService: UserStoyStatusService
   ) {
   }
 
@@ -34,13 +34,14 @@ export class UserStoryAddComponent implements OnInit {
       userStoryName: new FormControl(null, [Validators.required]),
       userStoryArchive: new FormControl(null, [Validators.required]),
       userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryStoryId: new FormControl(),
-      userStoryStateName: new FormControl(null, [Validators.required])
+      userStoryState: new FormControl(null, [Validators.required]),
+      userStoryScore: new FormControl(null, Validators.required),
+      fechaMaxima: new FormControl(null, Validators.required)
     });
 
     this.getAllSubprojects()
-    // this. getAllUserStory()
-    this.getAlluser_story_status()
+    this. getAllUserStory()
+    this.getAlluserStoryStatus()
   }
   getAllUserStory(){
     this.userStoryService.getAllUser_story().subscribe(resp => {
@@ -48,11 +49,11 @@ export class UserStoryAddComponent implements OnInit {
       },
     );
   }
-
-  getAlluser_story_status(){
-    this.UserStoyStatusService.getAlluser_story_status().subscribe(resp =>{
+  getAlluserStoryStatus(){
+    this.userStoryStatusService.getAlluser_story_status().subscribe(resp => {
       this.userStoryState = resp;
-    })
+    }
+    )
   }
 
   getAllSubprojects() {
@@ -67,8 +68,9 @@ export class UserStoryAddComponent implements OnInit {
         subProjectId: this.userStoryForm.get('subProjectId')?.value,
         userStoryArchive: this.userStoryForm.get('userStoryArchive')?.value,
         userStoryName: this.userStoryForm.get('userStoryName')?.value,
-        userStoryScore: 0,
-        userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value
+        userStoryScore: this.userStoryForm.get('userStoryScore')?.value,
+        userStoryStateId: this.userStoryForm.get('userStoryStateId')?.value,
+        fechaMaxima: this.userStoryForm.get('fechaMaxima')?.value
       }
       this.userStoryService.saveUser_story(data).subscribe(
         (resp) => {

@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserStoyStatusService {
+
   private API_SERVER = 'http://localhost:8020/userstorystatus';
 
 

@@ -6,6 +6,10 @@
   <div class="form-row align-items-center">
     <form class="userStory-form" [formGroup]="userStoryForm" (ngSubmit)="saveStory()">
 
+      <div class="form-group">
+        <label> Nombre de la historia de usuario</label>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre" formControlName="userStoryName">
+      </div>
 
       <div class="form-group mb-3" >
         <span class="mr-sm">Elija el nombre del subproyecto</span>
@@ -15,13 +19,6 @@
          </select>
         </div>
       </div>
-
-      <div class="form-group">
-        <label> Nombre de la historia de usuario</label>
-        <input type="text" class="form-control" placeholder="Ingrese el nombre" formControlName="userStoryName">
-      </div>
-
-
 
       <div class="form-group mb-3" >
         <span class="mr-sm">Estado</span>
@@ -37,12 +34,10 @@
         <input type="date" class="form-control" formControlName="sprintEnd">
       </div>
 
-
       <div class="form-group mb-3">
         <label>Puntos historia de usuario</label>
         <input type="text" class="form-control" placeholder="Ingrese los puntos" formControlName="userStoryName">
       </div>
-
 
       <div class="input-group mb-3">
         <form>
