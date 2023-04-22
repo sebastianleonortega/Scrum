@@ -1,15 +1,3 @@
-// export interface UserStory {
-
-//   subProjectId: number;
-//   userStoryId: number;
-//   userStoryState: number;
-//   userStoryStateName:string;
-//   userStoryArchive: string;
-//   userStoryName: string;
-//   fechaMaxima: Date;
-//   userStoryScore: number;
-// }
-
 
 export interface UserStory {
 
@@ -18,6 +6,8 @@ export interface UserStory {
   userStoryStateId: number;
   userStoryArchive: string;
   userStoryName: string;
-  fechaMaxima: Date;
+  fechaMaxima?: Date;
   userStoryScore: number;
 }
+
+

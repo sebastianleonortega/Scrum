@@ -8,5 +8,6 @@ export interface SubprojectById{
   projectId:number;
   subProjectId:number;
   subProjectName:string ;
-  projectName?: string;
+  projectName: string;
 }
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import { UserStory } from '@app/data/interfaces/userStory';
 
 
 @Injectable({
@@ -23,5 +24,8 @@ export class User_storyService {
   }
   updateUserStory(id:string,dataUserStory:any){
     return this.httpClient.put(this.API_SERVER+"/"+id,dataUserStory);
+  }
+  public getAllUserStoryToSubproject(subProjectId: string | null):Observable<UserStory>{
+    return this.httpClient.get<UserStory>(this.API_SERVER+"/subproject/"+subProjectId)
   }
 }
