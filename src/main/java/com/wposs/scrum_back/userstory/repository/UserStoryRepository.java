@@ -9,9 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface UserStoryRepository extends JpaRepository<UserStory, UUID> {
-
-    UserStory findByUserStoryId(UUID userStoryId);
-
-    List<UserStory> findBySubProjectId(UUID subProjectId);
-
+        List<UserStory> findBySubProjectId(UUID subProjectId);
+        Boolean existsByUserStoryNameAndSubProjectId(String userStoryName,UUID idSubProject);
 }
