@@ -1,9 +1,8 @@
-package com.wposs.scrum_back.employee.repository;
+package com.wposs.scrum_back.employe.repository;
 
-import com.wposs.scrum_back.employee.entity.Employee;
+import com.wposs.scrum_back.employe.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

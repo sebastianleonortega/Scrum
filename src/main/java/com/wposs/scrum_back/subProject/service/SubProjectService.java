@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.subProject.service;
 
 import com.wposs.scrum_back.subProject.dto.SubProjectDto;
+import com.wposs.scrum_back.userstory.entity.UserStory;
 
 import java.util.List;
 import java.util.Optional;

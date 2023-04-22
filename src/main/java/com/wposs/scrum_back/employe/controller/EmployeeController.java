@@ -1,13 +1,10 @@
-package com.wposs.scrum_back.employee.controller;
+package com.wposs.scrum_back.employe.controller;
 
-import com.wposs.scrum_back.employee.dto.EmployeDto;
-import com.wposs.scrum_back.employee.entity.Employee;
-import com.wposs.scrum_back.employee.service.EmployeService;
-import com.wposs.scrum_back.employee.service.EmployeServiceImpl;
+import com.wposs.scrum_back.employe.dto.EmployeDto;
+import com.wposs.scrum_back.employe.service.EmployeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employee")

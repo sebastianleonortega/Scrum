@@ -1,4 +1,4 @@
-package com.wposs.scrum_back.employee.dto;
+package com.wposs.scrum_back.employe.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -2,7 +2,7 @@ package com.wposs.scrum_back.area.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wposs.scrum_back.team.entity.Team;
-import com.wposs.scrum_back.employee.entity.Employee;
+import com.wposs.scrum_back.employe.entity.Employee;
 import com.wposs.scrum_back.project.entity.Project;
 import org.hibernate.annotations.GenericGenerator;
 

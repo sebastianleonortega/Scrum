@@ -1,4 +1,4 @@
-package com.wposs.scrum_back.employee.entity;
+package com.wposs.scrum_back.employe.entity;
 
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.area.entity.Area;

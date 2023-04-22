@@ -1,36 +1,35 @@
 package com.wposs.scrum_back.team.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wposs.scrum_back.employee.dto.EmployeDto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.List;
+import java.io.Serializable;
 import java.util.UUID;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class TeamDto {
-
-    @JsonProperty(value ="teamId", access = JsonProperty.Access.READ_ONLY)
-    private UUID teamId;
-
-    @NotNull
-    @NotEmpty
-    @Size(max = 100)
+public class TeamDto implements Serializable {
+    @JsonProperty(value = "idTeam",access = JsonProperty.Access.READ_ONLY)
+    private UUID idTeam;
+    @JsonProperty(value = "teamName")
     private String teamName;
-
+    @JsonProperty(value = "areaId")
     private UUID areaId;
+    @JsonProperty(value = "areaName",access = JsonProperty.Access.READ_ONLY)
+    private String areaName;
 
-    private List<EmployeDto> employees;
-
-    public UUID getTeamId() {
-        return teamId;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setTeamId(UUID teamId) {
-        this.teamId = teamId;
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public UUID getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(UUID idTeam) {
+        this.idTeam = idTeam;
     }
 
     public String getTeamName() {
@@ -47,13 +46,5 @@ public class TeamDto {
 
     public void setAreaId(UUID areaId) {
         this.areaId = areaId;
-    }
-
-    public List<EmployeDto> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<EmployeDto> employees) {
-        this.employees = employees;
     }
 }

@@ -1,6 +1,6 @@
-package com.wposs.scrum_back.employee.service;
+package com.wposs.scrum_back.employe.service;
 
-import com.wposs.scrum_back.employee.dto.EmployeDto;
+import com.wposs.scrum_back.employe.dto.EmployeDto;
 
 import java.util.List;
 import java.util.Optional;

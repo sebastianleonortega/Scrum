@@ -1,10 +1,10 @@
-package com.wposs.scrum_back.employee.service;
+package com.wposs.scrum_back.employe.service;
 
 import com.wposs.scrum_back.Exception.exceptions.MessageGeneric;
 import com.wposs.scrum_back.Exception.exceptions.RequestException;
-import com.wposs.scrum_back.employee.dto.EmployeDto;
-import com.wposs.scrum_back.employee.entity.Employee;
-import com.wposs.scrum_back.employee.repository.EmployeeRepository;
+import com.wposs.scrum_back.employe.dto.EmployeDto;
+import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.employe.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

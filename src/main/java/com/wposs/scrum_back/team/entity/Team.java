@@ -1,8 +1,7 @@
 package com.wposs.scrum_back.team.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
-import com.wposs.scrum_back.employee.entity.Employee;
-import com.wposs.scrum_back.taskteam.entity.TaskTeam;
+import com.wposs.scrum_back.employe.entity.Employee;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

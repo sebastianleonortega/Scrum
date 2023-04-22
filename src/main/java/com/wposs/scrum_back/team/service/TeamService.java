@@ -1,51 +1,15 @@
 package com.wposs.scrum_back.team.service;
 
-import com.wposs.scrum_back.team.entity.Team;
-import com.wposs.scrum_back.team.repository.TeamRepository;
-import org.springframework.stereotype.Service;
+import com.wposs.scrum_back.team.dto.TeamDto;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service
-public class TeamService {
-
-    private final TeamRepository teamRepository;
-
-    public TeamService(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
-
-    public List<Team> getAll(){
-        return teamRepository.findAll();
-    }
-
-    public Team save(Team team){
-        return teamRepository.save(team);
-    }
-
-    public Team findByUuid(UUID teamId){
-        return teamRepository.findByTeamId(teamId);
-    }
-
-    public Optional<Team> finById(UUID teamId){
-        return teamRepository.findById(teamId);
-    }
-
-    public Team updateTeam(UUID teamId, Team team){
-        return teamRepository.findById(teamId).map(team1 -> {
-            team1.setTeamName((team.getTeamName()!=null)? team.getTeamName() : team1.getTeamName());
-            return teamRepository.save(team1);
-        }).orElse(null);
-    }
-
-    public Boolean existProjectByName(String teamName){
-        return teamRepository.existsByTeamName(teamName);
-    }
-
-    public List<Team> getTeamsByAreaId(UUID areaId){
-        return teamRepository.getByAreaId(areaId);
-    }
-
+public interface TeamService {
+    List<TeamDto> getAllTeam();
+    List<TeamDto> getTeamToArea(UUID idArea);
+    Optional<TeamDto> getTeamByiId(UUID idTeam);
+    TeamDto saveTeam(TeamDto teamDto);
+    TeamDto updateTeam(UUID idTeam,TeamDto teamDto);
 }
