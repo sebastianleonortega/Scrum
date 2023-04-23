@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface TaskTeamRepository extends JpaRepository<TaskTeam, UUID>, CrudRepository<TaskTeam, UUID> {
-
-//    List<TaskTeam> findByTeamId(UUID teamId);
+public interface TaskTeamRepository extends JpaRepository<TaskTeam, UUID> {
+    List<TaskTeam> getByIdTeam(UUID idTeam);
+    Boolean existsByTaskTeamNameAndIdTeam(String taskTeamName,UUID idTeam);
 }

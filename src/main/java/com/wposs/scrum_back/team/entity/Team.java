@@ -2,6 +2,7 @@ package com.wposs.scrum_back.team.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.taskteam.entity.TaskTeam;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -28,6 +29,9 @@ public class Team {
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
     private Area area;
 
+    @OneToMany(mappedBy = "team")
+    private List<TaskTeam> taskTeams;
+
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "team_employee", schema = "wposs",
@@ -36,6 +40,13 @@ public class Team {
             uniqueConstraints = @UniqueConstraint(columnNames = {"team_id", "employee_id"}, name = "uc_employee_team"))
     private List<Employee> employees;
 
+    public List<TaskTeam> getTaskTeams() {
+        return taskTeams;
+    }
+
+    public void setTaskTeams(List<TaskTeam> taskTeams) {
+        this.taskTeams = taskTeams;
+    }
 
     public UUID getTeamId() {
         return teamId;

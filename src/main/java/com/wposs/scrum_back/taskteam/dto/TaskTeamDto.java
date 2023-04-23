@@ -13,7 +13,25 @@ public class TaskTeamDto {
 
     private String taskTeamName;
 
-    private UUID teamId;
+    private UUID idTeam;
+    @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
+    private String teamName;
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public UUID getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(UUID idTeam) {
+        this.idTeam = idTeam;
+    }
 
     public UUID getTaskTeamId() {
         return taskTeamId;
@@ -31,11 +49,4 @@ public class TaskTeamDto {
         this.taskTeamName = taskTeamName;
     }
 
-    public UUID getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(UUID teamId) {
-        this.teamId = teamId;
-    }
 }
