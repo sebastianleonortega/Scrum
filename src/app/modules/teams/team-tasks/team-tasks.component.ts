@@ -4,6 +4,7 @@ import {TeamsService} from "@app/modules/teams/shared/teams.service";
 import {Tasks} from "@app/data/interfaces/tasks";
 import {TeamTasksService} from "@app/data/services/team-tasks/team-tasks.service";
 import {Team} from "@app/modules/teams/shared/team";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-team-tasks',
@@ -12,10 +13,10 @@ import {Team} from "@app/modules/teams/shared/team";
 })
 export class TeamTasksComponent implements OnInit {
   tasksForm: FormGroup = new FormGroup({})
+  filterTaskTeamForm:FormGroup=new FormGroup({})
   teams: any;
   tasks: Tasks | any;
-  team:Team []=[]
-  filterTaskTeamForm:FormGroup=new FormGroup({})
+  tasksTeams: any;
 
 
 
@@ -33,30 +34,56 @@ export class TeamTasksComponent implements OnInit {
       taskTeamId: new FormControl(null,)
     })
     this.getAllTeamsSelect();
+    this.getAllTasksTeams();
     this.filterTaskTeamForm = this.formBuilder.group({
       teamIdFilter: new FormControl(null, [Validators.required])
     })
   }
 
   getAllTeamsSelect() {
-    this.manageTeamsService.getAllTeams().subscribe(resp => {
+    this.manageTeamsService.getAllTeams().subscribe(resp => { //Trae todos los equipos
       this.teams = resp
     });
   }
 
-  saveTasks(): void {
-    const data = {
-      teamId:this.tasksForm.get('teamId')?.value,
-      taskTeamName:this.tasksForm.get('taskTeamName')?.value,
-    }
-
-
-    this.teamTasksService.saveTeamTasks(data).subscribe((resp)=>{
-      this.tasksForm.reset();
-    })
+  getAllTasksTeams(){
+    this.teamTasksService.getAllTeamTasks().subscribe(resp => { // trae todas las tares por equipo
+      this.tasksTeams = resp;
+      console.log(resp)
+    });
   }
+
+
+  saveTasks(): void {
+    if (this.tasksForm.valid){
+      const data = {
+        teamId:this.tasksForm.get('teamId')?.value,
+        taskTeamName:this.tasksForm.get('taskTeamName')?.value,
+      }
+      this.teamTasksService.saveTeamTasks(data).subscribe(
+        (resp)=>{
+        this.tasksForm.reset();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Tarea creada',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+    }
+  }
+
+
   deleteTasks(task){
     this.teamTasksService.deleteTeamTasks(task.taskTeamId).subscribe(resp=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Area  eliminada',
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 

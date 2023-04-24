@@ -51,18 +51,20 @@
       <tr>
         <th scope="row" class="title_table">#</th>
         <th scope="row" class="title_table">Tareas</th>
+        <th scope="row" class="title_table">Equipo</th>
         <th scope="row" class="title_table icon">Acciones</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of tasks;let i = index">
+      <tr *ngFor="let item of tasksTeams;let i = index">
         <td>{{i + 1}}</td>
         <td>{{item.taskTeamName}}</td>
+        <td>{{item.teamName}}</td>
         <td class="icon">
           <button type="button" class="btn btn-success" [routerLink]="['/app/teams/team-task-edit',item.taskTeamId]"><i
             class="fas fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-success mx-2" (click)="deleteTasks(item)"><i
+          <button type="button" class="btn btn-success mx-2" (click)="deleteTasks(item.taskTeamId)"><i
             class="fas fa-trash-alt"></i></button>
         </td>
       </tr>

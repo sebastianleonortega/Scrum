@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamTasksService} from "@app/data/services/team-tasks/team-tasks.service";
 import {ActivatedRoute} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-team-tasks-edit-form',
@@ -41,6 +42,13 @@ export class TeamTasksEditFormComponent implements OnInit {
       }
       this.teamTasksService.updateTeamTasks(this.id, data).subscribe((resp => {
             this.tasksFormEdit.reset();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Area editada',
+              showConfirmButton: false,
+              timer: 1500
+            })
           }
         )
       )
