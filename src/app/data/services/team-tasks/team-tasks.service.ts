@@ -23,7 +23,9 @@ private API_SERVER ='http://localhost:8020/taskteam';
     return this.httpClient.put(this.API_SERVER+"/updatetask/"+id,dataTeam)
   }
   deleteTeamTasks(id:string):Observable<any>{
-    return this.httpClient.delete(this.API_SERVER+"/deleteTaskTeam"+id)
+    console.log(id)
+    return this.httpClient.delete(this.API_SERVER+"/deleteTaskTeam/"+id )
+
   }
   getAllTaskTeamByTeamId(TeamId:string| null):Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/team/"+TeamId)

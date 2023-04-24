@@ -43,6 +43,7 @@ export class TeamTasksComponent implements OnInit {
   getAllTeamsSelect() {
     this.manageTeamsService.getAllTeams().subscribe(resp => { //Trae todos los equipos
       this.teams = resp
+      console.log(resp)
     });
   }
 
@@ -55,11 +56,15 @@ export class TeamTasksComponent implements OnInit {
 
 
   saveTasks(): void {
+    console.log(this.tasksForm.get('teamId')?.value)
+
+
     if (this.tasksForm.valid){
       const data = {
-        teamId:this.tasksForm.get('teamId')?.value,
+        idTeam:this.tasksForm.get('teamId')?.value,
         taskTeamName:this.tasksForm.get('taskTeamName')?.value,
       }
+      console.log(data)
       this.teamTasksService.saveTeamTasks(data).subscribe(
         (resp)=>{
         this.tasksForm.reset();
@@ -75,8 +80,9 @@ export class TeamTasksComponent implements OnInit {
   }
 
 
-  deleteTasks(task){
-    this.teamTasksService.deleteTeamTasks(task.taskTeamId).subscribe(resp=>{
+  deleteTasks(id){
+
+    this.teamTasksService.deleteTeamTasks(id).subscribe(resp=>{
       Swal.fire({
         position: 'top-end',
         icon: 'success',
