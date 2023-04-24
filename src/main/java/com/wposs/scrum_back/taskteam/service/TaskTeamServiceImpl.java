@@ -24,7 +24,7 @@ public class TaskTeamServiceImpl implements TaskTeamService{
 
     @Override
     public List<TaskTeamDto> getAllTaskTeam() {
-        return taskTeamRepository.findAll().stream().map(taskTeam -> {
+        return taskTeamRepository.getAllTaskTeam().stream().map(taskTeam -> {
             return modelMapper.map(taskTeam,TaskTeamDto.class);
         }).collect(Collectors.toList());
     }

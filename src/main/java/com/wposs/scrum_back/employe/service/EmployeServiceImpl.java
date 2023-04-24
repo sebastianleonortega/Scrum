@@ -60,10 +60,20 @@ public class EmployeServiceImpl implements EmployeService{
         }).orElseThrow(()-> new MessageGeneric("No se encontro el Empleado a Actualizar","404",HttpStatus.NOT_FOUND));
     }
 
-   /* public List<Employee> getEmployeeByAreaId(UUID areaId){
-        return employeeRepository.getAllByAreaId(areaId);
+    @Override
+    public List<EmployeDto> getAllEmployeeNotTeam() {
+        return employeeRepository.getEmployesNotTeam().stream().map(employee -> {
+            return modelMapper.map(employee,EmployeDto.class);
+        }).collect(Collectors.toList());
     }
-    public Boolean existEmployeeByName(String employeeName){
-        return employeeRepository.existsByEmployeeName(employeeName);
-    }*/
+
+    @Override
+    public List<EmployeDto> getEmployeToTeam(UUID idTeam) {
+        return employeeRepository.getEmployeToTeam(idTeam).stream().map(employee -> {
+            return modelMapper.map(employee,EmployeDto.class);
+        }).collect(Collectors.toList());
+    }
+
+
+
 }

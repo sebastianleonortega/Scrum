@@ -58,6 +58,33 @@ public class EmployeeController {
         return new ResponseEntity<>(employeService.updateEmploye(employeeId,employeeDto),HttpStatus.OK);
     }
 
+    @GetMapping("employenotteam")
+    @Operation(summary = "Get All Employee Not Team")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Success Employe"),
+            @ApiResponse(responseCode = "404",description = "Not Found Employee")
+    })
+    public ResponseEntity<List<EmployeDto>> getAllEmployeeNotTeam(){
+        List<EmployeDto> employeDtos = employeService.getAllEmployeeNotTeam();
+        if (!employeDtos.isEmpty()){
+            return new ResponseEntity<>(employeDtos,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("employeteam/{id}")
+    @Operation(summary = "Get all employee to team")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Get all Success"),
+            @ApiResponse(responseCode = "404",description = "Not Found")
+    })
+    public ResponseEntity<List<EmployeDto>> getAllEmployeToTeam(@PathVariable("id") UUID idTeam){
+        List<EmployeDto> employeDtos = employeService.getEmployeToTeam(idTeam);
+        if (!employeDtos.isEmpty()){
+            return new ResponseEntity<>(employeDtos,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 //    @PutMapping("/savetaskonemployee/{employeeId}")
 //    public ResponseEntity<EmployeeDto> updateTaskEmployee(@Valid @RequestBody List<TaskDto> taskDtos, @PathVariable("employeeId") UUID employeeId){
 //        Employee employee = this.employeeService.findByEmployeeId(employeeId);

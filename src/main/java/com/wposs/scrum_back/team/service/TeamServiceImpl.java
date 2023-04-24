@@ -2,6 +2,7 @@ package com.wposs.scrum_back.team.service;
 
 import com.wposs.scrum_back.Exception.exceptions.MessageGeneric;
 import com.wposs.scrum_back.Exception.exceptions.RequestException;
+import com.wposs.scrum_back.employe.dto.EmployeDto;
 import com.wposs.scrum_back.team.dto.TeamDto;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.team.repository.TeamRepository;

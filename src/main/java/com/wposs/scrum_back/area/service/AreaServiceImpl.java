@@ -30,7 +30,7 @@ public class AreaServiceImpl implements AreaService{
 
     @Override
     public Optional<AreaDto> getAreaId(UUID idArea) {
-        return Optional.ofNullable(areaRepository.findById(idArea).map(area -> {
+        return Optional.ofNullable(areaRepository.getAreaId(idArea).map(area -> {
             return modelMapper.map(area, AreaDto.class);
         }).orElseThrow(() -> new MessageGeneric("El Area solicitada no se encuentra registrada", "404", HttpStatus.NOT_FOUND)));
     }

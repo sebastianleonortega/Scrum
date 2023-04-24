@@ -11,4 +11,6 @@ public interface EmployeService {
     Optional<EmployeDto> getEmployeId(UUID idEmploye);
     EmployeDto seveEmploye(EmployeDto employeDto);
     EmployeDto updateEmploye(UUID idEmploye, EmployeDto employeDto);
+    List<EmployeDto> getAllEmployeeNotTeam();
+    List<EmployeDto> getEmployeToTeam(UUID idTeam);
 }

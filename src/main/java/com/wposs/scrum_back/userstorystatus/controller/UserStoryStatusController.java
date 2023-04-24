@@ -23,7 +23,11 @@ public class UserStoryStatusController {
     @Operation(description = "GET ALL STATUS")
     @ApiResponse(responseCode = "200",description = "ALL USER STORY STATUS")
     public ResponseEntity<List<UserStoryStatusDto>> getAllStatus(){
-        return new ResponseEntity<>(userStoryStatusService.gatAll(), HttpStatus.OK);
+        List<UserStoryStatusDto> userStoryStatusDtos = userStoryStatusService.gatAll();
+        if (!userStoryStatusDtos.isEmpty()){
+            return new ResponseEntity<>(userStoryStatusDtos,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/savestatus")
@@ -32,15 +36,8 @@ public class UserStoryStatusController {
             @ApiResponse(responseCode = "201",description = "STATUS CREATE"),
             @ApiResponse(responseCode = "400",description = "FAIL STRUCT JSON")
     })
-    public ResponseEntity<HashMap<String,Object>> saveStatus(@Valid @RequestBody UserStoryStatusDto userStoryStatusDto){
-        HashMap<String,Object> respuesta = new HashMap<>();
-        respuesta.put("message","Surjio un Error al intertar registrar el Stado Posiblemente mas estructurado el JSON");
-        try {
-            respuesta.put("message",userStoryStatusService.saveStatus(userStoryStatusDto));
-            return new ResponseEntity<>(respuesta,HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(respuesta,HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<UserStoryStatusDto> saveStatus(@Valid @RequestBody UserStoryStatusDto userStoryStatusDto){
+        return new ResponseEntity<>(userStoryStatusService.saveStatus(userStoryStatusDto),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deletestatus/{id}")
@@ -49,13 +46,10 @@ public class UserStoryStatusController {
             @ApiResponse(responseCode = "204",description = "Delete Success"),
             @ApiResponse(responseCode = "404",description = "Status Not Found")
     })
-    public ResponseEntity<HashMap<String,String>> deleteStatus(@PathVariable("id") Long idStatus) {
-        HashMap<String, String> respuesta = new HashMap<>();
-        respuesta.put("message","No se encontro el statdo a eliminar");
-        if(userStoryStatusService.deleteProducto(idStatus)) {
-        respuesta.put("message","Eliminado Satisfactoriamente");
-            return new ResponseEntity<>(respuesta,HttpStatus.NO_CONTENT);
+    public ResponseEntity deleteStatus(@PathVariable("id") Long idStatus) {
+        if (userStoryStatusService.deleteProducto(idStatus)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(respuesta,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
