@@ -61,19 +61,16 @@ public class EmployeServiceImpl implements EmployeService{
     }
 
     @Override
-    public List<EmployeDto> getAllEmployeeNotTeam() {
-        return employeeRepository.getEmployesNotTeam().stream().map(employee -> {
-            return modelMapper.map(employee,EmployeDto.class);
-        }).collect(Collectors.toList());
-    }
-
-    @Override
     public List<EmployeDto> getEmployeToTeam(UUID idTeam) {
         return employeeRepository.getEmployeToTeam(idTeam).stream().map(employee -> {
             return modelMapper.map(employee,EmployeDto.class);
         }).collect(Collectors.toList());
     }
 
+    @Override
+    public List<EmployeDto> saveListEmployeeToTeam(List<EmployeDto> employeDtos) {
+        return null;
+    }
 
 
 }

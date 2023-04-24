@@ -58,20 +58,6 @@ public class EmployeeController {
         return new ResponseEntity<>(employeService.updateEmploye(employeeId,employeeDto),HttpStatus.OK);
     }
 
-    @GetMapping("employenotteam")
-    @Operation(summary = "Get All Employee Not Team")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Success Employe"),
-            @ApiResponse(responseCode = "404",description = "Not Found Employee")
-    })
-    public ResponseEntity<List<EmployeDto>> getAllEmployeeNotTeam(){
-        List<EmployeDto> employeDtos = employeService.getAllEmployeeNotTeam();
-        if (!employeDtos.isEmpty()){
-            return new ResponseEntity<>(employeDtos,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
     @GetMapping("employeteam/{id}")
     @Operation(summary = "Get all employee to team")
     @ApiResponses(value = {
