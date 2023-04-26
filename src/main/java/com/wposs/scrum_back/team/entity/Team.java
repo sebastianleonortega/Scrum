@@ -2,6 +2,7 @@ package com.wposs.scrum_back.team.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.taskteam.entity.TaskTeam;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,6 +32,9 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     private List<TaskTeam> taskTeams;
+
+    @OneToMany(mappedBy = "team")
+    private List<SubProject> subProjects;
 
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
@@ -88,4 +92,11 @@ public class Team {
         this.employees = employees;
     }
 
+    public List<SubProject> getSubProjects() {
+        return subProjects;
+    }
+
+    public void setSubProjects(List<SubProject> subProjects) {
+        this.subProjects = subProjects;
+    }
 }

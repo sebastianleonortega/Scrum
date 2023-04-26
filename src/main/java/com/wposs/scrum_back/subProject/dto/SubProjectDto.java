@@ -24,7 +24,28 @@ public class SubProjectDto {
     @JsonProperty(value = "projectId")
     private UUID projectId;
 
+    @JsonProperty(value = "idTeam")
+    private UUID idTeam;
+    @JsonProperty(value = "projectName",access = JsonProperty.Access.READ_ONLY)
     private String projectName;
+    @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
+    private String teamName;
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public UUID getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(UUID idTeam) {
+        this.idTeam = idTeam;
+    }
 
     public String getProjectName() {
         return projectName;

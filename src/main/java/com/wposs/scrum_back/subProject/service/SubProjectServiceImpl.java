@@ -61,6 +61,7 @@ public class SubProjectServiceImpl implements SubProjectService{
         return subProjectRepository.findById(idSubProject).map(subProject -> {
             subProject.setSubProjectName((subProjectDto.getSubProjectName()!=null)?subProjectDto.getSubProjectName():subProject.getSubProjectName());
             subProject.setProjectId((subProjectDto.getProjectId()!=null)?subProjectDto.getProjectId():subProject.getProjectId());
+            subProject.setIdTeam((subProjectDto.getIdTeam()!=null)?subProjectDto.getIdTeam():subProject.getIdTeam());
             return modelMapper.map(subProjectRepository.save(subProject),SubProjectDto.class);
         }).orElseThrow(()->new MessageGeneric("Error, No se encontro el SubProjecto a Actualizar","404",HttpStatus.NOT_FOUND));
     }
