@@ -17,6 +17,7 @@ export interface TeamEmployee {
 export class TeamAddEmployeeComponent implements OnInit {
   employees: any;
 
+
   teamId: string | null = '';
   employeesAddTeam:any;
   constructor(
@@ -30,11 +31,12 @@ export class TeamAddEmployeeComponent implements OnInit {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
     this.getAllEmployees();
     this.getAllEmployeesAddToTeam(this.teamId);
+    this.AddEmployeeTeam();
 
   }
 
   getAllEmployees() {
-    this.employeesService.getEmployeesNonExistent(this.teamId).subscribe(resp => {
+    this.employeesService.getAllEmployee().subscribe(resp => {
       this.employees = resp;
       this.employees.map(r => {
         r.checked = false;

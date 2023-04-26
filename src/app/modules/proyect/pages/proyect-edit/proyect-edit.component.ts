@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProyectService } from "@app/data/services/proyect/proyect.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 export interface Client {
@@ -35,8 +36,9 @@ export class ProyectEditComponent implements OnInit {
     public formBuilder: FormBuilder,
     public proyectService: ProyectService,
     private route: ActivatedRoute,
-    private routeurl: Router
-  ) {
+    private routeurl: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {console.log(data)
   }
 
   ngOnInit(): void {
@@ -46,7 +48,8 @@ export class ProyectEditComponent implements OnInit {
       proyectArea: new FormControl(null, [Validators.required]),
     });
 
-    this.projectId = this.route.snapshot.paramMap.get('proyectId');
+    this.projectId = this.data.projectId;
+    console.log(this.projectId)
     this.getProyectById(this.projectId)
 
     this.proyectService.getClient().subscribe((data) => {

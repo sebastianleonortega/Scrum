@@ -6,6 +6,9 @@ import { AreaService } from "@app/data/services/area/area.service";
 import { CustomerService } from "@app/data/services/customer/customer.service";
 import {ProyectAddComponent} from '@app/modules/proyect/pages/proyect-add/proyect-add.component';
 import {MatDialog} from '@angular/material/dialog';
+import { ProyectEditComponent } from '../proyect-edit/proyect-edit.component';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -20,13 +23,17 @@ export class ProyectComponent implements OnInit {
 
   proyectFrom: FormGroup = new FormGroup({});
   proyect: Proyect[] = [];
+  projectId: any;
+
+
 
   constructor(
     private formBuilder: FormBuilder,
     private proyectService: ProyectService,
     private customerService: CustomerService,
     private areaService: AreaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -41,6 +48,7 @@ export class ProyectComponent implements OnInit {
         })
       })
       this.proyect = resp;
+      console.log(this.proyect)
     });
   }
   abrirModalProjet(): void {
@@ -48,6 +56,14 @@ export class ProyectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(resul =>  {
     })
+  }
+
+  editProjetModal(proyectId: number) {
+
+    const dialogRef = this.dialog.open(ProyectEditComponent, {data:{projectId: proyectId }});
+     dialogRef.afterClosed().subscribe(resul => {
+
+     })
   }
 }
 

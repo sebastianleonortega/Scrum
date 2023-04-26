@@ -29,11 +29,8 @@ export class EmployeesService {
   }
 
   getEmployeesAddToTeam(teamId: string| null): Observable<any> {
-    return this.httpClient.get(this.API_SERVER + "/employeeonteam/" + teamId)
+    return this.httpClient.get(this.API_SERVER + "/employeteam/" + teamId)
   }
 
-  getEmployeesNonExistent(id: string| null): Observable<any> {
-    return this.httpClient.get(this.API_SERVER + "/employeenoexistonteam/" + id)
-  }
 
 }

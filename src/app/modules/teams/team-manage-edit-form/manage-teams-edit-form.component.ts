@@ -31,9 +31,8 @@ export class ManageTeamsEditFormComponent implements OnInit {
       teamName: new FormControl(null, [Validators.required]),
     });
 
+
   }
-
-
 
   getManageTeamById(id: string | null) {
     this.manageTeamService.getTeamById(id).subscribe(resp => {
@@ -47,9 +46,12 @@ export class ManageTeamsEditFormComponent implements OnInit {
   }
 
   edit() {
+
     if (this.teamsEditForm.valid) {
+
       this.data = {
         teamName: this.teamsEditForm.get('teamName')?.value,
+
       }
       this.manageTeamService.updateTeam(this.id, this.data).subscribe(
         (resp) => {

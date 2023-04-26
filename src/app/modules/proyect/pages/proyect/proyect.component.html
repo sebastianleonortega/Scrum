@@ -34,7 +34,7 @@
         <td class="icon">
 
 
-          <button type="button" class="btn btn-success" [routerLink]="['proyect-edit',item.projectId]"><i class="fas fa-edit"></i></button>
+          <button type="button" class="btn btn-success"  (click)="editProjetModal(item.projectId)" ><i class="fas fa-edit"></i></button>
           <button type="button" class="btn btn-success mx-2" [routerLink]="['subproject']"><i class="fa fa-eye"></i></button>
 
         </td>
@@ -45,4 +45,5 @@
   </div>
 </div>
 
+<!-- [routerLink]="['proyect-edit',item.projectId]" -->
 
