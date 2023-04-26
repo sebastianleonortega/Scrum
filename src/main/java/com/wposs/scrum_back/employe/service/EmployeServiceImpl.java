@@ -45,7 +45,7 @@ public class EmployeServiceImpl implements EmployeService{
         try {
             return modelMapper.map(employeeRepository.save(employee),EmployeDto.class);
         }catch (Exception ex){
-            throw new RequestException("Surjio un error al intertar Registrar El Empleado,JSON mal estructurado","400",HttpStatus.BAD_REQUEST);
+            throw new RequestException("Surguio un error al intertar Registrar El Empleado,JSON mal estructurado","400",HttpStatus.BAD_REQUEST);
         }
     }
 

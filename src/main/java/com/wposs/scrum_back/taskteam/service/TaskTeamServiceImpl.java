@@ -60,7 +60,7 @@ public class TaskTeamServiceImpl implements TaskTeamService{
     public TaskTeamDto updateTaskTeam(UUID idTasTeam, TaskTeamDto taskTeamDto) {
         return taskTeamRepository.findById(idTasTeam).map(taskTeam -> {
             taskTeam.setTaskTeamName((taskTeamDto.getTaskTeamName()!=null)? taskTeamDto.getTaskTeamName() : taskTeam.getTaskTeamName());
-            taskTeam.setIdTeam((taskTeamDto.getIdTeam()!=null)?taskTeamDto.getIdTeam():taskTeam.getIdTeam());
+            taskTeam.setTeamId((taskTeamDto.getIdTeam()!=null)?taskTeamDto.getIdTeam():taskTeam.getTeamId());
             return modelMapper.map(taskTeamRepository.save(taskTeam),TaskTeamDto.class);
         }).orElseThrow(()->new MessageGeneric("Error,No se encontro la Tarea a Actualizar","404",HttpStatus.NOT_FOUND));
     }

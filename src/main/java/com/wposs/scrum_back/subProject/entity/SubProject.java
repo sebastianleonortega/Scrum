@@ -28,7 +28,7 @@ public class SubProject {
     @Type(type="pg-uuid")
     private UUID projectId;
     @Column(name = "team_id")
-    private UUID idTeam;
+    private UUID teamId;
 
 
     @ManyToOne
@@ -82,19 +82,19 @@ public class SubProject {
         this.userStories = userStories;
     }
 
-    public UUID getIdTeam() {
-        return idTeam;
-    }
-
-    public void setIdTeam(UUID idTeam) {
-        this.idTeam = idTeam;
-    }
-
     public Team getTeam() {
         return team;
     }
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public UUID getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
     }
 }
