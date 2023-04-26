@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { User_storyService } from "@app/data/services/user_story/user_story.service";
 import { ActivatedRoute } from "@angular/router";
 import { UserStoyStatusService } from '@app/data/services/user-story-status/user-stoy-status.service';
-
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-story-management',
@@ -22,6 +23,7 @@ export class UserStoryManagementComponent implements OnInit {
     private userStoryService: User_storyService,
     private route: ActivatedRoute,
     private userStoryStateService: UserStoyStatusService,
+    private route1:Router,
     ){
   }
 
@@ -69,9 +71,17 @@ export class UserStoryManagementComponent implements OnInit {
       }
       this.userStoryService.updateUserStory(this.id, data).subscribe(
         (resp) => {
-          this.userStoryForm.reset();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Historia de usuario editada  ',
+            showConfirmButton: false,
+            timer: 1500
+          })
         },
-        error => (console.error(error)));
+        );
+        this.route1.navigateByUrl('app/user-story').then();
+        this.userStoryForm.reset();
     }
 
   }

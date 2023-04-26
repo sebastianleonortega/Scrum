@@ -65,14 +65,27 @@ export class AreaComponent implements OnInit {
         this.areaService.deleteArea(id).subscribe(
           () => {
             Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Area eliminada',
-              showConfirmButton: false,
-              timer: 1500
+              title: 'Desea eliminar esta area?',
+              text: "Al eliminar el area, elimina los eventos asociados a ellas. La información eliminada no se puede recuperar",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'si, eliminar!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Area eliminada',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+                    this.areaForm.reset();
+                    this.getAllAreas();
+
+              }
             })
-                this.areaForm.reset();
-                this.getAllAreas();
           },
         );
   }

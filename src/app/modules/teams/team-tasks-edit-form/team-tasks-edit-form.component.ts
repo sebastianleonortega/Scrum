@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamTasksService} from "@app/data/services/team-tasks/team-tasks.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +14,12 @@ export class TeamTasksEditFormComponent implements OnInit {
   id: any;
   taskTeamEdit: any;
 
-  constructor(private formBuilder: FormBuilder, public teamTasksService: TeamTasksService, private route: ActivatedRoute) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private teamTasksService: TeamTasksService,
+    private route: ActivatedRoute,
+    private route1: Router
+    ) {
   }
 
   ngOnInit(): void {
@@ -49,6 +54,7 @@ export class TeamTasksEditFormComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
+            this.route1.navigateByUrl('app/teams/team-task').then();
           }
         )
       )

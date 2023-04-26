@@ -5,6 +5,7 @@ import {User_storyService} from "@app/data/services/user_story/user_story.servic
 import {UserStory} from "@app/data/interfaces/userStory";
 import {SubprojectService} from "@app/data/services/subproject/subproject.service";
 import { UserStoyStatusService } from '@app/data/services/user-story-status/user-stoy-status.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-story-add',
@@ -23,7 +24,8 @@ export class UserStoryAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
     private subProjectService : SubprojectService,
-    private userStoryStatusService: UserStoyStatusService
+    private userStoryStatusService: UserStoyStatusService,
+    private route: Router
   ) {
   }
 
@@ -85,6 +87,7 @@ export class UserStoryAddComponent implements OnInit {
           })
           this.userStoryForm.reset();
           this. getAllUserStory()
+          this.route.navigateByUrl('app/user-story').then();
         },
       );
     }

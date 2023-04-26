@@ -75,6 +75,7 @@ export class TeamTasksComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.getAllTasksTeams();
       })
     }
   }
@@ -84,11 +85,25 @@ export class TeamTasksComponent implements OnInit {
 
     this.teamTasksService.deleteTeamTasks(id).subscribe(resp=>{
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Area  eliminada',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Desea eliminar tarea?',
+        text: "despues de eliminada no podra recuperar los datos",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si, eliminar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Area  eliminada',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.tasksForm.reset();
+          this.getAllTasksTeams();
+        }
       })
     })
   }

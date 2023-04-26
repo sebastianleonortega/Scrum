@@ -4,7 +4,7 @@
   </div>
 
   <div class="form-row align-items-center">
-    <form class="userStory-form" [formGroup]="proyectAddForm" (ngSubmit)="saveProyect()">
+    <form class="project-form" [formGroup]="proyectAddForm" (ngSubmit)="saveProyect()">
 
       <div class="form-group">
         <label>Nombre del proyecto</label>
@@ -37,7 +37,7 @@
         </form>
       </div>
 
-      <button class="btn btn btn-primary mb-2" type="submit" [disabled]="proyectAddForm.invalid" (click)="CloseModal()">Agregar</button>
+      <button class="button btn btn btn-primary mb-2" type="submit" [disabled]="proyectAddForm.invalid" (click)="CloseModal()">Agregar</button>
     </form>
   </div>
 </div>
