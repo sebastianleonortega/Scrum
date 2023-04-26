@@ -46,7 +46,7 @@ public class TaskTeamServiceImpl implements TaskTeamService{
     @Override
     public TaskTeamDto saveTaskTeam(TaskTeamDto taskTeamDto) {
         TaskTeam taskTeam = modelMapper.map(taskTeamDto,TaskTeam.class);
-        if (taskTeamRepository.existsByTaskTeamNameAndIdTeam(taskTeam.getTaskTeamName(),taskTeam.getIdTeam())){
+        if (taskTeamRepository.existsByTaskTeamNameAndIdTeam(taskTeam.getTaskTeamName(),taskTeam.getTeamId())){
             throw new MessageGeneric("Ya se encuentra la tarea: "+taskTeam.getTaskTeamName()+" asociada al mismo equipo ","409",HttpStatus.CONFLICT);
         }
         try {
