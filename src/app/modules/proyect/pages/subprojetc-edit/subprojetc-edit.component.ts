@@ -33,7 +33,7 @@ export class SubprojetcEditComponent implements OnInit {
       subprojectName: new FormControl(null, [Validators.required]),
       teamId: new FormControl()
     });
-    this.subProjectId = this.route.snapshot.paramMap.get('subProjectId');
+    this.subProjectId = this.data.subProjectId;
     this.getSubProjectById(this.subProjectId)
     this.subProjectId = this.data.subProjectId;
     this.subprojectService.getTeam().subscribe((data) => {

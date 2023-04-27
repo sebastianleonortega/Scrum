@@ -35,7 +35,6 @@ export class ProyectAddComponent implements OnInit {
     public formBuilder: FormBuilder,
     public proyectService: ProyectService,
     private route: Router,
-    public dialogRef: MatDialogRef<ProyectComponent>
   ) {
   }
 
@@ -72,7 +71,7 @@ export class ProyectAddComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        this.dialogRef.close();
+
         this.proyectAddForm.reset()
         location.reload();
 
@@ -80,10 +79,7 @@ export class ProyectAddComponent implements OnInit {
     }
   }
 
-  CloseModal(): void {
-    this.dialogRef.close();
 
-  }
 
   upload_image(event: any) {
     let archive = event.target.files

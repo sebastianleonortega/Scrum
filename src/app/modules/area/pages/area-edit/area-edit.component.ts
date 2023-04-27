@@ -15,10 +15,10 @@ export class AreaEditComponent implements OnInit {
   areaEditForm: FormGroup = new FormGroup({});
 
   constructor(
-    public formBuilder: FormBuilder,
-    public areaService: AreaService,
+    private formBuilder: FormBuilder,
+    private areaService: AreaService,
     private route: ActivatedRoute,
-    public route1: Router,
+    private route1: Router,
 
     ) {
 
