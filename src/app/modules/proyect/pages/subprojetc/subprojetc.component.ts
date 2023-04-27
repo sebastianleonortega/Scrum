@@ -27,7 +27,7 @@ export class SubprojetcComponent implements OnInit {
   }
 
 abrirModalSubprojetc(): void {
-  const dialogRef = this.dialog.open(SubprojetcAddComponent);
+  const dialogRef = this.dialog.open(SubprojetcAddComponent, {width: '500px'});
 
   dialogRef.afterClosed().subscribe(resul => {
   })

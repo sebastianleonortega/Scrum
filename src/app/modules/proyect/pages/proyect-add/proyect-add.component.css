@@ -72,10 +72,13 @@ select:focus {
   width: 70%;
   margin-top: 10px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group{
   margin-top: 20px;
+  text-align: center;
 }
 
 .form-control-file{

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { ProyectService } from "@app/data/services/proyect/proyect.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ProyectComponent } from '../proyect/proyect.component';
 import Swal from 'sweetalert2';
 
 export interface Client {
@@ -36,6 +38,7 @@ export class ProyectEditComponent implements OnInit {
     public formBuilder: FormBuilder,
     public proyectService: ProyectService,
     private route: ActivatedRoute,
+    private dialogRef: MatDialogRef<ProyectComponent>,
     private routeurl: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {console.log(data)
@@ -102,11 +105,17 @@ export class ProyectEditComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          this.dialogRef.close();
+          location.reload();
         },
         error => (console.error(error)));
     }
   }
 
+  CloseModal(): void {
+    this.dialogRef.close();
+
+  }
   // upload_image(event: any) {
   //   console.log(event.target.files);
   //   let archive = event.target.files

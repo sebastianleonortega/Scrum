@@ -1,6 +1,6 @@
 
 .title {
-  display: flex;
+  text-align: center;
   align-items: center;
   font-weight: 600;
   font-size: 25px;
@@ -65,19 +65,24 @@ select:focus {
 
 
 .form-control{
-  width: 30%;
+  width: 70%;
   margin-top: 10px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group{
   margin-top: 20px;
+  text-align: center;
 }
 
 .form-control-file{
   margin-top: 10px;
 }
 
-.btn{
+/* .btn{
   margin-top: 50px;
-}
+} */
+
+

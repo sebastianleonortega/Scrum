@@ -52,7 +52,7 @@ export class ProyectComponent implements OnInit {
     });
   }
   abrirModalProjet(): void {
-    const dialogRef = this.dialog.open(ProyectAddComponent);
+    const dialogRef = this.dialog.open(ProyectAddComponent, {width: '500px'});
 
     dialogRef.afterClosed().subscribe(resul =>  {
     })
@@ -60,7 +60,8 @@ export class ProyectComponent implements OnInit {
 
   editProjetModal(proyectId: number) {
 
-    const dialogRef = this.dialog.open(ProyectEditComponent, {data:{projectId: proyectId }});
+    const dialogRef = this.dialog.open(ProyectEditComponent, {width: '500px',    data:{projectId: proyectId }});
+
      dialogRef.afterClosed().subscribe(resul => {
 
      })

@@ -29,8 +29,10 @@ export class TeamAddEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
+    console.log(this.teamId)
     this.getAllEmployees();
     this.getAllEmployeesAddToTeam(this.teamId);
+    console.log(this.getAllEmployeesAddToTeam(this.teamId))
     this.AddEmployeeTeam();
 
   }
