@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ProyectService {
+export class ProjectService {
 
   private API_SERVER='http://localhost:8020/project'
 

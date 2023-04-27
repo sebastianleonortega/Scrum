@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Proyect } from "@app/data/interfaces/proyect";
-import { ProyectService } from "@app/data/services/proyect/proyect.service";
-import { AreaService } from "@app/data/services/area/area.service";
-import { CustomerService } from "@app/data/services/customer/customer.service";
+import { ProjectService } from '../service/project.service';
+import { AreaService } from '@app/modules/area/pages/service/area.service';
+import { CustomerService } from "@app/modules/customer/pages/service/customer.service";
 import {ProyectAddComponent} from '@app/modules/proyect/pages/proyect-add/proyect-add.component';
 import {MatDialog} from '@angular/material/dialog';
 import { ProyectEditComponent } from '../proyect-edit/proyect-edit.component';
@@ -28,7 +28,7 @@ export class ProyectComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private proyectService: ProyectService,
+    private proyectService: ProjectService,
     private customerService: CustomerService,
     private areaService: AreaService,
     public dialog: MatDialog,

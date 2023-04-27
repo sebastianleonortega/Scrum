@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { SubprojectService } from "@app/data/services/subproject/subproject.service";
+import { SubprojectService } from "@app/modules/proyect/pages/service/subproject.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';

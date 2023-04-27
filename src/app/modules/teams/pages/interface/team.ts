@@ -1,4 +1,4 @@
-import {TeamEmployee} from "@app/modules/teams/shared/team-employees";
+import {TeamEmployee} from "@app/modules/teams/pages/interface/team-employees";
 
 export interface Team {
   areaName: string;

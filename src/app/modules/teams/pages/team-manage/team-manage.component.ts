@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
-import {AreaService} from "@app/data/services/area/area.service";
-import {Team} from "@app/modules/teams/shared/team";
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
+import { AreaService } from '@app/modules/area/pages/service/area.service';
+import {Team} from "@app/modules/teams/pages/interface/team";
 import Swal from 'sweetalert2';
 
 @Component({

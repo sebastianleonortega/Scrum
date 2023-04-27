@@ -1,8 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
-import { SubprojectService} from '@app/data/services/subproject/subproject.service';
+import { SubprojectService} from '@app/modules/proyect/pages/service/subproject.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { SubprojectById } from '@app/data/interfaces/subprojects';
-import { User_storyService } from '@app/data/services/user_story/user_story.service';
+import { User_storyService } from '@app/modules/subprojects/pages/service/user_story.service';
 import { UserStory } from '@app/data/interfaces/userStory';
 
 @Component({

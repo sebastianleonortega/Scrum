@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Team} from "@app/modules/teams/shared/team";
-import {TeamEmployee} from "@app/modules/teams/shared/team-employees";
+import {Team} from "@app/modules/teams/pages/interface/team";
+import {TeamEmployee} from "@app/modules/teams/pages/interface/team-employees";
 
 @Injectable({
   providedIn: 'root'

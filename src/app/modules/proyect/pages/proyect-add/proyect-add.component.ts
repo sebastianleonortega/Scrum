@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ProyectService } from "@app/data/services/proyect/proyect.service";
+import { ProjectService } from '../service/project.service';
 import { Router } from "@angular/router";
 import {MatDialogRef} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
@@ -33,7 +33,7 @@ export class ProyectAddComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public proyectService: ProyectService,
+    public projectService: ProjectService,
     private route: Router,
   ) {
   }
@@ -46,11 +46,11 @@ export class ProyectAddComponent implements OnInit {
       proyectArea: new FormControl(null, [Validators.required]),
     });
 
-    this.proyectService.getClient().subscribe((data) => {
+    this.projectService.getClient().subscribe((data) => {
       this.clients = data;
     }, );
 
-    this.proyectService.getArea().subscribe((data) => {
+    this.projectService.getArea().subscribe((data) => {
       this.areas = data;
     },
      );
@@ -63,7 +63,7 @@ export class ProyectAddComponent implements OnInit {
         clientId: this.proyectAddForm.get('proyectClient')?.value,
         areaId: this.proyectAddForm.get('proyectArea')?.value,
       }
-      this.proyectService.saveProyect(data).subscribe((resp) => {
+      this.projectService.saveProyect(data).subscribe((resp) => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',

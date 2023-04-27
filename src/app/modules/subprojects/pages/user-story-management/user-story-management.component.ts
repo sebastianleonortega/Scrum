@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { User_storyService } from "@app/data/services/user_story/user_story.service";
+import { User_storyService } from "@app/modules/subprojects/pages/service/user_story.service";
 import { ActivatedRoute } from "@angular/router";
-import { UserStoyStatusService } from '@app/data/services/user-story-status/user-stoy-status.service';
+import { UserStoyStatusService } from '@app/modules/subprojects/pages/service/user-stoy-status.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 

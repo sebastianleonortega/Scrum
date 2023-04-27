@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {SprintsService} from "@app/data/services/sprints/sprints.service";
+import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import Swal from "sweetalert2";
 
 

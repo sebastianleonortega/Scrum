@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomerService} from "@app/data/services/customer/customer.service";
+import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
 

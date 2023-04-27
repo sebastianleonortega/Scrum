@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AreaService} from "@app/data/services/area/area.service";
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
-import {User_storyService} from "@app/data/services/user_story/user_story.service";
-import {TeamTasksService} from "@app/data/services/team-tasks/team-tasks.service";
+import {AreaService} from '@app/modules/area/pages/service/area.service';
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
+import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
+import {TeamTasksService} from "@app/modules/teams/pages/ServiceTasks/team-tasks.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ImprovementsService} from "@app/data/services/improvements/improvements.service";
+import { ImprovementsService } from '@app/data/services/improvements/improvements.service';
 
 @Component({
   selector: 'app-manage-improvements',

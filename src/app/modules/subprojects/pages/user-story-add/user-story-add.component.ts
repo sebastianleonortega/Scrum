@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import {User_storyService} from "@app/data/services/user_story/user_story.service";
+import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
 import {UserStory} from "@app/data/interfaces/userStory";
-import {SubprojectService} from "@app/data/services/subproject/subproject.service";
-import { UserStoyStatusService } from '@app/data/services/user-story-status/user-stoy-status.service';
+import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
+import { UserStoyStatusService } from '@app/modules/subprojects/pages/service/user-stoy-status.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SubprojectService} from "@app/data/services/subproject/subproject.service";
+import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
 import {Router} from "@angular/router";
 import {Subproject} from "@app/data/interfaces/subprojects";
-import {ProyectService} from "@app/data/services/proyect/proyect.service";
+import { ProjectService } from '../service/project.service';
 import Swal from "sweetalert2";
 import {MatDialogRef} from '@angular/material/dialog';
 import {SubprojetcComponent} from '@app/modules/proyect/pages/subprojetc/subprojetc.component';
-import { TeamsService } from '@app/modules/teams/shared/teams.service';
+import { TeamsService } from '@app/modules/teams/pages/service/teams.service';
 
 @Component({
   selector: 'app-subprojetc-add',
@@ -23,7 +23,7 @@ export class SubprojetcAddComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public subprojectService: SubprojectService,
-    public proyectService: ProyectService,
+    public proyectService: ProjectService,
     private route: Router,
     private dialogRef: MatDialogRef<SubprojetcComponent>,
     private teamService: TeamsService

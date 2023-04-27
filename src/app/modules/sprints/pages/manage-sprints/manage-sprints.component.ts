@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SprintsService} from "@app/data/services/sprints/sprints.service";
-import {AreaService} from "@app/data/services/area/area.service";
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
-import {Team} from "@app/modules/teams/shared/team";
+import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service";
+import {AreaService} from '@app/modules/area/pages/service/area.service';
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
+import { Team } from '@app/modules/teams/pages/interface/team';
 import {AreaInterface} from "@app/data/interfaces/interface-area";
 import Swal from "sweetalert2";
 import {HttpErrorResponse} from "@angular/common/http";

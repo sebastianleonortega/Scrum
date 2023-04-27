@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EmployeesService} from "@app/data/services/employees/employees.service";
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
+import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import {ActivatedRoute} from "@angular/router";
 
 

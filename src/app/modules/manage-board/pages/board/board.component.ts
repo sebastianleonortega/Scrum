@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {TeamsService} from "@app/modules/teams/shared/teams.service";
+import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Team} from "@app/modules/teams/shared/team";
+import {Team} from "@app/modules/teams/pages/interface/team";
 import {Router} from "@angular/router";
-import {BoardService} from "@app/data/services/board/board.service";
+import { BoardService } from '../service/board.service';
 import {UserStory} from "@app/data/interfaces/userStory";
-import {User_storyService} from "@app/data/services/user_story/user_story.service";
-import {EmployeesService} from "@app/data/services/employees/employees.service";
+import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
+import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
 import {Employee} from "@app/data/interfaces/employee";
-import {TeamTasksService} from "@app/data/services/team-tasks/team-tasks.service";
+import {TeamTasksService} from "@app/modules/teams/pages/ServiceTasks/team-tasks.service";
 
 @Component({
   selector: 'app-board',

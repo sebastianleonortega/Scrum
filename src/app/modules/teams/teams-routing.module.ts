@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TeamManageComponent} from "@app/modules/teams/team-manage/team-manage.component";
-import {ManageTeamsEditFormComponent} from "@app/modules/teams/team-manage-edit-form/manage-teams-edit-form.component";
-import {TeamAddEmployeeComponent} from "@app/modules/teams/team-add-employee/team-add-employee.component";
-import {TeamTasksComponent} from "@app/modules/teams/team-tasks/team-tasks.component";
-import {TeamTasksEditFormComponent} from "@app/modules/teams/team-tasks-edit-form/team-tasks-edit-form.component";
+import {TeamManageComponent} from "@app/modules/teams/pages/team-manage/team-manage.component";
+import {ManageTeamsEditFormComponent} from "@app/modules/teams/pages/team-manage-edit-form/manage-teams-edit-form.component";
+import {TeamAddEmployeeComponent} from "@app/modules/teams/pages/team-add-employee/team-add-employee.component";
+import {TeamTasksComponent} from "@app/modules/teams/pages/team-tasks/team-tasks.component";
+import {TeamTasksEditFormComponent} from "@app/modules/teams/pages/team-tasks-edit-form/team-tasks-edit-form.component";
 
 
 const routes: Routes = [

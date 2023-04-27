@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {SprintsService} from "@app/data/services/sprints/sprints.service";
+import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service";
 
 @Component({
   selector: 'app-score-sprint-days',

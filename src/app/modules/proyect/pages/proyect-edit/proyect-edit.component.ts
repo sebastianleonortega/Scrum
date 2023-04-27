@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ProyectService } from "@app/data/services/proyect/proyect.service";
+import { ProjectService } from '../service/project.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -36,7 +36,7 @@ export class ProyectEditComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public proyectService: ProyectService,
+    public proyectService: ProjectService,
     private route: ActivatedRoute,
     private dialogRef: MatDialogRef<ProyectComponent>,
     private routeurl: Router,

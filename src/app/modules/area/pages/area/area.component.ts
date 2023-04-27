@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AreaInterface} from "@app/data/interfaces/interface-area";
-import {AreaService} from "@app/data/services/area/area.service";
+import {AreaService} from '@app/modules/area/pages/service/area.service';
 import Swal from 'sweetalert2';
 
 @Component({
