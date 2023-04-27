@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class TeamDto implements Serializable {
-    @JsonProperty(value = "idTeam",access = JsonProperty.Access.READ_ONLY)
-    private UUID idTeam;
+    @JsonProperty(value = "teamId",access = JsonProperty.Access.READ_ONLY)
+    private UUID teamId;
     @JsonProperty(value = "teamName")
     private String teamName;
     @JsonProperty(value = "areaId")
@@ -22,14 +22,6 @@ public class TeamDto implements Serializable {
 
     public void setAreaName(String areaName) {
         this.areaName = areaName;
-    }
-
-    public UUID getIdTeam() {
-        return idTeam;
-    }
-
-    public void setIdTeam(UUID idTeam) {
-        this.idTeam = idTeam;
     }
 
     public String getTeamName() {
@@ -46,5 +38,13 @@ public class TeamDto implements Serializable {
 
     public void setAreaId(UUID areaId) {
         this.areaId = areaId;
+    }
+
+    public UUID getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
     }
 }
