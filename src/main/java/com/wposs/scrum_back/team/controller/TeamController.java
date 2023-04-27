@@ -93,4 +93,9 @@ public class TeamController {
         team.setEmployees(employeeList);
         return  new ResponseEntity<>(modelMapper.map(teamService.save(team), TeamEmployeDto.class), HttpStatus.OK);
     }*/
+
+    @PostMapping("saveemployetoteam/{id}")
+    public ResponseEntity<?> saveEmployeeToTeam(@Valid @RequestBody List<UUID>idEmployees,@PathVariable("id") UUID idTeam){
+        return null;
+    }
 }

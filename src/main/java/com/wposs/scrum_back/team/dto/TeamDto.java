@@ -18,7 +18,6 @@ public class TeamDto implements Serializable {
     @Size(max = 100,message = "El nombre del Equipo no debe sobre pasar los 100 caractares")
     private String teamName;
     @JsonProperty(value = "areaId")
-    @NotNull(message = "Debe seleccionar un Area para el Equipo")
     private UUID areaId;
     @JsonProperty(value = "areaName",access = JsonProperty.Access.READ_ONLY)
     private String areaName;

@@ -20,7 +20,6 @@ public class TaskTeamDto {
     @Size(max = 100,message = "El nombre de la tarea no debe sobre pasar los 100 caracteres")
     private String taskTeamName;
     @JsonProperty(value = "teamId")
-    @NotNull(message = "El campo del equipo no debe ser null")
     private UUID teamId;
     @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
     private String teamName;

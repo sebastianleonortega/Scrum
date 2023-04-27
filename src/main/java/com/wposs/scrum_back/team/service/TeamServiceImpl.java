@@ -60,7 +60,6 @@ public class TeamServiceImpl implements TeamService{
     public TeamDto updateTeam(UUID idTeam, TeamDto teamDto) {
         return teamRepository.findById(idTeam).map(team -> {
             team.setTeamName((teamDto.getTeamName()!=null)?teamDto.getTeamName():team.getTeamName());
-            team.setAreaId((teamDto.getAreaId()!=null)?teamDto.getAreaId():team.getTeamId());
             return modelMapper.map(teamRepository.save(team),TeamDto.class);
         }).orElseThrow(()-> new MessageGeneric("Error al intentar actualizar el Equipo no esta Disponible","404",HttpStatus.NOT_FOUND));
     }
@@ -68,7 +67,7 @@ public class TeamServiceImpl implements TeamService{
     @Override
     public List<EmployeDto> saveEmployeToTeam(List<UUID> employeId, UUID idTeam) {
         Optional<Team> team = teamRepository.findById(idTeam);
-        if (teamRepository.findById(idTeam).isPresent()){
+        if (team.isPresent()){
 
         }
         return null;
