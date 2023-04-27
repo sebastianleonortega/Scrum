@@ -52,7 +52,7 @@ export class ProyectComponent implements OnInit {
     });
   }
   abrirModalProjet(): void {
-    const dialogRef = this.dialog.open(ProyectAddComponent, {width: '500px'});
+    const dialogRef = this.dialog.open(ProyectAddComponent, {width: '500px' });
 
     dialogRef.afterClosed().subscribe(resul =>  {
     })

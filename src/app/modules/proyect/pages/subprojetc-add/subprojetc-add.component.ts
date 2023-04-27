@@ -7,6 +7,7 @@ import {ProyectService} from "@app/data/services/proyect/proyect.service";
 import Swal from "sweetalert2";
 import {MatDialogRef} from '@angular/material/dialog';
 import {SubprojetcComponent} from '@app/modules/proyect/pages/subprojetc/subprojetc.component';
+import { TeamsService } from '@app/modules/teams/shared/teams.service';
 
 @Component({
   selector: 'app-subprojetc-add',
@@ -17,39 +18,41 @@ export class SubprojetcAddComponent implements OnInit {
   subprojectAddForm: FormGroup = new FormGroup({});
   subproject: Subproject | any;
   projects: any;
+  teams: any;
 
   constructor(
     public formBuilder: FormBuilder,
     public subprojectService: SubprojectService,
     public proyectService: ProyectService,
     private route: Router,
-    private dialogRef: MatDialogRef<SubprojetcComponent>
+    private dialogRef: MatDialogRef<SubprojetcComponent>,
+    private teamService: TeamsService
   ) {
   }
 
   ngOnInit(): void {
     this.subprojectAddForm = this.formBuilder.group({
       subProjectName: new FormControl(null, [Validators.required]),
-      projectId: new FormControl(null, [Validators.required])
+      projectId: new FormControl(null, [Validators.required]),
+      teamId: new FormControl()
     });
     this.subprojectService.getProyecto().subscribe((data) =>{
       this.projects = data;
     })
-
-  }
-
-  getAllProjects() {
-    this.proyectService.getAllProyect().subscribe(resp => {
-      this.projects = resp;
-
+    this.subprojectService.getTeam().subscribe((data) => {
+      this.teams = data;
     })
+
   }
+
+
 
   saveSubProject(): void {
     if (this.subprojectAddForm.valid) {
       const data = {
         subProjectName: this.subprojectAddForm.get('subProjectName')?.value,
-        projectId:this.subprojectAddForm.get('projectId')?.value
+        projectId:this.subprojectAddForm.get('projectId')?.value,
+        teamId: this.subprojectAddForm.get('teamId')?.value
 
       }
 

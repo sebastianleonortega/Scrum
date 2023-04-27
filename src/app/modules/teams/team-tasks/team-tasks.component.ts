@@ -61,7 +61,7 @@ export class TeamTasksComponent implements OnInit {
 
     if (this.tasksForm.valid){
       const data = {
-        idTeam:this.tasksForm.get('teamId')?.value,
+        teamId:this.tasksForm.get('teamId')?.value,
         taskTeamName:this.tasksForm.get('taskTeamName')?.value,
       }
       console.log(data)

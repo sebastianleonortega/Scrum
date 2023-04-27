@@ -41,7 +41,7 @@ export class ProyectEditComponent implements OnInit {
     private dialogRef: MatDialogRef<ProyectComponent>,
     private routeurl: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {console.log(data)
+  ) {
   }
 
   ngOnInit(): void {
@@ -52,7 +52,6 @@ export class ProyectEditComponent implements OnInit {
     });
 
     this.projectId = this.data.projectId;
-    console.log(this.projectId)
     this.getProyectById(this.projectId)
 
     this.proyectService.getClient().subscribe((data) => {
@@ -116,17 +115,7 @@ export class ProyectEditComponent implements OnInit {
     this.dialogRef.close();
 
   }
-  // upload_image(event: any) {
-  //   console.log(event.target.files);
-  //   let archive = event.target.files
-  //   let reader = new FileReader();
-  //
-  //   reader.readAsDataURL(archive[0])
-  //   reader.onloadend = () => {
-  //     this.proyectEditForm.get('proyectArchive')?.setValue(reader.result);
-  //     console.log(reader.result);
-  //   }
-  // }
+
 
 
 }
