@@ -20,7 +20,7 @@ public class SubProjectDto {
     @NotNull(message = "El campo del SubProject no puede ser null")
     @NotEmpty
     @Size(max = 100,message = "El nombre del SubProject no puede sobre pasar los 100 caracteres")
-    @Pattern(regexp = "[a-zA-Z]+",message = "En el nombre del subprojecto solo se aceptan letras")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "En el nombre del subprojecto solo se aceptan letras")
     private String subProjectName;
 
     @JsonProperty(value = "projectId")

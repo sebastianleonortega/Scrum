@@ -21,7 +21,7 @@ public class ProjectDto {
     @NotNull(message = "el nombre del proyecto no puede ser null")
     @NotEmpty
     @Size(max = 100,message = "el nombre del proyecto no puede sobre pasar los 100 caracter")
-    @Pattern(regexp = "[a-zA-Z]+",message = "El campo projectName solo admite letras")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El campo projectName solo admite letras")
     private String projectName;
 
     @JsonProperty(value = "areaId")

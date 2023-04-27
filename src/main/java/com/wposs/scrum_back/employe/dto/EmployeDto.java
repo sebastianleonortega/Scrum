@@ -16,7 +16,7 @@ public class EmployeDto {
     @NotNull(message = "El nombre del Empleado no puede ser null")
     @NotEmpty
     @Size(max = 100,message = "el nombre del empleado no puede sobre pasar los 100 carateres")
-    @Pattern(regexp = "[a-zA-Z]+",message = "El nombre del empleado solo se admiten letras")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El nombre del empleado solo se admiten letras")
     private String employeeName;
 
     @JsonProperty(value = "employeeCharge")

@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wposs.scrum_back.userstorystatus.dto.UserStoryStatusDto;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,22 +17,27 @@ public class UserStoryDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID userStoryId;
 
-    @NotNull
+    @NotNull(message = "La historia de usuario no debe ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "La HU debe no debe contener mas 100 caracteres")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El nombre de la historia solo debe contener letras y espacios")
     private String userStoryName;
 
+    @NotNull(message = "historia de usuario no debe ser null")
+    @Max(value = 3,message = "Los puntos no pueden exceder los 3 dijitos")
     private Integer userStoryScore;
 
     private String userStoryArchive;
-
+    @NotNull(message = "el estado no de HU no puede ser null")
+    @Max(value = 1,message = "sobre los estados de las HU")
     private Long userStoryStateId;
-
+    @JsonProperty(value = "userStoryStateName",access = JsonProperty.Access.READ_ONLY)
     private String userStoryStateName;
-
+    @NotNull(message = "tiene que asignar un subProyecto a HU")
     private UUID subProjectId;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "la fecha maxima no puede ser null")
     private Date fechaMaxima;
 
     public Date getFechaMaxima() {

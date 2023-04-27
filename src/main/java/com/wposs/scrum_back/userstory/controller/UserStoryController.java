@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.userstory.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.userstory.dto.UserStoryDto;
 import com.wposs.scrum_back.userstory.entity.UserStory;
 import com.wposs.scrum_back.userstory.service.UserStoryService;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -54,7 +56,10 @@ public class UserStoryController {
             @ApiResponse(responseCode = "201",description = "user story created"),
             @ApiResponse(responseCode = "400",description = "user story bad request")
     })
-    public ResponseEntity<UserStoryDto> create(@Valid @RequestBody UserStoryDto userStoryDto){
+    public ResponseEntity<UserStoryDto> create(@Valid @RequestBody UserStoryDto userStoryDto, BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(userStoryService.saveUserStory(userStoryDto),HttpStatus.CREATED);
     }
 
@@ -64,7 +69,10 @@ public class UserStoryController {
             @ApiResponse(responseCode = "200",description = "the updated User story"),
             @ApiResponse(responseCode = "400",description = "Story Not Found")
     })
-    public ResponseEntity<UserStoryDto> updateUserStory(@Valid @RequestBody UserStoryDto userStoryDto, @PathVariable("id") UUID userStoryId){
+    public ResponseEntity<UserStoryDto> updateUserStory(@Valid @RequestBody UserStoryDto userStoryDto, @PathVariable("id") UUID userStoryId,BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(userStoryService.updateUserStory(userStoryId,userStoryDto),HttpStatus.OK);
     }
 

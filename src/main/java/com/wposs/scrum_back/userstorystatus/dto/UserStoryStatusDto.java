@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -14,9 +15,10 @@ public class UserStoryStatusDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long userStoryStateId;
 
-    @NotNull
+    @NotNull(message = "El estado no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 20,message = "supera el la cantidad de caracteres en el nombre del estado")
+    @Pattern(regexp = "[a-zA-Z]+",message = "ingrese solo letras en el campo de Estado")
     private String userStoryStateName;
 
     public Long getUserStoryStateId() {

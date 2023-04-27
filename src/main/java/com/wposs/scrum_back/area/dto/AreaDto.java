@@ -20,7 +20,7 @@ public class AreaDto implements Serializable {
     @NotNull
     @NotEmpty
     @Size(max = 100)
-    @Pattern(regexp = "[a-zA-Z]+",message = "El campo areaName requiere de solo letras")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El campo areaName requiere de solo letras")
     private String areaName;
 
 
