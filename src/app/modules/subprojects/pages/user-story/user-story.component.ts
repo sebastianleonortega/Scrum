@@ -3,7 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User_storyService} from "@app/data/services/user_story/user_story.service";
 import {UserStory} from "@app/data/interfaces/userStory";
 import {SubprojectService} from "@app/data/services/subproject/subproject.service";
-
+import { MatDialog } from '@angular/material/dialog';
+import { UserStoryAddComponent } from '../user-story-add/user-story-add.component';
 
 @Component({
   selector: 'app-user-story',
@@ -19,7 +20,7 @@ export class UserStoryComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
-    private subProjectService : SubprojectService
+    private subProjectService : SubprojectService,
   ) {
   }
 
@@ -81,5 +82,8 @@ export class UserStoryComponent implements OnInit {
     }
 
   }
+
+
+
 
 }
