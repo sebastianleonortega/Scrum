@@ -43,14 +43,14 @@ export class TeamTasksComponent implements OnInit {
   getAllTeamsSelect() {
     this.manageTeamsService.getAllTeams().subscribe(resp => { //Trae todos los equipos
       this.teams = resp
-      console.log(resp)
+
     });
   }
 
   getAllTasksTeams(){
     this.teamTasksService.getAllTeamTasks().subscribe(resp => { // trae todas las tares por equipo
       this.tasksTeams = resp;
-      console.log(resp)
+
     });
   }
 

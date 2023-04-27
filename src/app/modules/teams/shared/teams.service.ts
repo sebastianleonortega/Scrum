@@ -25,11 +25,11 @@ export class TeamsService {
   }
 
   getTeamById(id: string | null): Observable<any> {
-    return this.httpClient.get(this.API_SERVER + "/teamid/" + id);
+    return this.httpClient.get(this.API_SERVER + "/" + id);
   }
 
   updateTeam(id: string, team: Team) {
-    return this.httpClient.put(this.API_SERVER + "/" + id, team);
+    return this.httpClient.put(this.API_SERVER + "/a" + id, team);
   }
 
   addEmployeeTeam(teamEmployee: any): Observable<any> {

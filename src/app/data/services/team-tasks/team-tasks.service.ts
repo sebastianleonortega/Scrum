@@ -28,7 +28,7 @@ private API_SERVER ='http://localhost:8020/taskteam';
 
   }
   getAllTaskTeamByTeamId(TeamId:string| null):Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"/team/"+TeamId)
+    return this.httpClient.get(this.API_SERVER+"/taskteam/"+TeamId)
   }
 }
 
