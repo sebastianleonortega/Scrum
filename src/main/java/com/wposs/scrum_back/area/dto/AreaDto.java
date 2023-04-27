@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AreaDto {
+public class AreaDto implements Serializable {
 
     @JsonProperty(value ="areaId", access = JsonProperty.Access.READ_ONLY)
     private UUID areaId;
@@ -18,6 +20,7 @@ public class AreaDto {
     @NotNull
     @NotEmpty
     @Size(max = 100)
+    @Pattern(regexp = "[a-zA-Z]+",message = "El campo areaName requiere de solo letras")
     private String areaName;
 
 

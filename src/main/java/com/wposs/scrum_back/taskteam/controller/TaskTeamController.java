@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.taskteam.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.taskteam.dto.TaskTeamDto;
 import com.wposs.scrum_back.taskteam.entity.TaskTeam;
 import com.wposs.scrum_back.taskteam.service.TaskTeamService;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,7 +33,10 @@ public class TaskTeamController {
             @ApiResponse(responseCode = "201",description = "task created"),
             @ApiResponse(responseCode = "400",description = "task bad request")
     })
-    public ResponseEntity<TaskTeamDto> create(@Valid @RequestBody TaskTeamDto taskTeamDto){
+    public ResponseEntity<TaskTeamDto> create(@Valid @RequestBody TaskTeamDto taskTeamDto, BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(teamService.saveTaskTeam(taskTeamDto),HttpStatus.CREATED);
     }
 
@@ -64,7 +69,10 @@ public class TaskTeamController {
             @ApiResponse(responseCode = "200",description = "Update Task Team Success"),
             @ApiResponse(responseCode = "400",description = "Update Task Team Bad Request")
     })
-    public ResponseEntity<TaskTeamDto> updateTaskTeam(@Valid @RequestBody TaskTeamDto taskTeamDto,@PathVariable("id") UUID idTaskTeam){
+    public ResponseEntity<TaskTeamDto> updateTaskTeam(@Valid @RequestBody TaskTeamDto taskTeamDto,@PathVariable("id") UUID idTaskTeam,BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(teamService.updateTaskTeam(idTaskTeam,taskTeamDto),HttpStatus.OK);
     }
 

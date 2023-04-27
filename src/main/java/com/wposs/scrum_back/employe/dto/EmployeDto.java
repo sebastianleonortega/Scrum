@@ -3,9 +3,7 @@ package com.wposs.scrum_back.employe.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -15,27 +13,31 @@ public class EmployeDto {
     private UUID employeeId;
 
     @JsonProperty(value = "employeeName")
-    @NotNull
+    @NotNull(message = "El nombre del Empleado no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "el nombre del empleado no puede sobre pasar los 100 carateres")
+    @Pattern(regexp = "[a-zA-Z]+",message = "El nombre del empleado solo se admiten letras")
     private String employeeName;
 
     @JsonProperty(value = "employeeCharge")
-    @NotNull
+    @NotNull(message = "El cargo del Empleado no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "el cargo del empleado no puede sobre pasar los 100 carateres")
+    @Pattern(regexp = "[a-zA-Z]+",message = "El cargo del empleado solo se admiten letras")
     private String employeeCharge;
 
     @JsonProperty(value = "employeeEmail")
-    @NotNull
+    @NotNull(message = "El email del Empleado no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "el email del empleado no puede sobre pasar los 100 carateres")
+    @Email(message = "email mal estructurado")
     private String employeeEmail;
 
     @JsonProperty(value = "employeeKnowledge")
-    @NotNull
+    @NotNull(message = "El conocimiento del Empleado no puede ser null")
     @NotEmpty
-    @Size(max = 200)
+    @Size(max = 200,message = "El conocimieno del empleado no puede sobre pasar los 200 caracteres")
+    @Pattern(regexp = "[a-zA-Z]+",message = "El campo employeeKnowledge solo se admiten letras")
     private String employeeKnowledge;
 
 

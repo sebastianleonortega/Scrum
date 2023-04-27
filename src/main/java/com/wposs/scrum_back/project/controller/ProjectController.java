@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.project.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.project.dto.ProjectDto;
 import com.wposs.scrum_back.project.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -43,7 +45,10 @@ public class ProjectController {
             @ApiResponse(responseCode = "201",description = "project created"),
             @ApiResponse(responseCode = "400",description = "project bad request")
     })
-    public ResponseEntity<ProjectDto> create(@Valid @RequestBody ProjectDto projectDto){
+    public ResponseEntity<ProjectDto> create(@Valid @RequestBody ProjectDto projectDto,BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(projectService.saveProject(projectDto),HttpStatus.CREATED);
     }
 
@@ -53,7 +58,10 @@ public class ProjectController {
             @ApiResponse(responseCode = "200",description = "Return the updated project"),
             @ApiResponse(responseCode = "404",description = "Project Not Found")
     })
-    public ResponseEntity<ProjectDto> updateProject(@Valid @RequestBody ProjectDto projectDto, @PathVariable("id") UUID projectId){
+    public ResponseEntity<ProjectDto> updateProject(@Valid @RequestBody ProjectDto projectDto, @PathVariable("id") UUID projectId, BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(projectService.updateProject(projectId,projectDto),HttpStatus.OK);
     }
 

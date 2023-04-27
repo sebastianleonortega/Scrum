@@ -67,10 +67,10 @@ public class TeamServiceImpl implements TeamService{
 
     @Override
     public List<EmployeDto> saveEmployeToTeam(List<UUID> employeId, UUID idTeam) {
-       // Optional<Team>
-        //if (teamRepository.findById(idTeam).isPresent()){
+        Optional<Team> team = teamRepository.findById(idTeam);
+        if (teamRepository.findById(idTeam).isPresent()){
 
-        //}
+        }
         return null;
     }
 

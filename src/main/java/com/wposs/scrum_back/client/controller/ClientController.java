@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.client.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.client.dto.ClientDto;
 import com.wposs.scrum_back.client.entity.Client;
 import com.wposs.scrum_back.client.service.ClientServiceImpl;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -50,7 +52,10 @@ public class ClientController {
             @ApiResponse(responseCode = "201",description = "Client Created"),
             @ApiResponse(responseCode = "400",description = "client bad request")
     })
-    public ResponseEntity<ClientDto> create(@Valid @RequestBody ClientDto clientDto){
+    public ResponseEntity<ClientDto> create(@Valid @RequestBody ClientDto clientDto, BindingResult result){
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(clienteService.saveCliente(clientDto),HttpStatus.OK);
     }
 
@@ -61,7 +66,10 @@ public class ClientController {
             @ApiResponse(responseCode = "400",description = "Returns the data sent is invalid"),
             @ApiResponse(responseCode = "404",description = "Cliente Not Found")
     })
-    public ResponseEntity<ClientDto> updateClient(@Valid @RequestBody ClientDto clientDto, @PathVariable("id") String clientId) {
+    public ResponseEntity<ClientDto> updateClient(@Valid @RequestBody ClientDto clientDto, @PathVariable("id") String clientId,BindingResult result) {
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(clienteService.updateCliente(clientId,clientDto),HttpStatus.OK);
     }
 

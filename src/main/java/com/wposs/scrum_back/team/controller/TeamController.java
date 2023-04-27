@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.team.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.team.dto.TeamDto;
 import com.wposs.scrum_back.team.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,7 +49,10 @@ public class TeamController {
             @ApiResponse(responseCode = "201",description = "Team Create"),
             @ApiResponse(responseCode = "400",description = "team bad request")
     })
-    public ResponseEntity<TeamDto> create(@Valid @RequestBody TeamDto teamDto){
+    public ResponseEntity<TeamDto> create(@Valid @RequestBody TeamDto teamDto, BindingResult result){
+        if (result.hasErrors()){
+            throw  new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(teamService.saveTeam(teamDto),HttpStatus.CREATED);
     }
 
@@ -57,7 +62,10 @@ public class TeamController {
             @ApiResponse(responseCode = "200",description = "Return the updated team"),
             @ApiResponse(responseCode = "404",description = "Project Not Found")
     })
-    public ResponseEntity<TeamDto> updateTeam(@Valid @RequestBody TeamDto team, @PathVariable("id") UUID teamId){
+    public ResponseEntity<TeamDto> updateTeam(@Valid @RequestBody TeamDto team, @PathVariable("id") UUID teamId,BindingResult result){
+        if (result.hasErrors()){
+            throw  new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted ingreso: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(teamService.updateTeam(teamId,team),HttpStatus.OK);
     }
 

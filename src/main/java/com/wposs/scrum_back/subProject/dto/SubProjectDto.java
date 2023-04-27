@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -16,16 +17,18 @@ public class SubProjectDto {
     private UUID subProjectId;
 
     @JsonProperty(value = "subProjectName")
-    @NotNull
+    @NotNull(message = "El campo del SubProject no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "El nombre del SubProject no puede sobre pasar los 100 caracteres")
+    @Pattern(regexp = "[a-zA-Z]+",message = "En el nombre del subprojecto solo se aceptan letras")
     private String subProjectName;
 
     @JsonProperty(value = "projectId")
+    @NotNull(message = "El campo del proyecto no debe ser null")
     private UUID projectId;
 
-    @JsonProperty(value = "idTeam")
-    private UUID idTeam;
+    @JsonProperty(value = "teamId")
+    private UUID teamId;
     @JsonProperty(value = "projectName",access = JsonProperty.Access.READ_ONLY)
     private String projectName;
     @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
@@ -39,12 +42,12 @@ public class SubProjectDto {
         this.teamName = teamName;
     }
 
-    public UUID getIdTeam() {
-        return idTeam;
+    public UUID getTeamId() {
+        return teamId;
     }
 
-    public void setIdTeam(UUID idTeam) {
-        this.idTeam = idTeam;
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
     }
 
     public String getProjectName() {

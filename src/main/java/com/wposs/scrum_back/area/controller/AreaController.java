@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.area.controller;
 
+import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.area.dto.AreaDto;
 import com.wposs.scrum_back.area.service.AreaServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,13 +46,11 @@ public class AreaController {
             @ApiResponse(responseCode = "201", description = "Created Area"),
             @ApiResponse(responseCode = "400", description = "Area Bad Request")
     })
-    public ResponseEntity<AreaDto> create(@Valid @RequestBody AreaDto areaDto) {
-        try {
-            return new ResponseEntity<>(areaService.saveArea(areaDto), HttpStatus.CREATED);
-        }catch (Exception ex){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<AreaDto> create(@Valid @RequestBody AreaDto areaDto, BindingResult result) {
+        if(result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted a ingresado: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
         }
-
+        return new ResponseEntity<>(areaService.saveArea(areaDto),HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -59,7 +59,10 @@ public class AreaController {
             @ApiResponse(responseCode = "200", description = "Return the updated area"),
             @ApiResponse(responseCode = "404", description = "Area Not Found")
     })
-    public ResponseEntity<AreaDto> updateArea(@RequestBody AreaDto areaDto, @PathVariable("id") UUID areaId) {
+    public ResponseEntity<AreaDto> updateArea(@RequestBody AreaDto areaDto, @PathVariable("id") UUID areaId,BindingResult result) {
+        if (result.hasErrors()){
+            throw new MethodArgumentNotValidException(result.getFieldError().getDefaultMessage()+" usted a ingresado: "+result.getFieldError().getRejectedValue(),"400",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(areaService.updateArea(areaId, areaDto), HttpStatus.OK);
     }
 

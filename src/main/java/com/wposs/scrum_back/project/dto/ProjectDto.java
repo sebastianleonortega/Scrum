@@ -8,9 +8,7 @@ import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.client.dto.ClientDto;
 import com.wposs.scrum_back.client.entity.Client;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,15 +18,20 @@ public class ProjectDto {
     private UUID projectId;
 
     @JsonProperty(value = "projectName")
-    @NotNull
+    @NotNull(message = "el nombre del proyecto no puede ser null")
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 100,message = "el nombre del proyecto no puede sobre pasar los 100 caracter")
+    @Pattern(regexp = "[a-zA-Z]+",message = "El campo projectName solo admite letras")
     private String projectName;
 
     @JsonProperty(value = "areaId")
+    @NotNull(message = "El area no puede ser null")
     private UUID areaId;
 
     @JsonProperty(value = "clientId")
+    @NotNull(message = "el cliente no puede ser null")
+    @NotEmpty
+    @Pattern(regexp = "\\d+",message = "El campo cliente solo se admiten numeros")
     private String clientId;
 
     public UUID getProjectId() {
