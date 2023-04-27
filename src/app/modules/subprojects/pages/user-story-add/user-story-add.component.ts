@@ -87,6 +87,7 @@ export class UserStoryAddComponent implements OnInit {
           })
           this.userStoryForm.reset();
           this. getAllUserStory()
+          location.reload();
           this.route.navigateByUrl('app/user-story').then();
         },
       );

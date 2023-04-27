@@ -1,6 +1,6 @@
 
 .title {
-  display: flex;
+  text-align: center;
   align-items: center;
   font-weight: 600;
   font-size: 25px;
@@ -65,7 +65,7 @@ select:focus {
 
 
 .form-control{
-  width: 30%;
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 20px;
 }

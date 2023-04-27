@@ -21,6 +21,7 @@ export class UserStoryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
     private subProjectService : SubprojectService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -83,7 +84,12 @@ export class UserStoryComponent implements OnInit {
 
   }
 
+  abrirModalUserStory(): void {
+    const dialogRef = this.dialog.open(UserStoryAddComponent, {width: '500px', maxHeight: '600px' });
 
+    dialogRef.afterClosed().subscribe(resul =>  {
+    })
+  }
 
 
 }
