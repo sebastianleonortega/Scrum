@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subproject } from "@app/modules/proyect/pages/Interface/subprojects";
 import { SubprojectService } from "@app/modules/proyect/pages/service/subproject.service";
 import {MatDialog} from '@angular/material/dialog';
@@ -16,7 +15,7 @@ export class SubprojetcComponent implements OnInit {
   subproject: Subproject | any;
 
   constructor(
-    private formBuilder: FormBuilder,
+
     private subprojectService: SubprojectService,
     private dialog: MatDialog
   ) { }

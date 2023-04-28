@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {AreaService} from '@app/modules/area/pages/service/area.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
@@ -12,10 +12,13 @@ import Swal from 'sweetalert2';
 export class AreaEditComponent implements OnInit {
   areaEdit: any;
   id: any;
-  areaEditForm: FormGroup = new FormGroup({});
+
+  areaEditForm: FormGroup = new FormGroup({
+    areaName: new FormControl(null, [Validators.required, Validators.maxLength(20)])
+  });
 
   constructor(
-    private formBuilder: FormBuilder,
+
     private areaService: AreaService,
     private route: ActivatedRoute,
     private route1: Router,
@@ -28,9 +31,7 @@ export class AreaEditComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('areaId');
     this.getArea(this.id);
-    this.areaEditForm = new FormGroup({
-      areaName: new FormControl(null, [Validators.required])
-    });
+
   }
 
   getArea(id: string | null) {

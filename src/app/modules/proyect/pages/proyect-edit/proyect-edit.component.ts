@@ -5,20 +5,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ProyectComponent } from '../proyect/proyect.component';
+import { Proyect } from '../Interface/proyect';
+import {Area} from '@app/modules/area/pages/Interface/interface-area';
+import { Client } from '@app/modules/customer/pages/Interface/customer-interface';
 import Swal from 'sweetalert2';
 
-export interface Client {
-  clientId: string;
-  clientNit: string;
-  client_name: string;
-}
-
-export interface Area {
-  areaId: string;
-  areaName: string;
-  employees: string;
-  teams: string;
-}
 
 @Component({
   selector: 'app-proyect-edit',
@@ -27,10 +18,10 @@ export interface Area {
 })
 export class ProyectEditComponent implements OnInit {
 
-  proyect: any;
-  projectId: any;
-  public clients: Client[] = [];
-  public areas: Area[] = [];
+  proyect: Proyect [] = [];
+  projectId: string = '';
+  clients: Client[] = [];
+  areas: Area[] = [];
 
   proyectEditForm: FormGroup = new FormGroup({
     proyectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),

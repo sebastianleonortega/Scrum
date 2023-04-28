@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
@@ -10,25 +10,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./customer-edit-form.component.css']
 })
 export class CustomerEditFormComponent implements OnInit {
-  customerForm: FormGroup = new FormGroup({});
+  customerForm: FormGroup = new FormGroup({
+    clientNit: new FormControl(null, [Validators.required]),
+      client_name: new FormControl(null, [Validators.required, Validators.maxLength(20) ])
+  });
   customer: any;
   id: any;
 
 
   constructor(
-    public formBuilder: FormBuilder,
-    public customerService: CustomerService,
+    private customerService: CustomerService,
     private route: ActivatedRoute,
     private route1: Router
-      ) {
+    ) {
   }
 
   ngOnInit(): void {
 
-    this.customerForm = this.formBuilder.group({
-      clientNit: new FormControl(null, [Validators.required]),
-      client_name: new FormControl(null, [Validators.required])
-    });
+
     this.id = this.route.snapshot.paramMap.get('clientId');
     this.getCustomerById(this.id)
 

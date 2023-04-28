@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {  FormControl, FormGroup, Validators } from "@angular/forms";
 import { SubprojectService } from "@app/modules/proyect/pages/service/subproject.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SubprojetcComponent } from '../subprojetc/subprojetc.component';
 import Swal from 'sweetalert2';
+import { Team } from '@app/modules/teams/pages/interface/team';
 
 @Component({
   selector: 'app-subprojetc-edit',
@@ -13,13 +14,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./subprojetc-edit.component.css']
 })
 export class SubprojetcEditComponent implements OnInit {
-  subprojectEditForm: FormGroup = new FormGroup({});
+  subprojectEditForm: FormGroup = new FormGroup({
+    subprojectName: new FormControl(null, [Validators.required]),
+    teamId: new FormControl()
+  });
   subproject: any;
   subProjectId: any;
-  teams: any;
+  teams: Team[]=[];
 
   constructor(
-    public formBuilder: FormBuilder,
     public subprojectService: SubprojectService,
     private route: ActivatedRoute,
     private dialogRef: MatDialogRef<SubprojetcComponent>,
@@ -29,10 +32,6 @@ export class SubprojetcEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subprojectEditForm = this.formBuilder.group({
-      subprojectName: new FormControl(null, [Validators.required]),
-      teamId: new FormControl()
-    });
     this.subProjectId = this.data.subProjectId;
     this.getSubProjectById(this.subProjectId)
     this.subProjectId = this.data.subProjectId;

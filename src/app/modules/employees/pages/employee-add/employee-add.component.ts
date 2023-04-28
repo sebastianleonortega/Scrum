@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
 import {Employee} from "@app/modules/employees/pages/Interface/employee";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,23 +11,22 @@ import Swal from 'sweetalert2';
 })
 export class EmployeeAddComponent implements OnInit {
 
-  employeeForm: FormGroup = new FormGroup({});
+  employeeForm: FormGroup = new FormGroup({
+    employeeName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+      employeeCharge: new FormControl(null, [Validators.required]),
+      employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
+      employeeKnowledge: new FormControl(null, [Validators.required]),
+      employeeId: new FormControl()
+  });
   employee: Employee | any;
 
   constructor(
-    private formBuilder: FormBuilder,
     private employeesService: EmployeesService,
   ) {
   }
 
   ngOnInit(): void {
-    this.employeeForm = this.formBuilder.group({
-      employeeName: new FormControl(null, [Validators.required]),
-      employeeCharge: new FormControl(null, [Validators.required]),
-      employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
-      employeeKnowledge: new FormControl(null, [Validators.required]),
-      employeeId: new FormControl()
-    });
+
     this.getAllEmployee();
   }
 

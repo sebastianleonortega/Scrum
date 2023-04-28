@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
 import {Router} from "@angular/router";
 import {Subproject} from "@app/modules/proyect/pages/Interface/subprojects";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import {MatDialogRef} from '@angular/material/dialog';
 import {SubprojetcComponent} from '@app/modules/proyect/pages/subprojetc/subprojetc.component';
 import { TeamsService } from '@app/modules/teams/pages/service/teams.service';
+import { Team } from '@app/modules/teams/pages/interface/team';
 
 @Component({
   selector: 'app-subprojetc-add',
@@ -15,15 +16,20 @@ import { TeamsService } from '@app/modules/teams/pages/service/teams.service';
   styleUrls: ['./subprojetc-add.component.css']
 })
 export class SubprojetcAddComponent implements OnInit {
-  subprojectAddForm: FormGroup = new FormGroup({});
-  subproject?: Subproject ;
+
+  subprojectAddForm: FormGroup = new FormGroup({
+    subProjectName: new FormControl(null, [Validators.required]),
+    projectId: new FormControl(null, [Validators.required]),
+    teamId: new FormControl()
+  });
+
+  subproject: Subproject[]=[] ;
+  teams: Team[] = [];
   projects: any;
-  teams: any;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public subprojectService: SubprojectService,
-    public proyectService: ProjectService,
+    private subprojectService: SubprojectService,
+    private proyectService: ProjectService,
     private route: Router,
     private dialogRef: MatDialogRef<SubprojetcComponent>,
     private teamService: TeamsService
@@ -31,11 +37,7 @@ export class SubprojetcAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subprojectAddForm = this.formBuilder.group({
-      subProjectName: new FormControl(null, [Validators.required]),
-      projectId: new FormControl(null, [Validators.required]),
-      teamId: new FormControl()
-    });
+
     this.subprojectService.getProyecto().subscribe((data) =>{
       this.projects = data;
     })

@@ -2,22 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from '../service/project.service';
 import { Router } from "@angular/router";
-import {MatDialogRef} from '@angular/material/dialog';
+import { Area } from '@app/modules/area/pages/Interface/interface-area';
+import { Client } from '@app/modules/customer/pages/Interface/customer-interface';
 import Swal from 'sweetalert2';
-import {ProyectComponent} from '@app/modules/proyect/pages/proyect/proyect.component';
-
-export interface Client {
-  clientId:string;
-  clientNit:  string;
-  client_name: string
-}
-
-export interface Area {
-  areaId:string;
-  areaName:  string;
-  employees: string;
-  teams: string;
-}
 
 
 @Component({
@@ -32,6 +19,7 @@ export class ProyectAddComponent implements OnInit {
       proyectClient: new FormControl(null, [Validators.required]),
       proyectArea: new FormControl(null, [Validators.required]),
   });
+
   public clients : Client[] = [];
   public areas : Area[] = [];
 

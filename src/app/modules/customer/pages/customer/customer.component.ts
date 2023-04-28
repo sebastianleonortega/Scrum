@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerInterface} from "@app/modules/customer/pages/Interface/customer-interface";
 import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import Swal from 'sweetalert2';
@@ -10,21 +10,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customerForm: FormGroup = new FormGroup({});
+
+  customerForm: FormGroup = new FormGroup({
+    clientNit: new FormControl(null, [Validators.required]),
+      clientName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+      clientId: new FormControl()
+  });
+
   customer: CustomerInterface | any;
 
   constructor(
-    private formBuilder: FormBuilder,
+
     private customerService: CustomerService,
   ) {
   }
 
   ngOnInit(): void {
-    this.customerForm = this.formBuilder.group({
-      clientNit: new FormControl(null, [Validators.required]),
-      clientName: new FormControl(null, [Validators.required]),
-      clientId: new FormControl()
-    });
+
     this.customerService.getAllCustomer().subscribe(resp => {
       this.customer = resp;
     })

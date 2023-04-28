@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,25 +10,26 @@ import Swal from 'sweetalert2';
   styleUrls: ['./employee-edit-form.component.css']
 })
 export class EmployeeEditFormComponent implements OnInit {
-  employeeEditForm: FormGroup = new FormGroup({})
+  employeeEditForm: FormGroup = new FormGroup({
+    employeeName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+      employeeCharge: new FormControl(null, [Validators.required]),
+      employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
+      employeeKnowledge: new FormControl(null, [Validators.required]),
+      employeeId: new FormControl()
+  })
   employee: any;
   id: any;
 
   constructor(
-    private formBuilder: FormBuilder,
-    public employeesService: EmployeesService,
+
+    private employeesService: EmployeesService,
     private route: ActivatedRoute,
     private routeurl: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.employeeEditForm = this.formBuilder.group({
-      employeeName: new FormControl(null, [Validators.required]),
-      employeeCharge: new FormControl(null, [Validators.required]),
-      employeeEmail: new FormControl(null, [Validators.required]),
-      employeeKnowledge: new FormControl(null, [Validators.required]),
-    });
+
     this.id = this.route.snapshot.paramMap.get('employeeId');
     this.getEmployeeById(this.id)
   }

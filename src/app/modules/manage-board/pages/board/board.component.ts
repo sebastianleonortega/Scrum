@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {Team} from "@app/modules/teams/pages/interface/team";
 import {Router} from "@angular/router";
 import { BoardService } from '../service/board.service';
@@ -9,6 +9,7 @@ import {User_storyService} from "@app/modules/subprojects/pages/service/user_sto
 import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
 import {Employee} from "@app/modules/employees/pages/Interface/employee";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
+import { Tasks } from '@app/modules/teams/pages/interface/tasks';
 
 @Component({
   selector: 'app-board',
@@ -18,32 +19,31 @@ import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.serv
 
 export class BoardComponent implements OnInit {
 
-  boardFrom: FormGroup = new FormGroup({})
-  public teams: Team[] = [];
-  public userStory: UserStory[] = [];
-  public employees: Employee[] = [];
-  public teamId: string = '';
-  taskTeam:any;
+  boardFrom: FormGroup = new FormGroup({
+    teamId: new FormControl(null, [Validators.required]),
+      userStoryId: new FormControl(null, [Validators.required]),
+      taskTeamId: new FormControl(null, [Validators.required]),
+      employeeId: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required])
+  })
+  teams: Team[] = [];
+  userStory: UserStory[] = [];
+  employees: Employee[] = [];
+  teamId: string = '';
+  taskTeam: Tasks []=[];
 
   constructor(
-    public teamService: TeamsService,
-    public userStoryService: User_storyService,
-    public employeesService: EmployeesService,
-    public boardService: BoardService,
-    public taskTeamService: TeamTasksService,
-    public formBuilder: FormBuilder,
+    private teamService: TeamsService,
+    private userStoryService: User_storyService,
+    private employeesService: EmployeesService,
+    private boardService: BoardService,
+    private taskTeamService: TeamTasksService,
     private route: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.boardFrom = this.formBuilder.group({
-      teamId: new FormControl(null, [Validators.required]),
-      userStoryId: new FormControl(null, [Validators.required]),
-      taskTeamId: new FormControl(null, [Validators.required]),
-      employeeId: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required])
-    });
+
     this.getAllTeams();
 
   }

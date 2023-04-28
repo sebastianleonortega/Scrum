@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from "@angular/forms";
 import { Proyect } from "@app/modules/proyect/pages/Interface/proyect";
 import { ProjectService } from '../service/project.service';
 import { AreaService } from '@app/modules/area/pages/service/area.service';
@@ -20,16 +19,13 @@ import { ProyectEditComponent } from '../proyect-edit/proyect-edit.component';
 
 export class ProyectComponent implements OnInit {
 
-  proyectFrom: FormGroup = new FormGroup({
 
-  });
   proyect: Proyect[] = [];
-  projectId: any;
+  projectId: string= '';
 
 
 
   constructor(
-
     private proyectService: ProjectService,
     private customerService: CustomerService,
     private areaService: AreaService,
