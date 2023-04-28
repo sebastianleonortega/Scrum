@@ -24,7 +24,7 @@ public class UserStoryDto {
     private String userStoryName;
 
     @NotNull(message = "historia de usuario no debe ser null")
-    @Max(value = 3,message = "Los puntos no pueden exceder los 3 dijitos")
+    @Max(value = 999,message = "Los puntos no pueden exceder los 3 dijitos")
     private Integer userStoryScore;
 
     private String userStoryArchive;
@@ -33,7 +33,7 @@ public class UserStoryDto {
     private Long userStoryStateId;
     @JsonProperty(value = "userStoryStateName",access = JsonProperty.Access.READ_ONLY)
     private String userStoryStateName;
-    @NotNull(message = "tiene que asignar un subProyecto a HU")
+    @JsonProperty(value = "subProjectId")
     private UUID subProjectId;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

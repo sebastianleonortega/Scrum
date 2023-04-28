@@ -1,8 +1,11 @@
 package com.wposs.scrum_back.team.service;
 
+import com.wposs.scrum_back.Exception.exceptions.InternalServerException;
 import com.wposs.scrum_back.Exception.exceptions.MessageGeneric;
 import com.wposs.scrum_back.Exception.exceptions.RequestException;
 import com.wposs.scrum_back.employe.dto.EmployeDto;
+import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.employe.repository.EmployeeRepository;
 import com.wposs.scrum_back.team.dto.TeamDto;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.team.repository.TeamRepository;
@@ -11,9 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import javax.transaction.Transactional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +24,8 @@ public class TeamServiceImpl implements TeamService{
     private TeamRepository teamRepository ;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private EmployeeRepository employeeRepository;
     @Override
     public List<TeamDto> getAllTeam() {
         return teamRepository.findAll().stream().map(team -> {
@@ -65,13 +69,17 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
-    public List<EmployeDto> saveEmployeToTeam(List<UUID> employeId, UUID idTeam) {
-        Optional<Team> team = teamRepository.findById(idTeam);
-        if (team.isPresent()){
-
+    @Transactional
+    public TeamDto saveEmployeToTeam(List<UUID> employeId, UUID idTeam) {
+        Team team = teamRepository.findById(idTeam).orElseThrow(() -> new MessageGeneric("No se encuentra el equipo para asignar los empleados", "404", HttpStatus.NOT_FOUND));
+        List<Employee> employees = employeeRepository.findAllById(employeId);
+       try {
+           team.getEmployees().addAll(employees);
+           TeamDto teamDto = modelMapper.map(teamRepository.save(team),TeamDto.class);
+           return teamDto;
+        } catch (Exception ex) {
+            throw new InternalServerException("Surgio un error inesperado en la inserción de empleados al equipop", "500", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return null;
     }
-
 
 }

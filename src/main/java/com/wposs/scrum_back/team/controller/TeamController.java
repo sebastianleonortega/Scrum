@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.team.controller;
 
 import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
+import com.wposs.scrum_back.employe.dto.EmployeDto;
 import com.wposs.scrum_back.team.dto.TeamDto;
 import com.wposs.scrum_back.team.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -79,23 +80,18 @@ public class TeamController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-/*
-    @PutMapping("/saveemployeeonteam/{id}")
-    @Operation(summary = "Update the area")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "updated area success"),
-            @ApiResponse(responseCode = "404",description = "Employe Not Found")
-    })
-    public ResponseEntity<TeamEmployeDto> updateTeamEmployeById(@Valid @RequestBody List<EmployeDto> employeeDtos, @PathVariable("id") UUID id){
-        Team team = this.teamService.findByUuid(id);
-        List<Employee> employeeList = employeeDtos.stream()
-                .map(employeeDto -> modelMapper.map(employeeDto, Employee.class)).collect(Collectors.toList());
-        team.setEmployees(employeeList);
-        return  new ResponseEntity<>(modelMapper.map(teamService.save(team), TeamEmployeDto.class), HttpStatus.OK);
-    }*/
 
-    @PostMapping("saveemployetoteam/{id}")
-    public ResponseEntity<?> saveEmployeeToTeam(@Valid @RequestBody List<UUID>idEmployees,@PathVariable("id") UUID idTeam){
-        return null;
+    @PutMapping("saveemployetoteam/{id}")
+    @Operation(summary = "Save to employee To team")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",description = "Save Success"),
+            @ApiResponse(responseCode = "400",description = "Error when inserting the employee in the team"),
+            @ApiResponse(responseCode = "500",description = "An internal error occurred")
+    })
+    public ResponseEntity<?> saveEmployeeToTeam(@Valid @RequestBody List<UUID>idEmployees, @PathVariable("id") UUID idTeam,BindingResult result){
+        if(result.hasErrors()){
+            throw new MethodArgumentNotValidException("ocurrio un error inesperado en los datos recibidos","400",HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(teamService.saveEmployeToTeam(idEmployees,idTeam),HttpStatus.CREATED);
     }
 }

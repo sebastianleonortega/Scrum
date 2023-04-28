@@ -13,5 +13,5 @@ public interface TeamService {
     Optional<TeamDto> getTeamByiId(UUID idTeam);
     TeamDto saveTeam(TeamDto teamDto);
     TeamDto updateTeam(UUID idTeam,TeamDto teamDto);
-    List<EmployeDto> saveEmployeToTeam(List<UUID> employeId,UUID idTeam);
+    TeamDto saveEmployeToTeam(List<UUID> employeId,UUID idTeam);
 }
