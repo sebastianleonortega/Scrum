@@ -29,7 +29,7 @@ public class UserStoryDto {
 
     private String userStoryArchive;
     @NotNull(message = "el estado no de HU no puede ser null")
-    @Max(value = 1,message = "sobre los estados de las HU")
+    @Max(value = 6,message = "sobre los estados de las HU")
     private Long userStoryStateId;
     @JsonProperty(value = "userStoryStateName",access = JsonProperty.Access.READ_ONLY)
     private String userStoryStateName;
