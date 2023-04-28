@@ -36,7 +36,7 @@ public class Project {
     @JoinColumn(name = "client_id", insertable = false, updatable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project",cascade ={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
 
     public UUID getProjectId() {

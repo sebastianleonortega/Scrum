@@ -35,7 +35,7 @@ public class SubProject {
     @JoinColumn(name = "project_id", insertable = false, updatable = false)
     private Project project;
 
-    @OneToMany(mappedBy = "subProject")
+    @OneToMany(mappedBy = "subProject",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<UserStory> userStories;
     @ManyToOne
     @JoinColumn(name = "team_id",updatable = false,insertable = false)

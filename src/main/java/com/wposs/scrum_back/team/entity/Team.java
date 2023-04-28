@@ -30,10 +30,10 @@ public class Team {
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
     private Area area;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<TaskTeam> taskTeams;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
 
     @ManyToMany(cascade = CascadeType.REFRESH)

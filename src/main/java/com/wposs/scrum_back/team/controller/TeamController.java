@@ -88,10 +88,11 @@ public class TeamController {
             @ApiResponse(responseCode = "400",description = "Error when inserting the employee in the team"),
             @ApiResponse(responseCode = "500",description = "An internal error occurred")
     })
-    public ResponseEntity<?> saveEmployeeToTeam(@Valid @RequestBody List<UUID>idEmployees, @PathVariable("id") UUID idTeam,BindingResult result){
-        if(result.hasErrors()){
+    public ResponseEntity<?> saveEmployeeToTeam(@RequestBody List<UUID>idEmployees, @PathVariable("id") UUID idTeam,BindingResult result){
+        //System.out.println(idTeam);
+       if(result.hasErrors()){
             throw new MethodArgumentNotValidException("ocurrio un error inesperado en los datos recibidos","400",HttpStatus.BAD_REQUEST);
-        }
+       }
         return new ResponseEntity<>(teamService.saveEmployeToTeam(idEmployees,idTeam),HttpStatus.CREATED);
     }
 }

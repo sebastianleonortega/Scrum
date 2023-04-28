@@ -26,7 +26,7 @@ public class Area {
     @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Project> projects;
     @JsonIgnore
-    @OneToMany(mappedBy = "area")
+    @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Team> teams;
 
     @ManyToMany(cascade = CascadeType.REFRESH)

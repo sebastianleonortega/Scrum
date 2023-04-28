@@ -19,8 +19,7 @@ public class AreaDto implements Serializable {
     @JsonProperty(value = "areaName")
     @NotNull
     @NotEmpty
-    @Size(max = 100)
-    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El campo areaName requiere de solo letras")
+    @Size(max = 20,message = "excedió mas de 20 caracteres en el nombre del area")
     private String areaName;
 
 
