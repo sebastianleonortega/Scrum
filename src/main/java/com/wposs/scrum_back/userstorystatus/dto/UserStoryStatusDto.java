@@ -18,7 +18,7 @@ public class UserStoryStatusDto {
     @NotNull(message = "El estado no puede ser null")
     @NotEmpty
     @Size(max = 20,message = "supera el la cantidad de caracteres en el nombre del estado")
-    @Pattern(regexp = "[a-zA-Z]+",message = "ingrese solo letras en el campo de Estado")
+    @Pattern(regexp = "^[a-zA-Z ]+$",message = "ingrese solo letras en el campo de Estado")
     private String userStoryStateName;
 
     public Long getUserStoryStateId() {
