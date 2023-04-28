@@ -16,7 +16,7 @@ import { TeamsService } from '@app/modules/teams/pages/service/teams.service';
 })
 export class SubprojetcAddComponent implements OnInit {
   subprojectAddForm: FormGroup = new FormGroup({});
-  subproject: Subproject | any;
+  subproject?: Subproject ;
   projects: any;
   teams: any;
 

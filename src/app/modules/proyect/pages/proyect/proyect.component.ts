@@ -31,7 +31,7 @@ export class ProyectComponent implements OnInit {
     private proyectService: ProjectService,
     private customerService: CustomerService,
     private areaService: AreaService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
   ) {
   }
 

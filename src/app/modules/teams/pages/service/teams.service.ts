@@ -33,7 +33,7 @@ export class TeamsService {
   }
 
   addEmployeeTeam(teamEmployee: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER + "/teamemployee", teamEmployee);
+    return this.httpClient.put(this.API_SERVER + "/saveemployetoteam", teamEmployee );
   }
 
 }

@@ -15,11 +15,12 @@ export interface TeamEmployee {
   styleUrls: ['./team-add-employee.component.css']
 })
 export class TeamAddEmployeeComponent implements OnInit {
+
   employees: any;
-
-
   teamId: string | null = '';
   employeesAddTeam:any;
+
+
   constructor(
     private employeesService: EmployeesService,
     private teamService: TeamsService,
@@ -53,6 +54,7 @@ export class TeamAddEmployeeComponent implements OnInit {
         employeeId: element.employeeId,
         teamId: this.teamId
       }
+
       let teamEmployee: TeamEmployee[] = [];
       teamEmployee.push(item);
       this.employees = this.employees.filter(resp => resp.checked === false)

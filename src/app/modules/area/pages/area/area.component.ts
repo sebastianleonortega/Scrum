@@ -45,6 +45,7 @@ export class AreaComponent implements OnInit {
         areaId: this.areaForm.get('areaId')?.value,
         areaName: this.areaForm.get('areaName')?.value
       }
+
       this.areaService.saveArea(data).subscribe(
         () => {
           Swal.fire({

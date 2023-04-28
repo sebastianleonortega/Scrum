@@ -5,6 +5,7 @@ import {User_storyService} from "@app/modules/subprojects/pages/service/user_sto
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { ImprovementsService } from '@app/modules/manage-improvements/pages/service/improvements.service';
+import { Area } from '@app/modules/proyect/pages/proyect-add/proyect-add.component';
 
 @Component({
   selector: 'app-manage-improvements',
@@ -13,7 +14,7 @@ import { ImprovementsService } from '@app/modules/manage-improvements/pages/serv
 })
 export class ManageImprovementsComponent implements OnInit {
   improvementsForm: FormGroup = new FormGroup({});
-  areas: any;
+  areas: Area | any;
   teams: any;
   userStore: any;
   tasks: any;

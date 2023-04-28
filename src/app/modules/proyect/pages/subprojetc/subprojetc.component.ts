@@ -15,9 +15,9 @@ export class SubprojetcComponent implements OnInit {
   subproject: Subproject | any;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public subprojectService: SubprojectService,
-    public dialog: MatDialog
+    private formBuilder: FormBuilder,
+    private subprojectService: SubprojectService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {

@@ -56,15 +56,11 @@ export class TeamTasksComponent implements OnInit {
 
 
   saveTasks(): void {
-    console.log(this.tasksForm.get('teamId')?.value)
-
-
     if (this.tasksForm.valid){
       const data = {
         teamId:this.tasksForm.get('teamId')?.value,
         taskTeamName:this.tasksForm.get('taskTeamName')?.value,
       }
-      console.log(data)
       this.teamTasksService.saveTeamTasks(data).subscribe(
         (resp)=>{
         this.tasksForm.reset();

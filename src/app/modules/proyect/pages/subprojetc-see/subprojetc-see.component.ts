@@ -12,12 +12,8 @@ import { UserStory } from '@app/modules/subprojects/pages/Interface/userStory';
 })
 export class SubprojetcSeeComponent implements OnInit {
 
-  subproject: SubprojectById = {
-    projectId:0,
-    subProjectId:0,
-    subProjectName: '',
-    projectName:''
-  };
+  subproject?: SubprojectById;
+
   subProjectId: string | null = '';
    userStory: UserStory = {
     subProjectId: 0,
