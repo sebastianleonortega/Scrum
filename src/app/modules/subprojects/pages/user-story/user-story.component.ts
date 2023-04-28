@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
-import {UserStory} from "@app/data/interfaces/userStory";
+import {UserStory} from "@app/modules/subprojects/pages/Interface/userStory";
 import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
 import { MatDialog } from '@angular/material/dialog';
 import { UserStoryAddComponent } from '../user-story-add/user-story-add.component';

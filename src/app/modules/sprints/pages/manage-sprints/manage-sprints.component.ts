@@ -4,7 +4,7 @@ import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service
 import {AreaService} from '@app/modules/area/pages/service/area.service';
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import { Team } from '@app/modules/teams/pages/interface/team';
-import {AreaInterface} from "@app/data/interfaces/interface-area";
+import {AreaInterface} from "@app/modules/area/pages/Interface/interface-area";
 import Swal from "sweetalert2";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";

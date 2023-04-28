@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Subproject } from "@app/data/interfaces/subprojects";
+import { Subproject } from "@app/modules/proyect/pages/Interface/subprojects";
 import { SubprojectService } from "@app/modules/proyect/pages/service/subproject.service";
 import {MatDialog} from '@angular/material/dialog';
 import {SubprojetcAddComponent} from '@app/modules/proyect/pages/subprojetc-add/subprojetc-add.component';

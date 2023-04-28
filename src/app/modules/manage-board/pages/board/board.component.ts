@@ -4,11 +4,11 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Team} from "@app/modules/teams/pages/interface/team";
 import {Router} from "@angular/router";
 import { BoardService } from '../service/board.service';
-import {UserStory} from "@app/data/interfaces/userStory";
+import {UserStory} from "@app/modules/subprojects/pages/Interface/userStory";
 import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
 import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
-import {Employee} from "@app/data/interfaces/employee";
-import {TeamTasksService} from "@app/modules/teams/pages/ServiceTasks/team-tasks.service";
+import {Employee} from "@app/modules/employees/pages/Interface/employee";
+import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 
 @Component({
   selector: 'app-board',

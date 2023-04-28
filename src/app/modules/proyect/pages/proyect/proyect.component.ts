@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Proyect } from "@app/data/interfaces/proyect";
+import { Proyect } from "@app/modules/proyect/pages/Interface/proyect";
 import { ProjectService } from '../service/project.service';
 import { AreaService } from '@app/modules/area/pages/service/area.service';
 import { CustomerService } from "@app/modules/customer/pages/service/customer.service";

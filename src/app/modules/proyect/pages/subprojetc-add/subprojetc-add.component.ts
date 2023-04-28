@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
 import {Router} from "@angular/router";
-import {Subproject} from "@app/data/interfaces/subprojects";
+import {Subproject} from "@app/modules/proyect/pages/Interface/subprojects";
 import { ProjectService } from '../service/project.service';
 import Swal from "sweetalert2";
 import {MatDialogRef} from '@angular/material/dialog';

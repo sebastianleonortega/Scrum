@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import {EmployeesService} from "@app/modules/employees/pages/service/employees.service";
-import {Employee} from "@app/data/interfaces/employee";
+import {Employee} from "@app/modules/employees/pages/Interface/employee";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
 

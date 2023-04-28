@@ -1,9 +1,9 @@
 import { Component, OnInit  } from '@angular/core';
 import { SubprojectService} from '@app/modules/proyect/pages/service/subproject.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { SubprojectById } from '@app/data/interfaces/subprojects';
+import { SubprojectById } from '@app/modules/proyect/pages/Interface/subprojects';
 import { User_storyService } from '@app/modules/subprojects/pages/service/user_story.service';
-import { UserStory } from '@app/data/interfaces/userStory';
+import { UserStory } from '@app/modules/subprojects/pages/Interface/userStory';
 
 @Component({
   selector: 'app-subprojetc-see',

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service";
 import {AreaService} from '@app/modules/area/pages/service/area.service';
-import {AreaInterface} from "@app/data/interfaces/interface-area";
+import {AreaInterface} from "@app/modules/area/pages/Interface/interface-area";
 import {FormBuilder} from "@angular/forms";
 import Swal from "sweetalert2";
 
