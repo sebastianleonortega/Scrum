@@ -78,18 +78,19 @@ export class TeamTasksComponent implements OnInit {
 
 
   deleteTasks(id){
+    Swal.fire({
+      title: 'Desea eliminar tarea?',
+      text: "despues de eliminada no podra recuperar los datos",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'si, eliminar!'
 
-    this.teamTasksService.deleteTeamTasks(id).subscribe(resp=>{
-      Swal.fire({
-        title: 'Desea eliminar tarea?',
-        text: "despues de eliminada no podra recuperar los datos",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'si, eliminar!'
+
       }).then((result) => {
         if (result.isConfirmed) {
+          this.teamTasksService.deleteTeamTasks(id).subscribe(resp=>{
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -99,9 +100,10 @@ export class TeamTasksComponent implements OnInit {
           })
           this.tasksForm.reset();
           this.getAllTasksTeams();
+        })
         }
       })
-    })
+
   }
 
   selectTeamFilter() {

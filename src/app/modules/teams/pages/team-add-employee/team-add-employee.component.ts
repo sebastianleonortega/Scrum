@@ -19,6 +19,7 @@ export class TeamAddEmployeeComponent implements OnInit {
   employees: any;
   teamId: string | null = '';
   employeesAddTeam:any;
+  teamEmployee: string[] = [];
 
 
   constructor(
@@ -30,7 +31,7 @@ export class TeamAddEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
-    console.log(this.teamId)
+
     this.getAllEmployees();
     this.getAllEmployeesAddToTeam(this.teamId);
     console.log(this.getAllEmployeesAddToTeam(this.teamId))
@@ -50,18 +51,21 @@ export class TeamAddEmployeeComponent implements OnInit {
   AddEmployeeTeam() {
     let employeesAdd = this.employees.filter(resp => resp.checked === true);
     employeesAdd.forEach((element) => {
-      let item: TeamEmployee = {
-        employeeId: element.employeeId,
-        teamId: this.teamId
-      }
+      let item = element.employeeId
+      // let item: TeamEmployee = {
+      //   employeeId: element.employeeId,
+      //   teamId: this.teamId
+      // }
 
-      let teamEmployee: TeamEmployee[] = [];
-      teamEmployee.push(item);
+      this.teamEmployee.push(item);
+
       this.employees = this.employees.filter(resp => resp.checked === false)
-      this.teamService.addEmployeeTeam(teamEmployee).subscribe(resp=>{
-        this.getAllEmployeesAddToTeam(this.teamId);
-      })
-    });
+
+
+    });console.log(this.teamEmployee)
+    this.teamService.addEmployeeTeam(this.teamId, this.teamEmployee).subscribe(resp=>{
+      this.getAllEmployeesAddToTeam(this.teamId);
+    })
 
 
   }

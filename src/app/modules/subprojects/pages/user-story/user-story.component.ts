@@ -34,12 +34,21 @@ export class UserStoryComponent implements OnInit {
       userStoryStateId: new FormControl(null, [Validators.required]),
       userStoryStateName: new FormControl(null, [Validators.required]),
       userStoryScore: new FormControl(null, Validators.required),
-      fechaMaxima: new FormControl(null, Validators.required)
+      fechaMaxima: new FormControl(null, [Validators.required] )
     });
 
     this.getAllSubprojects()
     this. getAllUserStory()
   }
+
+  // fechaActualValidator(control: FormControl): { [s: string]: boolean } {
+  //   const fechaActual = new Date();
+  //   const fechaIngresada = new Date(control.value);
+  //   if (fechaIngresada < fechaActual) {
+  //     return { 'fechaMenor': true };
+  //   }
+
+  // }
   getAllUserStory(){
     this.userStoryService.getAllUser_story().subscribe(resp => {
         this.userStory = resp;

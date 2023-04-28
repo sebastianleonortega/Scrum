@@ -27,24 +27,22 @@ export interface Area {
 })
 export class ProyectAddComponent implements OnInit {
 
-  proyectAddForm: FormGroup = new FormGroup({});
+  proyectAddForm: FormGroup = new FormGroup({
+    proyectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+      proyectClient: new FormControl(null, [Validators.required]),
+      proyectArea: new FormControl(null, [Validators.required]),
+  });
   public clients : Client[] = [];
   public areas : Area[] = [];
 
   constructor(
-    public formBuilder: FormBuilder,
-    public projectService: ProjectService,
+
+    private projectService: ProjectService,
     private route: Router,
   ) {
   }
 
   ngOnInit(): void {
-
-    this.proyectAddForm = this.formBuilder.group({
-      proyectName: new FormControl(null, [Validators.required]),
-      proyectClient: new FormControl(null, [Validators.required]),
-      proyectArea: new FormControl(null, [Validators.required]),
-    });
 
     this.projectService.getClient().subscribe((data) => {
       this.clients = data;

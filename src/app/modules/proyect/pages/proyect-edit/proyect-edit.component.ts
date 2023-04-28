@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {  FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from '../service/project.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -28,15 +28,20 @@ export interface Area {
 export class ProyectEditComponent implements OnInit {
 
   proyect: any;
-  proyectEditForm: FormGroup = new FormGroup({});
   projectId: any;
   public clients: Client[] = [];
   public areas: Area[] = [];
 
+  proyectEditForm: FormGroup = new FormGroup({
+    proyectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+      proyectClient: new FormControl(null, [Validators.required]),
+      proyectArea: new FormControl(null, [Validators.required]),
+  });
+
 
   constructor(
-    public formBuilder: FormBuilder,
-    public proyectService: ProjectService,
+
+    private proyectService: ProjectService,
     private route: ActivatedRoute,
     private dialogRef: MatDialogRef<ProyectComponent>,
     private routeurl: Router,
@@ -45,11 +50,6 @@ export class ProyectEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.proyectEditForm = this.formBuilder.group({
-      proyectName: new FormControl(null, [Validators.required]),
-      proyectClient: new FormControl(null, [Validators.required]),
-      proyectArea: new FormControl(null, [Validators.required]),
-    });
 
     this.projectId = this.data.projectId;
     this.getProyectById(this.projectId)

@@ -24,7 +24,7 @@ export class EmployeeAddComponent implements OnInit {
     this.employeeForm = this.formBuilder.group({
       employeeName: new FormControl(null, [Validators.required]),
       employeeCharge: new FormControl(null, [Validators.required]),
-      employeeEmail: new FormControl(null, [Validators.required]),
+      employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
       employeeKnowledge: new FormControl(null, [Validators.required]),
       employeeId: new FormControl()
     });

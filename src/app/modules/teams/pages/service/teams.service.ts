@@ -32,8 +32,8 @@ export class TeamsService {
     return this.httpClient.put(this.API_SERVER + "/" + id, team);
   }
 
-  addEmployeeTeam(teamEmployee: any): Observable<any> {
-    return this.httpClient.put(this.API_SERVER + "/saveemployetoteam", teamEmployee );
+  addEmployeeTeam(teamId: string | null,teamEmployee: string[]): Observable<any> {
+    return this.httpClient.put(this.API_SERVER + "/saveemployetoteam/"+teamId, teamEmployee  );
   }
 
 }

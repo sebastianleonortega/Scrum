@@ -5,6 +5,7 @@ import { SubprojectService } from "@app/modules/proyect/pages/service/subproject
 import {MatDialog} from '@angular/material/dialog';
 import {SubprojetcAddComponent} from '@app/modules/proyect/pages/subprojetc-add/subprojetc-add.component';
 import { SubprojetcEditComponent } from '../subprojetc-edit/subprojetc-edit.component';
+import { UserStoryAddComponent } from '@app/modules/subprojects/pages/user-story-add/user-story-add.component';
 
 @Component({
   selector: 'app-subprojetc',
@@ -41,6 +42,12 @@ editSubProjetModal(subProyectId: number) {
    dialogRef.afterClosed().subscribe(resul => {
 
    })
+}
+abrirModalUserStory(): void {
+  const dialogRef = this.dialog.open(UserStoryAddComponent, {width: '500px', maxHeight: '600px' });
+
+  dialogRef.afterClosed().subscribe(resul =>  {
+  })
 }
 
 }
