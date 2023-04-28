@@ -52,10 +52,7 @@ export class TeamAddEmployeeComponent implements OnInit {
     let employeesAdd = this.employees.filter(resp => resp.checked === true);
     employeesAdd.forEach((element) => {
       let item = element.employeeId
-      // let item: TeamEmployee = {
-      //   employeeId: element.employeeId,
-      //   teamId: this.teamId
-      // }
+
 
       this.teamEmployee.push(item);
 

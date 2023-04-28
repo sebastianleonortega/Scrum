@@ -57,7 +57,7 @@ export class AreaComponent implements OnInit {
         },
       );
     }else{
-    this.areaForm.markAllAsTouched();
+    // this.areaForm.markAllAsTouched();
     }
   };
 

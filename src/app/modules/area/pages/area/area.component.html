@@ -8,9 +8,13 @@
       <div class="input-group mb-4">
         <label class="col-sm-6">
           <input type="text" class="form-control" placeholder="Ingrese el nombre del área" formControlName="areaName">
-          <span *ngIf="this.areaForm.get('areaName')?.errors?.['maxlength']">
-            (Debe tener como maximo 20 caracteres)
+          <span class="alert" *ngIf="this.areaForm.get('areaName')?.errors?.['maxlength']">
+            (Maximo 20 caracteres)
           </span>
+          <span class="alert" *ngIf="this.areaForm.get('areaName')?.errors?.['required']">
+            Este campo es requerido
+          </span>
+
         </label>
         <button class="btn btn btn-primary mb-2 mx-2" type="submit" >Guardar</button>
       </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import {AreaInterface} from "@app/modules/area/pages/Interface/interface-area";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,11 @@ export class AreaService {
 
   constructor(private httpClient: HttpClient) {
   }
-  public getAllArea():Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"/all");
+  public getAllArea():Observable<AreaInterface []>{
+    return this.httpClient.get<AreaInterface[]>(this.API_SERVER+"/all");
   }
- saveArea(area:any):Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"/save/",area)
+ saveArea(area:any):Observable<AreaInterface []>{
+    return this.httpClient.post<AreaInterface []>(this.API_SERVER+"/save/",area)
   }
   getArea(id:string | null):Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/"+id);
