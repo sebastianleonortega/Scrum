@@ -3,6 +3,7 @@ package com.wposs.scrum_back.team.controller;
 import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.employe.dto.EmployeDto;
 import com.wposs.scrum_back.team.dto.TeamDto;
+import com.wposs.scrum_back.team.dto.TeamEmployeDto;
 import com.wposs.scrum_back.team.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -88,11 +89,10 @@ public class TeamController {
             @ApiResponse(responseCode = "400",description = "Error when inserting the employee in the team"),
             @ApiResponse(responseCode = "500",description = "An internal error occurred")
     })
-    public ResponseEntity<?> saveEmployeeToTeam(@RequestBody List<UUID>idEmployees, @PathVariable("id") UUID idTeam,BindingResult result){
-        //System.out.println(idTeam);
+    public ResponseEntity<?> saveEmployeeToTeam(@PathVariable("id") UUID idTeam,@RequestBody List<UUID> idEmployess,BindingResult result){
        if(result.hasErrors()){
             throw new MethodArgumentNotValidException("ocurrio un error inesperado en los datos recibidos","400",HttpStatus.BAD_REQUEST);
        }
-        return new ResponseEntity<>(teamService.saveEmployeToTeam(idEmployees,idTeam),HttpStatus.CREATED);
+        return new ResponseEntity<>(teamService.saveEmployeToTeam(idEmployess,idTeam),HttpStatus.CREATED);
     }
 }

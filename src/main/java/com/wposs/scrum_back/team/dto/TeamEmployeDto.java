@@ -13,17 +13,10 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TeamEmployeDto {
 
-    @JsonProperty(value ="teamId", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value ="teamId")
     private UUID teamId;
-
-    @NotNull
-    @NotEmpty
-    @Size(max = 100)
-    private String teamName;
-
-    private UUID areaId;
-
-    private List<EmployeDto> employees;
+    @JsonProperty(value = "employeesid")
+    private List<UUID> idEmployees;
 
     public UUID getTeamId() {
         return teamId;
@@ -33,27 +26,11 @@ public class TeamEmployeDto {
         this.teamId = teamId;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public List<UUID> getIdEmployees() {
+        return idEmployees;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public UUID getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(UUID areaId) {
-        this.areaId = areaId;
-    }
-
-    public List<EmployeDto> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<EmployeDto> employees) {
-        this.employees = employees;
+    public void setIdEmployees(List<UUID> idEmployees) {
+        this.idEmployees = idEmployees;
     }
 }
