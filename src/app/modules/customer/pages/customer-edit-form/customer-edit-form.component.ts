@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-edit-form',
@@ -15,21 +16,22 @@ export class CustomerEditFormComponent implements OnInit {
       client_name: new FormControl(null, [Validators.required, Validators.maxLength(20) ])
   });
   customer: any;
-  id: any;
+  clientNit: string = '';
 
 
   constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
-    private route1: Router
+    private route1: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
   }
 
   ngOnInit(): void {
 
 
-    this.id = this.route.snapshot.paramMap.get('clientId');
-    this.getCustomerById(this.id)
+    this.clientNit = this.data.clientNit;
+    this.getCustomerById(this.clientNit)
 
   }
 
@@ -49,7 +51,7 @@ export class CustomerEditFormComponent implements OnInit {
         clientNit:this.customerForm.get('clientNit')?.value,
         client_name:this.customerForm.get('client_name')?.value,
       }
-      this.customerService.updateCustomer(this.id,data).subscribe(
+      this.customerService.updateCustomer(this.clientNit,data).subscribe(
         (resp) =>{
           Swal.fire({
             position: 'top-end',

@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
+import { MatDialog } from '@angular/material/dialog';
 import {AreaInterface} from "@app/modules/area/pages/Interface/interface-area";
 import {AreaService} from '@app/modules/area/pages/service/area.service';
 import Swal from 'sweetalert2';
+import { AreaEditComponent } from '../area-edit/area-edit.component';
 
 @Component({
   selector: 'app-area',
@@ -17,10 +19,12 @@ export class AreaComponent implements OnInit {
   });
 
   area: AreaInterface[]= [];
+  areaId: string= '';
 
 
   constructor(
     private areaService: AreaService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -91,7 +95,12 @@ export class AreaComponent implements OnInit {
 
   }
 
+  editAreaModal(areaId: string) {
+    const dialogRef = this.dialog.open(AreaEditComponent, {width: '500px',    data:{areaId: areaId }});
+     dialogRef.afterClosed().subscribe(resul => {
 
+     })
+  }
 
 
 }

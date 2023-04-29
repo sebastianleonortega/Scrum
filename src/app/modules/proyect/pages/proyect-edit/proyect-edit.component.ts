@@ -2,8 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from '../service/project.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProyectComponent } from '../proyect/proyect.component';
 import { Proyect } from '../Interface/proyect';
 import {Area} from '@app/modules/area/pages/Interface/interface-area';
@@ -48,14 +47,14 @@ export class ProyectEditComponent implements OnInit {
     this.proyectService.getClient().subscribe((data) => {
       this.clients = data;
     }, (error) => {
-      console.log(error)
+
     });
 
     this.proyectService.getArea().subscribe((data) => {
         this.areas = data;
       },
       error => {
-        console.log(error)
+
       });
   }
 

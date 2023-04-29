@@ -42,7 +42,7 @@
         <td>{{item.clientNit}}</td>
         <td>{{item.client_name}}</td>
         <td class="icon">
-          <button type="button" class="btn btn-success" [routerLink]="['customer_edit_form',item.clientNit]">
+          <button type="button" class="btn btn-success" (click)="editCustomerModal(item.clientNit)">
             <i class="fas fa-edit"></i></button>
         </td>
       </tr>

@@ -1,5 +1,5 @@
 export interface CustomerInterface{
-  clientNId:string;
+  clientNid:string;
   client_name:string;
 }
 

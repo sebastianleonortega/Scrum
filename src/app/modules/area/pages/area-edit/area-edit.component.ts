@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {AreaService} from '@app/modules/area/pages/service/area.service';
-import {ActivatedRoute, Router} from "@angular/router";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { AreaComponent } from '../area/area.component';
 
 @Component({
   selector: 'app-area-edit',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class AreaEditComponent implements OnInit {
   areaEdit: any;
-  id: any;
+  areaId: string = '';
 
   areaEditForm: FormGroup = new FormGroup({
     areaName: new FormControl(null, [Validators.required, Validators.maxLength(20)])
@@ -20,8 +21,8 @@ export class AreaEditComponent implements OnInit {
   constructor(
 
     private areaService: AreaService,
-    private route: ActivatedRoute,
-    private route1: Router,
+    private dialogRef : MatDialogRef<AreaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
 
     ) {
 
@@ -29,9 +30,16 @@ export class AreaEditComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = this.route.snapshot.paramMap.get('areaId');
-    this.getArea(this.id);
+    this.areaId = this.data.areaId;
+    console.log(this.areaId)
+    this.getArea(this.areaId);
 
+  }
+
+  getAllArea(): void {
+    this.areaService.getAllArea().subscribe(resp =>{
+
+    })
   }
 
   getArea(id: string | null) {
@@ -50,7 +58,7 @@ export class AreaEditComponent implements OnInit {
         areaName: this.areaEditForm.get('areaName')?.value,
       }
 
-      this.areaService.updateArea(this.id, data).subscribe(
+      this.areaService.updateArea(this.areaId, data).subscribe(
         (resp) => {
           Swal.fire({
             position: 'top-end',
@@ -59,11 +67,19 @@ export class AreaEditComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          this.dialogRef.close();
+          location.reload();
           this.areaEditForm.reset();
-          this.route1.navigateByUrl('app/area').then();
+          this.getAllArea();
         },
        );
     }
+  }
+
+  CloseModal(): void {
+    this.dialogRef.close();
+
+
   }
 
 }

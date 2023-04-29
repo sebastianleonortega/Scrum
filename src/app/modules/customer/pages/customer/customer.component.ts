@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
+import { MatDialog } from '@angular/material/dialog';
 import {CustomerInterface} from "@app/modules/customer/pages/Interface/customer-interface";
 import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import Swal from 'sweetalert2';
+import { CustomerEditFormComponent } from '../customer-edit-form/customer-edit-form.component';
 
 @Component({
   selector: 'app-customer',
@@ -18,10 +20,12 @@ export class CustomerComponent implements OnInit {
   });
 
   customer: CustomerInterface | any;
+  clientNit: string = '';
 
   constructor(
 
     private customerService: CustomerService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -61,4 +65,12 @@ export class CustomerComponent implements OnInit {
     }
 
   }
+
+    editCustomerModal(clientNit: string){
+      const dialogRef = this.dialog.open(CustomerEditFormComponent, {width: '500px', data:{clientNit: clientNit}})
+      dialogRef.afterClosed().subscribe(resp =>{
+
+      })
+    }
+
 }
