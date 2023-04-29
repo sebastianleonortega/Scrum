@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="title">
     <p>Gestión de Áreas</p>
@@ -11,9 +12,7 @@
           <span class="alert" *ngIf="this.areaForm.get('areaName')?.errors?.['maxlength']">
             (Maximo 20 caracteres)
           </span>
-          <span class="alert" *ngIf="this.areaForm.get('areaName')?.errors?.['required']">
-            Este campo es requerido
-          </span>
+
 
         </label>
         <button class="btn btn btn-primary mb-2 mx-2" type="submit" >Guardar</button>

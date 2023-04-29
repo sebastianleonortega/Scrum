@@ -25,8 +25,8 @@ export class ProyectEditComponent implements OnInit {
 
   proyectEditForm: FormGroup = new FormGroup({
     proyectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-      proyectClient: new FormControl(null, [Validators.required]),
-      proyectArea: new FormControl(null, [Validators.required]),
+    proyectClient: new FormControl(null, [Validators.required]),
+    proyectArea: new FormControl(null, [Validators.required]),
   });
 
 
@@ -67,13 +67,9 @@ export class ProyectEditComponent implements OnInit {
           proyectName: resp.projectName,
           proyectClient: resp.clientId,
           proyectArea: resp.areaId,
-
-
         });
       },
-      error => {
-        console.error(error);
-      });
+      );
   }
 
 

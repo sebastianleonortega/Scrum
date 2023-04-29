@@ -7,23 +7,16 @@ import {ProyectAddComponent} from '@app/modules/proyect/pages/proyect-add/proyec
 import {MatDialog} from '@angular/material/dialog';
 import { ProyectEditComponent } from '../proyect-edit/proyect-edit.component';
 
-
-
 @Component({
   selector: 'app-proyect',
   templateUrl: './proyect.component.html',
   styleUrls: ['./proyect.component.css']
 })
 
-
-
 export class ProyectComponent implements OnInit {
-
 
   proyect: Proyect[] = [];
   projectId: string= '';
-
-
 
   constructor(
     private proyectService: ProjectService,

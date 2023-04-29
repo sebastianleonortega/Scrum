@@ -18,8 +18,9 @@ export class AreaComponent implements OnInit {
 
   area: AreaInterface[]= [];
 
+
   constructor(
-    public areaService: AreaService,
+    private areaService: AreaService,
   ) {
   }
 

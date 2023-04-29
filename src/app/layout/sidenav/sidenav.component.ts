@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -13,4 +13,9 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  opened = false;
+
+// toggleSidenav() {
+//   this.opened = !this.opened;
+// }
 }
