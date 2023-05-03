@@ -28,6 +28,8 @@ public class SubProjectDto {
     private UUID projectId;
 
     @JsonProperty(value = "teamId")
+    @NotNull
+    @NotEmpty
     private UUID teamId;
     @JsonProperty(value = "projectName",access = JsonProperty.Access.READ_ONLY)
     private String projectName;
