@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.employe.entity;
 
+import com.wposs.scrum_back.board.entity.Board;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.area.entity.Area;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,6 +37,16 @@ public class Employee {
     @ManyToMany(mappedBy = "employees")
     private List<Team> teams;
 
+    @OneToMany(mappedBy = "employee")
+    private List<Board> boards;
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards) {
+        this.boards = boards;
+    }
 
     public List<Team> getTeams() {
         return teams;

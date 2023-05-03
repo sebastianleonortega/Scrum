@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.team.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
+import com.wposs.scrum_back.board.entity.Board;
 import com.wposs.scrum_back.employe.entity.Employee;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.taskteam.entity.TaskTeam;
@@ -43,6 +44,17 @@ public class Team {
             inverseJoinColumns = @JoinColumn(name = "employee_id", nullable = false),
             uniqueConstraints = @UniqueConstraint(columnNames = {"team_id", "employee_id"}, name = "uc_employee_team"))
     private List<Employee> employees;
+
+    @OneToMany(mappedBy = "teamBoard",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Board> boards;
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards) {
+        this.boards = boards;
+    }
 
     public List<TaskTeam> getTaskTeams() {
         return taskTeams;

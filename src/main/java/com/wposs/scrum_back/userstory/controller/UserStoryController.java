@@ -86,4 +86,18 @@ public class UserStoryController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/userstoryteam/{id}")
+    @Operation(summary = "Get All UserStory To Team")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Get Success"),
+            @ApiResponse(responseCode = "404",description = "Not Found")
+    })
+    public ResponseEntity<List<UserStoryDto>> getAllUserStoryToTeam(@PathVariable("id")UUID idTeam){
+        List<UserStoryDto> userStoryDtos = userStoryService.getAllUserStoryToTeam(idTeam);
+        if(!userStoryDtos.isEmpty()){
+            new ResponseEntity<>(userStoryDtos,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

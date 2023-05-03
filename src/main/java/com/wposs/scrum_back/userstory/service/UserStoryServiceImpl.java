@@ -67,4 +67,15 @@ public class UserStoryServiceImpl implements UserStoryService{
             return modelMapper.map(userStoryRepository.save(userStory),UserStoryDto.class);
         }).orElseThrow(()-> new MessageGeneric("No se encunetra la Historia de Usuario a Actualizar","404",HttpStatus.NOT_FOUND));
     }
+
+    @Override
+    public List<UserStoryDto> getAllUserStoryToTeam(UUID idTeam) {
+        return userStoryRepository.getAllSserStoryToTeam(idTeam)
+                .stream()
+                .map(userStory -> {
+                    return modelMapper.map(userStory,UserStoryDto.class);
+                }).collect(Collectors.toList());
+    }
+
+
 }

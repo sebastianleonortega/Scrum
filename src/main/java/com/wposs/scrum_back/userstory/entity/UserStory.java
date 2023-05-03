@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.userstory.entity;
 
+import com.wposs.scrum_back.board.entity.Board;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.userstorystatus.entity.UserStoryStatus;
 import org.hibernate.annotations.GenericGenerator;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -48,6 +50,16 @@ public class UserStory {
     @JoinColumn(name = "sub_project_id", insertable = false, updatable = false)
     private SubProject subProject;
 
+    @OneToMany(mappedBy = "userStory",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Board> boards;
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards) {
+        this.boards = boards;
+    }
 
     public UUID getUserStoryId() {
         return userStoryId;

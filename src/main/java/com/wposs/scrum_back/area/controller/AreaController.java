@@ -66,20 +66,6 @@ public class AreaController {
         return new ResponseEntity<>(areaService.updateArea(areaId, areaDto), HttpStatus.OK);
     }
 
-/* @PutMapping("/saveemployeeonarea/{id}")
-    @Operation(summary = "Update Area to Employe ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Return the updated area"),
-            @ApiResponse(responseCode = "404",description = "Returns the data sent is invalid")
-    })
-   public ResponseEntity<AreaDto> updateAreaEmployeById(@Valid @RequestBody List<EmployeeDto> employeeDtos,@PathVariable("id") UUID id){
-        Area area = this.areaService.finByUuid(id);
-        List<Employee> employeeList = employeeDtos.stream()
-                .map(employeeDto -> modelMapper.map(employeeDto, Employee.class)).collect(Collectors.toList());
-        area.setEmployees(employeeList);
-        Area areaUpdate = this.areaService.save(area);
-        return  new ResponseEntity<>(modelMapper.map(areaUpdate, AreaDto.class), HttpStatus.OK);
-    }*/
 
     @DeleteMapping("/deletearea/{id}")
     @Operation(description = "DELETE AREA TO ID")

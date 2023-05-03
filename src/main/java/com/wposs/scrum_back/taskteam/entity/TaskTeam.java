@@ -1,9 +1,11 @@
 package com.wposs.scrum_back.taskteam.entity;
 
+import com.wposs.scrum_back.board.entity.Board;
 import com.wposs.scrum_back.team.entity.Team;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,17 @@ public class TaskTeam {
     @ManyToOne
     @JoinColumn(name = "fk_team",insertable = false,updatable = false)
     private Team team;
+
+    @OneToMany(mappedBy = "taskTeam",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REMOVE})
+    private List<Board> boards;
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards) {
+        this.boards = boards;
+    }
 
     public Team getTeam() {
         return team;

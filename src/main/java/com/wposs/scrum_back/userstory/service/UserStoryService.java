@@ -12,4 +12,5 @@ public interface UserStoryService {
     Optional<UserStoryDto> getUserStoryById(UUID idUserStory);
     UserStoryDto saveUserStory(UserStoryDto userStoryDto);
     UserStoryDto updateUserStory(UUID idUserStory,UserStoryDto userStoryDto);
+    List<UserStoryDto> getAllUserStoryToTeam(UUID idTeam);
 }
