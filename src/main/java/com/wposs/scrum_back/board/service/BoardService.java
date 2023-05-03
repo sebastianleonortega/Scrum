@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface BoardService {
-    List<?> getAllBoard(UUID idTeam);
     BoardDto saveBoard(BoardDto boardDto);
 
 }

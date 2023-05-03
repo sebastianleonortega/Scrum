@@ -95,9 +95,9 @@ public class UserStoryController {
     })
     public ResponseEntity<List<UserStoryDto>> getAllUserStoryToTeam(@PathVariable("id")UUID idTeam){
         List<UserStoryDto> userStoryDtos = userStoryService.getAllUserStoryToTeam(idTeam);
-        if(!userStoryDtos.isEmpty()){
-            new ResponseEntity<>(userStoryDtos,HttpStatus.OK);
+        if(userStoryDtos.isEmpty()){
+            new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(userStoryDtos,HttpStatus.OK);
     }
 }
