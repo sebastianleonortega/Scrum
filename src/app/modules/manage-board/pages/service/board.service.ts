@@ -17,25 +17,19 @@ export class BoardService {
     return this.httpClient.get(this.API_SERVER+"/all");
   }
   public saveBoard(board:any):Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"/save",board);
+    return this.httpClient.post(this.API_SERVER+"/saveboard",board);
   }
 
 
-  // getUserStory(): Observable<any>{
-  //   return this.httpClient.get('http://localhost:8020/user_story/all');
-  // }
-
-  getUserStoryTeam(teamNam: string): Observable<any>{
-    return this.httpClient.get('http://localhost:8020/user_story/userstoryteam/'+teamNam);
+  getUserStoryTeam(teamId: string): Observable<any>{
+    return this.httpClient.get('http://localhost:8020/userstory/userstoryteam/'+teamId);
   }
 
   getEmployees(): Observable<any>{
     return this.httpClient.get('http://localhost:8020/employee/all');
   }
 
-  // getEmployeesTeam(): Observable<any>{
-  //   return this.httpClient.get('http://localhost:8020/employee/all');
-  // }
+
 
 
 }

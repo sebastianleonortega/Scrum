@@ -31,6 +31,7 @@ export class BoardComponent implements OnInit {
   employees: Employee[] = [];
   teamId: string = '';
   taskTeam: Tasks []=[];
+  userStoryTeam: UserStory[] = [];
 
   constructor(
     private teamService: TeamsService,
@@ -45,6 +46,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
 
     this.getAllTeams();
+    console.log(this.userStory);
 
   }
 
@@ -70,11 +72,14 @@ export class BoardComponent implements OnInit {
     this.teamId = this.boardFrom.get('teamId')?.value;
     this.boardService.getUserStoryTeam(this.teamId).subscribe((data) => {
         this.userStory = data;
+
+
       },
     );
     this.getAllEmployeesTeam();
     this.getAllTaskTeamByTeam();
   }
+
 
 
   saveBoard(): void {

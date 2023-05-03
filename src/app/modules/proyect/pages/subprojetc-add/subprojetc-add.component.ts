@@ -20,7 +20,7 @@ export class SubprojetcAddComponent implements OnInit {
   subprojectAddForm: FormGroup = new FormGroup({
     subProjectName: new FormControl(null, [Validators.required]),
     projectId: new FormControl(null, [Validators.required]),
-    teamId: new FormControl()
+    teamId: new FormControl(null, [Validators.required])
   });
 
   subproject: Subproject[]=[] ;
