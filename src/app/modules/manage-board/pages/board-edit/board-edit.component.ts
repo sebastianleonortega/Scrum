@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {Team} from "@app/modules/teams/pages/interface/team";
@@ -11,22 +11,25 @@ import {Employee} from "@app/modules/employees/pages/Interface/employee";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import { Tasks } from '@app/modules/teams/pages/interface/tasks';
 import { IBoard } from '../interface/board.interface';
+import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-board',
-  templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  selector: 'app-board-edit',
+  templateUrl: './board-edit.component.html',
+  styleUrls: ['./board-edit.component.css']
 })
+export class BoardEditComponent implements OnInit {
 
-export class BoardComponent implements OnInit {
 
   boardFrom: FormGroup = new FormGroup({
     teamId: new FormControl(null, [Validators.required]),
-      userStoryId: new FormControl(null, [Validators.required]),
-      taskTeamId: new FormControl(null, [Validators.required]),
-      employeeId: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required])
+    userStoryId: new FormControl(null, [Validators.required]),
+    taskTeamId: new FormControl(null, [Validators.required]),
+    employeeId: new FormControl(null, [Validators.required]),
+    date: new FormControl(null, [Validators.required])
   })
+
   teams: Team[] = [];
   userStory: UserStory[] = [];
   employees: Employee[] = [];
@@ -34,6 +37,7 @@ export class BoardComponent implements OnInit {
   taskTeam: Tasks []=[];
   userStoryTeam: UserStory[] = [];
   board: IBoard[]= [];
+  idBoard: string = '';
 
 
   constructor(
@@ -42,17 +46,14 @@ export class BoardComponent implements OnInit {
     private employeesService: EmployeesService,
     private boardService: BoardService,
     private taskTeamService: TeamTasksService,
-    private route: Router
+    private route: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
   }
 
   ngOnInit(): void {
 
-    this.boardService.getAllBoard().subscribe(resp =>{
-      this.board = resp;
-    })
-
-    this.getAllTeams();
+    this.idBoard = this.data.idBoard;
 
 
   }
@@ -92,7 +93,7 @@ export class BoardComponent implements OnInit {
 
 
 
-  saveBoard(): void {
+  editBoard(): void {
     if (this.boardFrom.valid) {
       const data = {
         teamId: this.boardFrom.get('teamId')?.value,
@@ -101,39 +102,20 @@ export class BoardComponent implements OnInit {
         employeeId: this.boardFrom.get('employeeId')?.value,
         date: this.boardFrom.get('date')?.value
       }
-      this.boardService.saveBoard(data).subscribe((resp) => {
+      this.boardService.updateBoard(this.idBoard, data).subscribe((resp) => {
           this.boardFrom.reset()
           this.route.navigateByUrl('app/board');
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Proyecto aditado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          // this.dialogRef.close();
+          location.reload();
         },
       );
     }
   }
-  // deleteBoard(id: string): void{
-  //   Swal.fire({
-  //     title: 'Desea eliminar este tablero?',
-  //     text: "La información eliminada no se puede recuperar",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //      confirmButtonText: 'si, eliminar!'
-  //   }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         this.boardService.deleteBoard(id).subscribe(resp =>{
-  //           Swal.fire({
-  //             position: 'top-end',
-  //             icon: 'success',
-  //             title: 'Tablero eliminado',
-  //             showConfirmButton: false,
-  //              timer: 1500
-  //            })
-  //             this.boardFrom.reset();
-  //             this.boardService.getAllBoard();
-  //          })
-
-  //       }
-  //     })
-
-  // }
-
 }

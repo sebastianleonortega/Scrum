@@ -29,7 +29,7 @@ export class TeamTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.tasksForm = this.formBuilder.group({
-      taskTeamName: new FormControl(null, [Validators.required]),
+      taskName: new FormControl(null, [Validators.required]),
       teamId: new FormControl(null, [Validators.required]),
       taskTeamId: new FormControl(null,)
     })
@@ -59,7 +59,7 @@ export class TeamTasksComponent implements OnInit {
     if (this.tasksForm.valid){
       const data = {
         teamId:this.tasksForm.get('teamId')?.value,
-        taskTeamName:this.tasksForm.get('taskTeamName')?.value,
+        taskName:this.tasksForm.get('taskName')?.value,
       }
       this.teamTasksService.saveTeamTasks(data).subscribe(
         (resp)=>{

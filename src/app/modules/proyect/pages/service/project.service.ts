@@ -23,7 +23,6 @@ export class ProjectService {
     return this.httpClient.get(this.API_SERVER+"/"+idProyect);
   }
   updateProyect(idProyect:string,dataProyect:any){
-    console.log(dataProyect);
     return this.httpClient.put(this.API_SERVER+"/"+idProyect,dataProyect);
   }
 

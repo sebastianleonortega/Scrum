@@ -1,5 +1,5 @@
 export interface Tasks {
   teamId:string;
-  taskTeamName:string;
+  taskName:string;
   taskTeamId:string;
 }

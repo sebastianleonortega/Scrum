@@ -7,6 +7,7 @@ import {ProyectAddComponent} from '@app/modules/proyect/pages/proyect-add/proyec
 import {MatDialog} from '@angular/material/dialog';
 import { ProyectEditComponent } from '../proyect-edit/proyect-edit.component';
 
+
 @Component({
   selector: 'app-proyect',
   templateUrl: './proyect.component.html',
@@ -30,8 +31,11 @@ export class ProyectComponent implements OnInit {
     this.proyectService.getAllProyect().subscribe(resp => {
       resp.forEach(item => {
         this.customerService.getCustomerById(item.clientId).forEach(customer => {
-          item.clientId = customer.client_name
+          item.clientId = customer.client_name;
+          console.log(customer.client_name);
         })
+
+
         this.areaService.getArea(item.areaId).forEach(area => {
           item.areaId = area.areaName
         })

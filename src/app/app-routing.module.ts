@@ -42,10 +42,6 @@ const routes: Routes = [
         loadChildren: () => import('@app/modules/teams/teams.module').then(m => m.TeamsModule)
       },
       {
-        path:'manage-board',
-        loadChildren:()=>import('@app/modules/manage-board/manage-board.module').then(m => m.ManageBoardModule)
-      },
-      {
         path: 'sprints',
         loadChildren: () => import('@app/modules/sprints/sprints.module').then(m => m.SprintsModule)
       },
