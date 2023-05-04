@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -60,6 +61,14 @@ public class BoardServiceImpl implements BoardService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Optional<BoardDto> getBoardById(UUID boardId) {
+        return Optional.ofNullable(boardRepository.findById(boardId)
+                .map(board -> {
+                    return modelMapper.map(board,BoardDto.class);
+                }).orElseThrow(()->new MessageGeneric("el Tablero solicitado no se encentra Registrado","404",HttpStatus.NOT_FOUND)));
     }
 
 

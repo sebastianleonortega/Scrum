@@ -76,4 +76,14 @@ public class BoardController {
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/boardid/{idboard}")
+    @Operation(summary = "Get Board By Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Success Board"),
+            @ApiResponse(responseCode = "404",description = "Not Fount Board")
+    })
+    public ResponseEntity<BoardDto> getBoardById(@PathVariable("idboard")UUID boardId){
+        return boardService.getBoardById(boardId).map(boardDto -> new ResponseEntity<>(boardDto,HttpStatus.OK)).orElse(null);
+    }
 }

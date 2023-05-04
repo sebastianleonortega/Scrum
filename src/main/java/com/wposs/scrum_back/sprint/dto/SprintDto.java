@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class SprintDto {
     @JsonProperty(value = "sprintgId",access = JsonProperty.Access.READ_ONLY)
-    private UUID sprintgId;
+    private UUID sprintId;
     @JsonProperty(value = "areaId")
     @NotNull
     private UUID areaId;
@@ -18,19 +18,19 @@ public class SprintDto {
     private UUID teamId;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
-    private Date fechaInical;
+    private Date sprintStart;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
-    private Date getFechaFinal;
+    private Date sprintEnd;
     @JsonProperty(value = "nuSprint",access = JsonProperty.Access.READ_ONLY)
-    private Integer nuSprint;
+    private Integer sprintCount;
 
-    public UUID getSprintgId() {
-        return sprintgId;
+    public UUID getSprintId() {
+        return sprintId;
     }
 
-    public void setSprintgId(UUID sprintgId) {
-        this.sprintgId = sprintgId;
+    public void setSprintId(UUID sprintId) {
+        this.sprintId = sprintId;
     }
 
     public UUID getAreaId() {
@@ -49,27 +49,27 @@ public class SprintDto {
         this.teamId = teamId;
     }
 
-    public Date getFechaInical() {
-        return fechaInical;
+    public Date getSprintStart() {
+        return sprintStart;
     }
 
-    public void setFechaInical(Date fechaInical) {
-        this.fechaInical = fechaInical;
+    public void setSprintStart(Date sprintStart) {
+        this.sprintStart = sprintStart;
     }
 
-    public Date getGetFechaFinal() {
-        return getFechaFinal;
+    public Date getSprintEnd() {
+        return sprintEnd;
     }
 
-    public void setGetFechaFinal(Date getFechaFinal) {
-        this.getFechaFinal = getFechaFinal;
+    public void setSprintEnd(Date sprintEnd) {
+        this.sprintEnd = sprintEnd;
     }
 
-    public Integer getNuSprint() {
-        return nuSprint;
+    public Integer getSprintCount() {
+        return sprintCount;
     }
 
-    public void setNuSprint(Integer nuSprint) {
-        this.nuSprint = nuSprint;
+    public void setSprintCount(Integer sprintCount) {
+        this.sprintCount = sprintCount;
     }
 }

@@ -2,10 +2,13 @@ package com.wposs.scrum_back.sprint.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.team.entity.Team;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,13 +26,13 @@ public class Sprint {
     private UUID teamId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_inicial")
-    private Date fechaInical;
+    private Date sprintStart;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_final")
-    private Date getFechaFinal;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Date sprintEnd;
+    @Generated(GenerationTime.ALWAYS)
     @Column(name = "numero_sprint")
-    private Integer nuSprint;
+    private Long sprintCount;
 
     @ManyToOne
     @JoinColumn(name = "fk_area_id",insertable = false,updatable = false)
@@ -63,28 +66,28 @@ public class Sprint {
         this.teamId = teamId;
     }
 
-    public Date getFechaInical() {
-        return fechaInical;
+    public Date getSprintStart() {
+        return sprintStart;
     }
 
-    public void setFechaInical(Date fechaInical) {
-        this.fechaInical = fechaInical;
+    public void setSprintStart(Date sprintStart) {
+        this.sprintStart = sprintStart;
     }
 
-    public Date getGetFechaFinal() {
-        return getFechaFinal;
+    public Date getSprintEnd() {
+        return sprintEnd;
     }
 
-    public void setGetFechaFinal(Date getFechaFinal) {
-        this.getFechaFinal = getFechaFinal;
+    public void setSprintEnd(Date sprintEnd) {
+        this.sprintEnd = sprintEnd;
     }
 
-    public Integer getNuSprint() {
-        return nuSprint;
+    public Long getSprintCount() {
+        return sprintCount;
     }
 
-    public void setNuSprint(Integer nuSprint) {
-        this.nuSprint = nuSprint;
+    public void setSprintCount(Long sprintCount) {
+        this.sprintCount = sprintCount;
     }
 
     public Area getArea() {
