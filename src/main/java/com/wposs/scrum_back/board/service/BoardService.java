@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface BoardService {
     BoardDto saveBoard(BoardDto boardDto);
     List<BoardDto> getAllBoards();
+    BoardDto updateBoard(UUID boardId,BoardDto boardDto);
+    Boolean deleteBoard(UUID boardId);
 }

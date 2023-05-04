@@ -17,7 +17,7 @@ public class TaskTeam {
     @Column(name = "task_team_id")
     private UUID taskTeamId;
     @Column(name = "task_team_name")
-    private String taskTeamName;
+    private String taskName;
 
     @Column(name = "fk_team")
     private UUID teamId;
@@ -52,12 +52,12 @@ public class TaskTeam {
         this.taskTeamId = taskTeamId;
     }
 
-    public String getTaskTeamName() {
-        return taskTeamName;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTaskTeamName(String taskTeamName) {
-        this.taskTeamName = taskTeamName;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
     public UUID getTeamId() {

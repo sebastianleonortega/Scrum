@@ -41,5 +41,26 @@ public class BoardServiceImpl implements BoardService{
         }).collect(Collectors.toList());
     }
 
+    @Override
+    public BoardDto updateBoard(UUID boardId, BoardDto boardDto) {
+        return boardRepository.findById(boardId).map(board -> {
+            board.setDate((boardDto.getDate()!=null)?boardDto.getDate():board.getDate());
+            board.setTeamId((boardDto.getTeamId()!=null)?boardDto.getTeamId():board.getTeamId());
+            board.setUserStoryId((boardDto.getUserStoryId()!=null)?boardDto.getUserStoryId():board.getUserStoryId());
+            board.setTaskTeamId((boardDto.getTaskTeamId()!=null)?boardDto.getTaskTeamId():board.getTaskTeamId());
+            board.setEmployeeId((boardDto.getEmployeeId()!=null)?boardDto.getEmployeeId():board.getEmployeeId());
+            return modelMapper.map(boardRepository.save(board),BoardDto.class);
+        }).orElseThrow(()->new MessageGeneric("no esta disponioble el tablero a Actualizar","404",HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public Boolean deleteBoard(UUID boardId) {
+        if(boardRepository.findById(boardId).isPresent()){
+            boardRepository.deleteById(boardId);
+            return true;
+        }
+        return false;
+    }
+
 
 }

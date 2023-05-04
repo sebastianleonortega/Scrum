@@ -26,6 +26,27 @@ public class BoardDto implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private Date date;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String employeeName;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String taskName;
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
     public UUID getIdBoard() {
         return idBoard;
