@@ -20,14 +20,13 @@ export class SprintsService {
   }
   getSprintById(idSprint:string | null):Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/sprint/"+idSprint);
-
   }
   updateSprint(idSprint:string| null,userStorySprint:any){
     return this.httpClient.put(this.API_SERVER+"/"+idSprint,userStorySprint);
   }
 
   getTeamArea(areaId: string): Observable<any>{
-    return this.httpClient.get('http://localhost:8020/teams/'+areaId);
+    return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
   }
   saveCalculationSprintPoints(dataPointsSprint:any):Observable<any>{
     return this.httpClient.post( this.API_SERVER+'/sprint-employee/save',dataPointsSprint);
