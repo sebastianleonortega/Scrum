@@ -20,16 +20,16 @@ public class Board {
     @Column(name = "id_board")
     private UUID idBoard;
     @Column(name = "fk_team",nullable = false,length = 40)
-    private UUID idTeam;
+    private UUID teamId;
     @Column(name = "fk_user_story",nullable = false,length = 40)
-    private UUID idUserStory;
+    private UUID userStoryId;
     @Column(name = "fk_task_team",nullable = false,length = 40)
-    private UUID idTaskTeam;
+    private UUID taskTeamId;
     @Column(name = "fk_employee",nullable = false,length = 40)
-    private UUID idEmployee;
+    private UUID employeeId;
     @Column(name = "fecha_board",nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaBoard;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "fk_team",insertable = false,updatable = false)
@@ -78,44 +78,12 @@ public class Board {
         this.idBoard = idBoard;
     }
 
-    public UUID getIdTeam() {
-        return idTeam;
+    public Date getDate() {
+        return date;
     }
 
-    public void setIdTeam(UUID idTeam) {
-        this.idTeam = idTeam;
-    }
-
-    public UUID getIdUserStory() {
-        return idUserStory;
-    }
-
-    public void setIdUserStory(UUID idUserStory) {
-        this.idUserStory = idUserStory;
-    }
-
-    public UUID getIdTaskTeam() {
-        return idTaskTeam;
-    }
-
-    public void setIdTaskTeam(UUID idTaskTeam) {
-        this.idTaskTeam = idTaskTeam;
-    }
-
-    public UUID getIdEmployee() {
-        return idEmployee;
-    }
-
-    public void setIdEmployee(UUID idEmployee) {
-        this.idEmployee = idEmployee;
-    }
-
-    public Date getFechaBoard() {
-        return fechaBoard;
-    }
-
-    public void setFechaBoard(Date fechaBoard) {
-        this.fechaBoard = fechaBoard;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Team getTeam() {
@@ -132,5 +100,37 @@ public class Board {
 
     public void setTeamBoard(Team teamBoard) {
         this.teamBoard = teamBoard;
+    }
+
+    public UUID getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
+    }
+
+    public UUID getUserStoryId() {
+        return userStoryId;
+    }
+
+    public void setUserStoryId(UUID userStoryId) {
+        this.userStoryId = userStoryId;
+    }
+
+    public UUID getTaskTeamId() {
+        return taskTeamId;
+    }
+
+    public void setTaskTeamId(UUID taskTeamId) {
+        this.taskTeamId = taskTeamId;
+    }
+
+    public UUID getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(UUID employeeId) {
+        this.employeeId = employeeId;
     }
 }

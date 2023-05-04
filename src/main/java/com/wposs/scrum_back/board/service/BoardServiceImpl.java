@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public BoardDto saveBoard(BoardDto boardDto) {
         Board board = modelMapper.map(boardDto,Board.class);
-        if (!boardRepository.existsByIdTeamAndIdUserStoryAndIdTaskTeamAndIdEmployee(board.getIdTeam(),board.getIdUserStory(),board.getIdTaskTeam(),board.getIdEmployee())){
+        if (boardRepository.existsByTeamIdAndUserStoryIdAndTaskTeamIdAndEmployeeId(board.getTeamId(),board.getUserStoryId(),board.getTaskTeamId(),board.getEmployeeId())){
             throw new MessageGeneric("Ya existe un tablero con la infomacion ingresada","409", HttpStatus.CONFLICT);
         }
         try {
@@ -33,4 +33,13 @@ public class BoardServiceImpl implements BoardService{
             throw new InternalServerException("error en el servidor,JSON mal estructurado","500",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    public List<BoardDto> getAllBoards() {
+        return boardRepository.findAll().stream().map(board -> {
+            return modelMapper.map(board,BoardDto.class);
+        }).collect(Collectors.toList());
+    }
+
+
 }

@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, UUID> {
-    Boolean existsByIdTeamAndIdUserStoryAndIdTaskTeamAndIdEmployee(UUID idTeam,UUID idUserStory,UUID idTaskTeam,UUID idEmployee);
+    Boolean existsByTeamIdAndUserStoryIdAndTaskTeamIdAndEmployeeId(UUID idTeam,UUID idUserStory,UUID idTaskTeam,UUID idEmployee);
 }

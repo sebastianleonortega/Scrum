@@ -1,6 +1,6 @@
 package com.wposs.scrum_back.area.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wposs.scrum_back.sprint.entity.Sprint;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.employe.entity.Employee;
 import com.wposs.scrum_back.project.entity.Project;
@@ -22,12 +22,15 @@ public class Area {
 
     @Column(name = "areaName", nullable = false, length = 100)
     private String areaName;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Project> projects;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Team> teams;
+
+    @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Sprint> sprints;
 
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
@@ -36,6 +39,15 @@ public class Area {
             inverseJoinColumns = @JoinColumn(name = "employee_id", nullable = false),
             uniqueConstraints = @UniqueConstraint(columnNames = {"employee_id", "area_id"}, name = "uc_employee_area"))
     private List<Employee> employees;
+
+    public List<Sprint> getSprints() {
+        return sprints;
+    }
+
+
+    public void setSprints(List<Sprint> sprints) {
+        this.sprints = sprints;
+    }
 
     public UUID getAreaId() {
         return areaId;

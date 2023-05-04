@@ -3,7 +3,6 @@ package com.wposs.scrum_back.board.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,24 +12,20 @@ public class BoardDto implements Serializable {
     @JsonProperty(value = "idBoard",access = JsonProperty.Access.READ_ONLY)
     private UUID idBoard;
     @NotNull
-    @NotEmpty
-    @JsonProperty(value = "idTeam")
-    private UUID idTeam;
+    @JsonProperty(value = "teamId")
+    private UUID teamId;
     @NotNull
-    @NotEmpty
-    @JsonProperty(value = "idUserStory")
-    private UUID idUserStory;
+    @JsonProperty(value = "userStoryId")
+    private UUID userStoryId;
     @NotNull
-    @NotEmpty
-    @JsonProperty(value = "idTaskTeam")
-    private UUID idTaskTeam;
+    @JsonProperty(value = "taskTeamId")
+    private UUID taskTeamId;
     @NotNull
-    @NotEmpty
-    @JsonProperty(value = "idEmployee")
-    private UUID idEmployee;
+    @JsonProperty(value = "employeeId")
+    private UUID employeeId;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
-    private Date fechaBoard;
+    private Date date;
 
     public UUID getIdBoard() {
         return idBoard;
@@ -40,43 +35,43 @@ public class BoardDto implements Serializable {
         this.idBoard = idBoard;
     }
 
-    public UUID getIdTeam() {
-        return idTeam;
+    public Date getDate() {
+        return date;
     }
 
-    public void setIdTeam(UUID idTeam) {
-        this.idTeam = idTeam;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public UUID getIdUserStory() {
-        return idUserStory;
+    public UUID getTeamId() {
+        return teamId;
     }
 
-    public void setIdUserStory(UUID idUserStory) {
-        this.idUserStory = idUserStory;
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
     }
 
-    public UUID getIdTaskTeam() {
-        return idTaskTeam;
+    public UUID getUserStoryId() {
+        return userStoryId;
     }
 
-    public void setIdTaskTeam(UUID idTaskTeam) {
-        this.idTaskTeam = idTaskTeam;
+    public void setUserStoryId(UUID userStoryId) {
+        this.userStoryId = userStoryId;
     }
 
-    public UUID getIdEmployee() {
-        return idEmployee;
+    public UUID getTaskTeamId() {
+        return taskTeamId;
     }
 
-    public void setIdEmployee(UUID idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setTaskTeamId(UUID taskTeamId) {
+        this.taskTeamId = taskTeamId;
     }
 
-    public Date getFechaBoard() {
-        return fechaBoard;
+    public UUID getEmployeeId() {
+        return employeeId;
     }
 
-    public void setFechaBoard(Date fechaBoard) {
-        this.fechaBoard = fechaBoard;
+    public void setEmployeeId(UUID employeeId) {
+        this.employeeId = employeeId;
     }
 }

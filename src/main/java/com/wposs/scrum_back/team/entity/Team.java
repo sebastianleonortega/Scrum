@@ -3,6 +3,7 @@ package com.wposs.scrum_back.team.entity;
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.board.entity.Board;
 import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.sprint.entity.Sprint;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.taskteam.entity.TaskTeam;
 import org.hibernate.annotations.GenericGenerator;
@@ -37,6 +38,9 @@ public class Team {
     @OneToMany(mappedBy = "team",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
 
+    @OneToMany(mappedBy = "team",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Sprint> sprints;
+
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "team_employee", schema = "wposs",
@@ -47,6 +51,14 @@ public class Team {
 
     @OneToMany(mappedBy = "teamBoard",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Board> boards;
+
+    public List<Sprint> getSprints() {
+        return sprints;
+    }
+
+    public void setSprints(List<Sprint> sprints) {
+        this.sprints = sprints;
+    }
 
     public List<Board> getBoards() {
         return boards;
