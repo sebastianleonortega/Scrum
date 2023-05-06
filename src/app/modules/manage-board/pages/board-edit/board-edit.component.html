@@ -5,11 +5,11 @@
 
   <div class="form-row align-items-center">
 
-    <form class="sprints-form" [formGroup]="boardFrom" (ngSubmit)="editBoard()">
+    <form class="sprints-form" [formGroup]="boardEditFrom" (ngSubmit)="editBoard()">
 
       <div class="form-group col-sm-4">
       <label>Seleccionar equipo</label>
-      <select class="form-select" formControlName="teamId" (change)="selectTeam()">
+      <select class="form-select" formControlName="teamId" >
         <option value="{{team.teamId}}" *ngFor="let team of teams">{{team.teamName}}</option>
       </select>
     </div>
@@ -44,7 +44,7 @@
       <input type="date" class="form-control" formControlName="date">
     </div>
 
-    <button class="btn btn btn-primary mb-2 " type="submit" [disabled]="boardFrom.invalid">Guardar</button>
+    <button class="btn btn btn-primary mb-2 " type="submit" [disabled]="boardEditFrom.invalid">Guardar</button>
     </form>
 
 

@@ -66,6 +66,7 @@ export class BoardComponent implements OnInit {
       this.employees=resp;
 
     })
+    console.log(this.teamId);
   }
 
 
@@ -74,6 +75,8 @@ export class BoardComponent implements OnInit {
       this.taskTeam = resp;
     })
   }
+
+
 
   getUserStoryTeam(){
     this.boardService.getUserStoryTeam(this.teamId).subscribe((data) => {
