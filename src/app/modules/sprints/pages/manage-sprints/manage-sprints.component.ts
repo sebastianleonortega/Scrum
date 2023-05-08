@@ -19,18 +19,20 @@ import { Sprints } from '../Interface/sprints-interfaces';
 export class ManageSprintsComponent implements OnInit {
 
   sprintsForm: FormGroup = new FormGroup({
-    sprintsArea: new FormControl(null, [Validators.required]),
     teamId: new FormControl(null, [Validators.required]),
+    areaId: new FormControl(null, [Validators.required]),
     sprintStart: new FormControl(null, [Validators.required]),
-    sprintEnd: new FormControl(null, [Validators.required])
+    sprintEnd: new FormControl(null, [Validators.required]),
+    sprintDay: new FormControl()
   });
 
 
   teams: Team[] = [];
   areas: AreaInterface[] = [];
   areaId: string = '';
+  teamId: string='';
   sprints: Sprints[]=[];
-  elapsedDays: any
+  sprintDay: any;
   sprintStart: any;
   sprintEnd: any;
   currenDate = new Date();
@@ -48,30 +50,25 @@ export class ManageSprintsComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.teamService.getAllTeams().subscribe((data) => {
-        this.teams = data;
-      },
-    );
-
     this.areaService.getAllArea().subscribe((data) => {
         this.areas = data;
       },
     );
     this.getAllSprints();
+    this.selectArea();
   }
 
   getAllSprints() {
     this.sprintService.getAllASprint().subscribe((data) => {
       this.sprints = data;
 
-      console.log(this.sprints);
     })
   }
 
   selectArea() {
-    this.areaId = this.sprintsForm.get('sprintsArea')?.value;
-    this.sprintService.getTeamArea(this.areaId).subscribe((data) => {
+    this.areaId = this.sprintsForm.get('areaId')?.value;
+    this.sprintService.getTeamArea(this.areaId).subscribe(
+      (data) => {
         this.teams = data;
       },
     );
@@ -82,6 +79,10 @@ export class ManageSprintsComponent implements OnInit {
     if (this.sprintsForm.valid) {
       this.sprintStart = this.sprintsForm.get('sprintStart')?.value;
       this.sprintEnd = this.sprintsForm.get('sprintEnd')?.value;
+      this.areaId = this.sprintsForm.get('areaId')?.value;
+      this.teamId = this.sprintsForm.get('teamId')?.value;
+
+
 
       let initialDate = new Date(this.sprintStart);
       let endDate = new Date(this.sprintEnd);
@@ -105,13 +106,14 @@ export class ManageSprintsComponent implements OnInit {
         } else {
           let milisecondsDay = 24 * 60 * 60 * 1000;
           let elapsedMilliseconds = Math.abs(endDate.getTime() - initialDate.getTime());
-          this.elapsedDays = Math.round(elapsedMilliseconds / milisecondsDay) + 1;
+          this.sprintDay = Math.round(elapsedMilliseconds / milisecondsDay) + 1;
 
           const data = {
             teamId: this.sprintsForm.get('teamId')?.value,
+            areaId: this.sprintsForm.get('areaId')?.value,
             sprintStart: this.sprintStart,
             sprintEnd: this.sprintEnd,
-            sprintDay: this.elapsedDays
+            sprintDay: this.sprintDay
           }
 
           this.sprintService.saveSprint(data).subscribe({
