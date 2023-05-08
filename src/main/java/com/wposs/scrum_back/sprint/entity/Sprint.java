@@ -31,7 +31,7 @@ public class Sprint {
     @Column(name = "fecha_final")
     private Date sprintEnd;
     @Column(name = "numero_sprint")
-    private Long sprintCount;
+    private Integer sprintCount;
 
     @ManyToOne
     @JoinColumn(name = "fk_area_id",insertable = false,updatable = false)
@@ -81,11 +81,11 @@ public class Sprint {
         this.sprintEnd = sprintEnd;
     }
 
-    public Long getSprintCount() {
+    public Integer getSprintCount() {
         return sprintCount;
     }
 
-    public void setSprintCount(Long sprintCount) {
+    public void setSprintCount(Integer sprintCount) {
         this.sprintCount = sprintCount;
     }
 
