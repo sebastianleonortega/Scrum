@@ -8,6 +8,7 @@ import {AreaInterface} from "@app/modules/area/pages/Interface/interface-area";
 import Swal from "sweetalert2";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import { Sprints } from '../Interface/sprints-interfaces';
 
 
 @Component({
@@ -16,11 +17,19 @@ import {Router} from "@angular/router";
   styleUrls: ['./manage-sprints.component.css']
 })
 export class ManageSprintsComponent implements OnInit {
-  sprintsForm: FormGroup = new FormGroup({});
+
+  sprintsForm: FormGroup = new FormGroup({
+    sprintsArea: new FormControl(null, [Validators.required]),
+    teamId: new FormControl(null, [Validators.required]),
+    sprintStart: new FormControl(null, [Validators.required]),
+    sprintEnd: new FormControl(null, [Validators.required])
+  });
+
+
   teams: Team[] = [];
   areas: AreaInterface[] = [];
   areaId: string = '';
-  sprints: any;
+  sprints: Sprints[]=[];
   elapsedDays: any
   sprintStart: any;
   sprintEnd: any;
@@ -38,12 +47,7 @@ export class ManageSprintsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.sprintsForm = this.formBuilder.group({
-      sprintsArea: new FormControl(null, [Validators.required]),
-      teamId: new FormControl(null, [Validators.required]),
-      sprintStart: new FormControl(null, [Validators.required]),
-      sprintEnd: new FormControl(null, [Validators.required])
-    });
+
 
     this.teamService.getAllTeams().subscribe((data) => {
         this.teams = data;
@@ -60,6 +64,8 @@ export class ManageSprintsComponent implements OnInit {
   getAllSprints() {
     this.sprintService.getAllASprint().subscribe((data) => {
       this.sprints = data;
+
+      console.log(this.sprints);
     })
   }
 

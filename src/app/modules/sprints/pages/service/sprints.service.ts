@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class SprintsService {
-  private API_SERVER='http://localhost:8020/sprints';
+  private API_SERVER='http://localhost:8020/sprint';
 
   constructor(
     private httpClient:HttpClient
@@ -16,7 +16,7 @@ export class SprintsService {
     return this.httpClient.get(this.API_SERVER+"/all");
   }
   public saveSprint(sprint:any):Observable<any>{
-    return this.httpClient.post(this.API_SERVER+"/save",sprint);
+    return this.httpClient.post(this.API_SERVER+"/savesprint",sprint);
   }
   getSprintById(idSprint:string | null):Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/sprint/"+idSprint);

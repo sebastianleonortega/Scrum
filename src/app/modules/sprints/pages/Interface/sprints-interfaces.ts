@@ -1,11 +1,10 @@
 export interface Sprints {
 
   teamId:string;
-  sprStart: string;
-  sprEnd: string;
-  sprCount: number;
+  sprintStart: string;
+  sprintEnd: string;
+  nuSprint: number;
   areaId: string;
-  sprId: number;
-
-
+  sprintId: number;
+  teamName: string;
 }
