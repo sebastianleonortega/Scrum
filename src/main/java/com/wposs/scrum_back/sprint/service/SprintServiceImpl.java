@@ -58,6 +58,7 @@ public class SprintServiceImpl implements SprintService{
             sprint.setTeamId((sprintDto.getTeamId()!=null)?sprintDto.getTeamId():sprint.getTeamId());
             sprint.setSprintStart((sprintDto.getSprintStart()!=null)?sprintDto.getSprintStart():sprint.getSprintStart());
             sprint.setSprintEnd((sprintDto.getSprintEnd()!=null)?sprintDto.getSprintEnd():sprint.getSprintEnd());
+            sprint.setSprintCount((sprintDto.getTeamId()==sprint.getTeamId()?sprint.getSprintCount():(sprint.getSprintCount()+1)));
             return modelMapper.map(sprintRepository.save(sprint),SprintDto.class);
         }).orElseThrow(()->new MessageGeneric("no esta disponible el Sprint que quiere actualizar","404",HttpStatus.NOT_FOUND));
     }

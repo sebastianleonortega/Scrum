@@ -79,15 +79,5 @@ public class EmployeeController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-//    @PutMapping("/savetaskonemployee/{employeeId}")
-//    public ResponseEntity<EmployeeDto> updateTaskEmployee(@Valid @RequestBody List<TaskDto> taskDtos, @PathVariable("employeeId") UUID employeeId){
-//        Employee employee = this.employeeService.findByEmployeeId(employeeId);
-//        List<TaskTeam> tasks = taskDtos.stream()
-//                .map(taskDto -> modelMapper.map(taskDto, Task.class)).collect(Collectors.toList());
-//        employee.setTasks(tasks);
-//        Employee employeeUpdate = this.employeeService.save(employee);
-//        return  new ResponseEntity<>(modelMapper.map(employeeUpdate, EmployeeDto.class), HttpStatus.OK);
-//    }
-
 
 }
