@@ -31,8 +31,6 @@ public class Sprint {
     @Column(name = "fecha_final")
     private Date sprintEnd;
     @Column(name = "numero_sprint")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "numero_sprint_seq")
-    @SequenceGenerator(name = "numero_sprint_seq", sequenceName = "numero_sprint_seq", allocationSize = 1)
     private Long sprintCount;
 
     @ManyToOne

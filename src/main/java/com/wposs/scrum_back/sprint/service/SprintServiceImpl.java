@@ -34,7 +34,11 @@ public class SprintServiceImpl implements SprintService{
     public SprintDto saveSprint(SprintDto sprintDto) {
         Sprint sprint = modelMapper.map(sprintDto,Sprint.class);
         try {
-            return modelMapper.map(sprintRepository.save(sprint),SprintDto.class);
+            return sprintRepository.getByAreaIdAndTeamId(sprint.getAreaId(),sprint.getTeamId()).map(sprint1 -> {
+                //sprint1.getSprintCount().
+                //sprint1.setSprintCount(sprint1.getSprintCount()+1);
+                return modelMapper.map(sprintRepository.save(sprint),SprintDto.class);
+            }).orElseThrow(()->new MessageGeneric("Error inesperado al intertar asiganr numero de sprint","400",HttpStatus.BAD_REQUEST));
         }catch (Exception ex){
             throw new InternalServerException("Surgio un Error al intetar Registrar el Sprint","500", HttpStatus.INTERNAL_SERVER_ERROR);
         }

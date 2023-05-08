@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class SprintDto {
-    @JsonProperty(value = "sprintgId",access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "sprintId",access = JsonProperty.Access.READ_ONLY)
     private UUID sprintId;
     @JsonProperty(value = "areaId")
     @NotNull
@@ -24,6 +24,16 @@ public class SprintDto {
     private Date sprintEnd;
     @JsonProperty(value = "nuSprint",access = JsonProperty.Access.READ_ONLY)
     private Integer sprintCount;
+    @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
+    private String teamName;
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
     public UUID getSprintId() {
         return sprintId;
