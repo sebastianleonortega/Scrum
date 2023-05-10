@@ -23,9 +23,9 @@ public class SprintDto {
     @NotNull
     private Date sprintEnd;
 
-    @JsonProperty(value = "spintDay")
+    @JsonProperty(value = "sprintDay")
     @NotNull
-    private int sprintDay;
+    private String sprintDay;
     @JsonProperty(value = "nuSprint",access = JsonProperty.Access.READ_ONLY)
     private Integer sprintCount;
     @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
@@ -87,11 +87,11 @@ public class SprintDto {
         this.sprintCount = sprintCount;
     }
 
-    public int getSprintDay() {
+    public String getSprintDay() {
         return sprintDay;
     }
 
-    public void setSprintDay(int sprintDay) {
+    public void setSprintDay(String sprintDay) {
         this.sprintDay = sprintDay;
     }
 }

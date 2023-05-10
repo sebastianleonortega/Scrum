@@ -29,8 +29,8 @@ public class Sprint {
     private Date sprintEnd;
     @Column(name = "numero_sprint")
     private Integer sprintCount;
-    @Column(name = "day_sprint")
-    private int sprintDay;
+    @Column(name = "day_sprint",nullable = false)
+    private String sprintDay;
 
     @ManyToOne
     @JoinColumn(name = "fk_area_id",insertable = false,updatable = false)
@@ -40,11 +40,11 @@ public class Sprint {
     @JoinColumn(name = "fk_team_id",insertable = false,updatable = false)
     private Team team;
 
-    public int getDaySprint() {
+    public String getDaySprint() {
         return sprintDay;
     }
 
-    public void setDaySprint(int daySprint) {
+    public void setDaySprint(String daySprint) {
         this.sprintDay = daySprint;
     }
 

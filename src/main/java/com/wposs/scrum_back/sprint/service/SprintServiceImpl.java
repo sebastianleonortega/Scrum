@@ -33,6 +33,7 @@ public class SprintServiceImpl implements SprintService{
     @Override
     public SprintDto saveSprint(SprintDto sprintDto) {
         Sprint sprint = modelMapper.map(sprintDto,Sprint.class);
+        System.out.printf(sprint.getDaySprint());
         try {
             modelMapper.map(sprintRepository.save(sprint),SprintDto.class);
             return sprintRepository.getBySprintCountIsNull().map(sprint1 -> {
