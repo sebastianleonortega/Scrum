@@ -2,13 +2,10 @@ package com.wposs.scrum_back.sprint.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.team.entity.Team;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.util.Date;
 import java.util.UUID;
 
@@ -32,6 +29,8 @@ public class Sprint {
     private Date sprintEnd;
     @Column(name = "numero_sprint")
     private Integer sprintCount;
+    @Column(name = "day_sprint")
+    private int sprintDay;
 
     @ManyToOne
     @JoinColumn(name = "fk_area_id",insertable = false,updatable = false)
@@ -40,6 +39,14 @@ public class Sprint {
     @ManyToOne
     @JoinColumn(name = "fk_team_id",insertable = false,updatable = false)
     private Team team;
+
+    public int getDaySprint() {
+        return sprintDay;
+    }
+
+    public void setDaySprint(int daySprint) {
+        this.sprintDay = daySprint;
+    }
 
     public UUID getSprintId() {
         return sprintId;
