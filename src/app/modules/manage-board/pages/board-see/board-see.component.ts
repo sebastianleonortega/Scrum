@@ -61,12 +61,12 @@ export class BoardSeeComponent implements OnInit{
 
   }
   getAllTeams() {
-    this.teamService.getAllTeams().subscribe(resp => {
+    this.teamService.getAllTeams().subscribe(resp => { // trae todas los teams
       this.teams = resp
     });
   }
   getAllEmployeesTeam(){
-    this.employeesService.getEmployeesAddToTeam(this.teamId).subscribe(resp=>{
+    this.employeesService.getEmployeesAddToTeam(this.teamId).subscribe(resp=>{ // trae todos los empleados de un equipo
       this.employees=resp;
 
     })
