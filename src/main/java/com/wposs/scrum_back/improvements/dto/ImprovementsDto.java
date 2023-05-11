@@ -12,7 +12,7 @@ public class ImprovementsDto implements Serializable {
     private UUID improvementsId;
     @JsonProperty(value = "areaIdImpro")
     @NotNull
-    private UUID areaIdImpro;
+    private UUID areaId;
     @JsonProperty(value = "teamId")
     @NotNull
     private UUID teamId;
@@ -38,11 +38,11 @@ public class ImprovementsDto implements Serializable {
     }
 
     public UUID getAreaIdImpro() {
-        return areaIdImpro;
+        return areaId;
     }
 
     public void setAreaIdImpro(UUID areaIdImpro) {
-        this.areaIdImpro = areaIdImpro;
+        this.areaId = areaIdImpro;
     }
 
     public UUID getTeamId() {

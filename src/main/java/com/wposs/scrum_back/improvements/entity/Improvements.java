@@ -19,7 +19,7 @@ public class Improvements {
     @Column(name = "improvements_id")
     private UUID improvementsId;
     @Column(name = "fk_area_improvements",nullable = false,length = 40)
-    private UUID areaIdImpro;
+    private UUID areaId;
     @Column(name = "fk_team_improvements",nullable = false,length = 40)
     private UUID teamId;
     @Column(name = "fk_userStory_improvements",nullable = false,length = 40)
@@ -57,11 +57,11 @@ public class Improvements {
     }
 
     public UUID getAreaIdImpro() {
-        return areaIdImpro;
+        return areaId;
     }
 
     public void setAreaIdImpro(UUID areaIdImpro) {
-        this.areaIdImpro = areaIdImpro;
+        this.areaId = areaIdImpro;
     }
 
     public UUID getTeamId() {
