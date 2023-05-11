@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "observation")
+@Table(name = "observation",schema = "wposs")
 public class Observation {
     @Id
     @GeneratedValue(generator = "UUID")
