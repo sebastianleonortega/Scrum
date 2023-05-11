@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.userstory.entity;
 
 import com.wposs.scrum_back.board.entity.Board;
+import com.wposs.scrum_back.improvements.entity.Improvements;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import com.wposs.scrum_back.userstorystatus.entity.UserStoryStatus;
 import org.hibernate.annotations.GenericGenerator;
@@ -52,6 +53,17 @@ public class UserStory {
 
     @OneToMany(mappedBy = "userStory",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Board> boards;
+
+    @OneToMany(mappedBy = "userStory",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Improvements> improvements;
+
+    public List<Improvements> getImprovements() {
+        return improvements;
+    }
+
+    public void setImprovements(List<Improvements> improvements) {
+        this.improvements = improvements;
+    }
 
     public List<Board> getBoards() {
         return boards;

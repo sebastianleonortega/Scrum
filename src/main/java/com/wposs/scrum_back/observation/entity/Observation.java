@@ -1,8 +1,10 @@
 package com.wposs.scrum_back.observation.entity;
 
+import com.wposs.scrum_back.improvements.entity.Improvements;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +17,17 @@ public class Observation {
     private UUID observationId;
     @Column(name = "observationName",nullable = false,unique = true,length = 30)
     private String observationName;
+
+    @OneToMany(mappedBy = "observation",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REMOVE})
+    private List<Improvements> improvements;
+
+    public List<Improvements> getImprovements() {
+        return improvements;
+    }
+
+    public void setImprovements(List<Improvements> improvements) {
+        this.improvements = improvements;
+    }
 
     public UUID getObservationId() {
         return observationId;

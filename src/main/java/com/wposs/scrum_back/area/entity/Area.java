@@ -1,5 +1,6 @@
 package com.wposs.scrum_back.area.entity;
 
+import com.wposs.scrum_back.improvements.entity.Improvements;
 import com.wposs.scrum_back.sprint.entity.Sprint;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.employe.entity.Employee;
@@ -32,6 +33,9 @@ public class Area {
     @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Sprint> sprints;
 
+    @OneToMany(mappedBy = "area",cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
+    private List<Improvements> improvements;
+
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "employee_area", schema = "wposs",
@@ -40,10 +44,17 @@ public class Area {
             uniqueConstraints = @UniqueConstraint(columnNames = {"employee_id", "area_id"}, name = "uc_employee_area"))
     private List<Employee> employees;
 
+    public List<Improvements> getImprovements() {
+        return improvements;
+    }
+
+    public void setImprovements(List<Improvements> improvements) {
+        this.improvements = improvements;
+    }
+
     public List<Sprint> getSprints() {
         return sprints;
     }
-
 
     public void setSprints(List<Sprint> sprints) {
         this.sprints = sprints;
