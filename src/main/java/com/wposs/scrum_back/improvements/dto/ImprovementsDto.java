@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ImprovementsDto implements Serializable {
     @JsonProperty(value = "improvementsId",access = JsonProperty.Access.READ_ONLY)
     private UUID improvementsId;
-    @JsonProperty(value = "areaIdImpro")
+    @JsonProperty(value = "areaId")
     @NotNull
     private UUID areaId;
     @JsonProperty(value = "teamId")
