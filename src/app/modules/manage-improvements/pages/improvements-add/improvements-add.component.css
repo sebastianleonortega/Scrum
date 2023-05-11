@@ -1,0 +1,111 @@
+
+.title {
+  text-align: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.span-text{
+  padding-left: 10px;
+}
+
+.subtitle{
+  margin-top: 25px;
+}
+
+
+.title_table{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+input:focus {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+button:focus {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+select:focus {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+textarea:focus {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+
+.table{
+  box-shadow: 2px 2px 5px #999;
+}
+
+.thead-ligth{
+  background-color: #e5e6e4;
+  color: black;
+}
+
+.mr-sm{
+  margin-right: 20px;
+}
+
+.btn-primary{
+  background-color: #219ebc;
+  border: 1px solid #219ebc;
+}
+
+.icon{
+  text-align: center;
+}
+
+
+.form-control{
+  width: 250%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.form-group{
+  margin-top: 20px;
+}
+
+.form-control-file{
+  margin-top: 10px;
+}
+
+.btn{
+  margin-top: 50px;
+}
+
+.form-select {
+  display: block;
+  width: 270%;
+  padding: .375rem 2.25rem .375rem .75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e);
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  -webkit-appearance: none;
+  appearance: none;
+}

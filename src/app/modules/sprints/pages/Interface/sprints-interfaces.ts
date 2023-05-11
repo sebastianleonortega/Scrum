@@ -7,5 +7,5 @@ export interface Sprints {
   areaId: string;
   sprintId: number;
   teamName: string;
-  sprintDay: number;
+  sprintDay: string;
 }

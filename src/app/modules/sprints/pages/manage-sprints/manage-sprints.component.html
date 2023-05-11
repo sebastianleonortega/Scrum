@@ -65,7 +65,6 @@
         <th scope="row" class="title_table">Fecha Inicial</th>
         <th scope="row" class="title_table">Fecha Final</th>
         <th scope="row" class="title_table">Dias de sprint</th>
-        <th scope="row" class="title_table">Calcular Dias Sprint</th>
         <th scope="row" class="title_table">Calcular Puntos Sprint</th>
         <th scope="row" class="title_table">Añadir HU</th>
       </tr>
@@ -77,9 +76,7 @@
         <td class="content_table">{{item.sprintStart}}</td>
         <td class="content_table">{{item.sprintEnd}}</td>
         <td class="content_table">{{item.sprintDay}}</td>
-        <td class="icon">
-          <button type="button" class="btn btn-primary" (click)="sendToChosenButton(item,'score-sprint-days')"><i class="fa-solid fa-user-clock"></i></button>
-        </td>
+
         <td class="icon">
           <button type="button" class="btn btn-primary" (click)="sendToChosenButton(item,'calculate_points_sprint')"><i class="fa-solid fa-calculator"></i></button>
         </td>

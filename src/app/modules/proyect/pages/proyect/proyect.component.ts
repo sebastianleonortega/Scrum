@@ -32,7 +32,6 @@ export class ProyectComponent implements OnInit {
       resp.forEach(item => {
         this.customerService.getCustomerById(item.clientId).forEach(customer => {
           item.clientId = customer.client_name;
-          console.log(customer.client_name);
         })
 
 

@@ -55,14 +55,6 @@ export class ManageSprintsComponent implements OnInit {
       },
     );
     this.getAllSprints();
-    this.selectArea();
-  }
-
-  getAllSprints() {
-    this.sprintService.getAllASprint().subscribe((data) => {
-      this.sprints = data;
-
-    })
   }
 
   selectArea() {
@@ -72,6 +64,13 @@ export class ManageSprintsComponent implements OnInit {
         this.teams = data;
       },
     );
+  }
+
+  getAllSprints() {
+    this.sprintService.getAllASprint().subscribe((data) => {
+      this.sprints = data;
+
+    })
   }
 
 

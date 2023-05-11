@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ImprovementsService {
-  private API_SERVER = '';
+  private API_SERVER = 'http://localhost:8020/improvements/';
 
   constructor(
     private httpClient: HttpClient
@@ -14,12 +14,24 @@ export class ImprovementsService {
   }
 
   public getAllImprovements(): Observable<any> {
-    return this.httpClient.get(this.API_SERVER + "/");
+    return this.httpClient.get(this.API_SERVER + "/all");
   }
 
   public saveImprovements(improvements: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER + "/", improvements)
+    return this.httpClient.post(this.API_SERVER + 'saveimprovements', improvements)
   }
+
+  getTeamArea(areaId: string): Observable<any>{
+    return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
+  }
+
+  GetAllTask():Observable<any>{
+    return this.httpClient.get(this.API_SERVER+'http://localhost:8020/task/all')
+  }
+  GetAllObservations():Observable<any>{
+    return this.httpClient.get(this.API_SERVER+'http://localhost:8020/observation/all')
+  }
+
 }
 
 

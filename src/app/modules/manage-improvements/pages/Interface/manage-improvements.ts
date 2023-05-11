@@ -1,5 +1,8 @@
 export interface ManageImprovements {
-  areaId: string;
+  areaIdImpro: string;
   teamId: string;
   userStoryId: number;
+  taskId: string;
+  observationId: string;
+  observationn: string;
 }

@@ -41,6 +41,7 @@ export class AreaComponent implements OnInit {
     );
   }
 
+
   saveArea(): void {
     if (this.areaForm.valid) {
       const data = {

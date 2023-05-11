@@ -48,25 +48,18 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.boardService.getAllBoard().subscribe(resp =>{
-      this.board = resp;
-    })
-
-    this.getAllTeams();
-
-
-  }
-  getAllTeams() {
     this.teamService.getAllTeams().subscribe(resp => {
       this.teams = resp
     });
+
+
   }
+
   getAllEmployeesTeam(){
     this.employeesService.getEmployeesAddToTeam(this.teamId).subscribe(resp=>{
       this.employees=resp;
 
     })
-    console.log(this.teamId);
   }
 
 
@@ -111,32 +104,5 @@ export class BoardComponent implements OnInit {
       );
     }
   }
-  // deleteBoard(id: string): void{
-  //   Swal.fire({
-  //     title: 'Desea eliminar este tablero?',
-  //     text: "La información eliminada no se puede recuperar",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //      confirmButtonText: 'si, eliminar!'
-  //   }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         this.boardService.deleteBoard(id).subscribe(resp =>{
-  //           Swal.fire({
-  //             position: 'top-end',
-  //             icon: 'success',
-  //             title: 'Tablero eliminado',
-  //             showConfirmButton: false,
-  //              timer: 1500
-  //            })
-  //             this.boardFrom.reset();
-  //             this.boardService.getAllBoard();
-  //          })
-
-  //       }
-  //     })
-
-  // }
 
 }

@@ -28,4 +28,7 @@ export class User_storyService {
   public getAllUserStoryToSubproject(subProjectId: string | null):Observable<UserStory>{
     return this.httpClient.get<UserStory>(this.API_SERVER+"/subproject/"+subProjectId)
   }
+  public getUserStoryToTeam(teamId: string){
+    return this.httpClient.get(this.API_SERVER+'/userstoryteam/'+teamId)
+  }
 }
