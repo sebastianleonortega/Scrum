@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class ImprovementsDto implements Serializable {
-    @JsonProperty(value = "improvementsId",access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "improvementsId", access = JsonProperty.Access.READ_ONLY)
     private UUID improvementsId;
     @JsonProperty(value = "areaId")
     @NotNull
@@ -28,6 +28,56 @@ public class ImprovementsDto implements Serializable {
     @JsonProperty(value = "observationn")
     @NotBlank
     private String observationn;
+    @JsonProperty(value = "areaName",access = JsonProperty.Access.READ_ONLY)
+    private String areaName;
+    @JsonProperty(value = "teamName",access = JsonProperty.Access.READ_ONLY)
+    private String teamName;
+    @JsonProperty(value = "userStoryName",access = JsonProperty.Access.READ_ONLY)
+    private String userStoryName;
+    @JsonProperty(value = "nameTask",access = JsonProperty.Access.READ_ONLY)
+    private String nameTask;
+    @JsonProperty(value = "observationName",access = JsonProperty.Access.READ_ONLY)
+    private String observationName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getUserStoryName() {
+        return userStoryName;
+    }
+
+    public void setUserStoryName(String userStoryName) {
+        this.userStoryName = userStoryName;
+    }
+
+    public String getNameTask() {
+        return nameTask;
+    }
+
+    public void setNameTask(String nameTask) {
+        this.nameTask = nameTask;
+    }
+
+    public String getObservationName() {
+        return observationName;
+    }
+
+    public void setObservationName(String observationName) {
+        this.observationName = observationName;
+    }
 
     public UUID getImprovementsId() {
         return improvementsId;
@@ -83,5 +133,13 @@ public class ImprovementsDto implements Serializable {
 
     public void setObservationn(String observationn) {
         this.observationn = observationn;
+    }
+
+    public UUID getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(UUID areaId) {
+        this.areaId = areaId;
     }
 }

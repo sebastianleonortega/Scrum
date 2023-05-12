@@ -1,6 +1,7 @@
 package com.wposs.scrum_back.improvements.service;
 
 import com.wposs.scrum_back.improvements.dto.ImprovementsDto;
+import com.wposs.scrum_back.improvements.entity.Improvements;
 
 import java.util.List;
 import java.util.UUID;

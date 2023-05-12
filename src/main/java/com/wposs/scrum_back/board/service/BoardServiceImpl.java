@@ -70,6 +70,4 @@ public class BoardServiceImpl implements BoardService{
                     return modelMapper.map(board,BoardDto.class);
                 }).orElseThrow(()->new MessageGeneric("el Tablero solicitado no se encentra Registrado","404",HttpStatus.NOT_FOUND)));
     }
-
-
 }

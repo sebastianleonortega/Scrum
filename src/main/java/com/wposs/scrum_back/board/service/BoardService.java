@@ -12,6 +12,5 @@ public interface BoardService {
     List<BoardDto> getAllBoards();
     BoardDto updateBoard(UUID boardId,BoardDto boardDto);
     Boolean deleteBoard(UUID boardId);
-
     Optional<BoardDto> getBoardById(UUID boardId);
 }

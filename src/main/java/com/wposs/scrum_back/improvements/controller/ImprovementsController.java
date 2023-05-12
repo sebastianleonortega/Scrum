@@ -2,6 +2,7 @@ package com.wposs.scrum_back.improvements.controller;
 
 import com.wposs.scrum_back.Exception.exceptions.MethodArgumentNotValidException;
 import com.wposs.scrum_back.improvements.dto.ImprovementsDto;
+import com.wposs.scrum_back.improvements.entity.Improvements;
 import com.wposs.scrum_back.improvements.service.ImprovementsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -49,13 +50,13 @@ public class ImprovementsController {
         return new ResponseEntity<>(improvementsService.saveImprovements(improvementsDto),HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/deleteimprovements")
+    @DeleteMapping("/deleteimprovements/{idimprovements}")
     @Operation(summary = "Delete Improvements")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",description = "Delete Success"),
             @ApiResponse(responseCode = "404",description = "Not Found Improvements")
     })
-    public ResponseEntity deleteImprovements(UUID idImprovements){
+    public ResponseEntity deleteImprovements(@PathVariable("idimprovements") UUID idImprovements){
         if (improvementsService.deleteImprovements(idImprovements)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
