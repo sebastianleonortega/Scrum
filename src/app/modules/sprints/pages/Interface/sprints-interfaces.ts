@@ -9,3 +9,8 @@ export interface Sprints {
   teamName: string;
   sprintDay: string;
 }
+
+
+export interface DateItem {
+  date: string;
+}

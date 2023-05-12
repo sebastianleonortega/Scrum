@@ -18,12 +18,15 @@ export class SprintsService {
   public saveSprint(sprint:any):Observable<any>{
     return this.httpClient.post(this.API_SERVER+"/savesprint",sprint);
   }
-  getSprintById(idSprint:string | null):Observable<any>{
-    return this.httpClient.get(this.API_SERVER+"/sprint/"+idSprint);
+  getSprintById(sprintId:string | null):Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/sprint/"+sprintId);
   }
-  updateSprint(idSprint:string| null,userStorySprint:any){
-    return this.httpClient.put(this.API_SERVER+"/"+idSprint,userStorySprint);
-  }
+
+
+  // updateSprint(idSprint:string| null,userStorySprint:any){
+  //   return this.httpClient.put(this.API_SERVER+"/"+idSprint,userStorySprint);
+  // }
+
 
   getTeamArea(areaId: string): Observable<any>{
     return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
