@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,12 @@ public class ImprovementsServiceImpl implements ImprovementsService{
         }catch (Exception ex){
             throw new MessageGeneric("Error al Intentar Registrar la Mejora","500", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public Optional<ImprovementsDto> getByIdimprovements(UUID improvementsId) {
+        return Optional.ofNullable(improvementsRepository.findById(improvementsId).map(improvements -> modelMapper.map(improvements,ImprovementsDto.class))
+                .orElseThrow(()-> new MessageGeneric("No se encuetra disponible la Mejora","404",HttpStatus.NOT_FOUND)));
     }
 
     @Override

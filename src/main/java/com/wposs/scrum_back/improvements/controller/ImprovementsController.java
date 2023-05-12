@@ -50,6 +50,18 @@ public class ImprovementsController {
         return new ResponseEntity<>(improvementsService.saveImprovements(improvementsDto),HttpStatus.CREATED);
     }
 
+    @GetMapping("/improvementsId/{id}")
+    @Operation(summary = "Get Improvements By Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Improvements Success"),
+            @ApiResponse(responseCode = "404",description = "Improvements Not Found")
+    })
+    public ResponseEntity<ImprovementsDto> getByIdImprovements(@PathVariable("id")UUID idImprovemets){
+        return improvementsService.getByIdimprovements(idImprovemets)
+                .map(improvementsDto -> new ResponseEntity<>(improvementsDto,HttpStatus.OK))
+                .orElse(null);
+    }
+
     @DeleteMapping("/deleteimprovements/{idimprovements}")
     @Operation(summary = "Delete Improvements")
     @ApiResponses(value = {
