@@ -25,11 +25,13 @@ ngOnInit(): void {
   })
 }
 
-abrirModalImprovements(): void {
-  const dialogRef = this.dialog.open(ImprovementsAddComponent, {width: '500px', maxHeight: '600px' });
+  abrirModalImprovements(): void {
+    const dialogRef = this.dialog.open(ImprovementsAddComponent, {width: '500px', maxHeight: '600px' });
 
-  dialogRef.afterClosed().subscribe(resul =>  {
-  })
-}
+    dialogRef.afterClosed().subscribe(resul =>  {
+    })
+  }
+
+
 
 }

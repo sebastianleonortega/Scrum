@@ -26,10 +26,10 @@ export class ImprovementsService {
   }
 
   GetAllTask():Observable<any>{
-    return this.httpClient.get(this.API_SERVER+'http://localhost:8020/task/all')
+    return this.httpClient.get('http://localhost:8020/task/all')
   }
   GetAllObservations():Observable<any>{
-    return this.httpClient.get(this.API_SERVER+'http://localhost:8020/observation/all')
+    return this.httpClient.get('http://localhost:8020/observation/all')
   }
 
 }
