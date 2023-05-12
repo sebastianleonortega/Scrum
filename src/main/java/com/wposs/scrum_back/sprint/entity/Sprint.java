@@ -1,12 +1,16 @@
 package com.wposs.scrum_back.sprint.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
+import com.wposs.scrum_back.employe.entity.Employee;
+import com.wposs.scrum_back.scoresprintdays.entity.ScoringSprintDays;
+import com.wposs.scrum_back.sprintemployee.entity.SprintEmployee;
 import com.wposs.scrum_back.team.entity.Team;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,6 +35,8 @@ public class Sprint {
     private Integer sprintCount;
     @Column(name = "day_sprint",nullable = false)
     private String sprintDay;
+    @Column(name = "sprint_daysd_date")
+    private Double sprintDaysDate;
 
     @ManyToOne
     @JoinColumn(name = "fk_area_id",insertable = false,updatable = false)
@@ -40,8 +46,30 @@ public class Sprint {
     @JoinColumn(name = "fk_team_id",insertable = false,updatable = false)
     private Team team;
 
+    @OneToMany(mappedBy = "sprint",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REMOVE})
+    private List<SprintEmployee> sprintEmployees;
+
+    @OneToMany(mappedBy = "sprint")
+    private List<ScoringSprintDays> scoringSprintDays;
+
+    public List<ScoringSprintDays> getScoringSprintDays() {
+        return scoringSprintDays;
+    }
+
+    public void setScoringSprintDays(List<ScoringSprintDays> scoringSprintDays) {
+        this.scoringSprintDays = scoringSprintDays;
+    }
+
     public String getDaySprint() {
         return sprintDay;
+    }
+
+    public List<SprintEmployee> getSprintEmployees() {
+        return sprintEmployees;
+    }
+
+    public void setSprintEmployees(List<SprintEmployee> sprintEmployees) {
+        this.sprintEmployees = sprintEmployees;
     }
 
     public void setDaySprint(String daySprint) {
@@ -108,7 +136,24 @@ public class Sprint {
         return team;
     }
 
+    public String getSprintDay() {
+        return sprintDay;
+    }
+
+    public Double getSprintDaysDate() {
+        return sprintDaysDate;
+    }
+
     public void setTeam(Team team) {
         this.team = team;
     }
+
+    public void setSprintDay(String sprintDay) {
+        this.sprintDay = sprintDay;
+    }
+
+    public void setSprintDaysDate(Double sprintDaysDate) {
+        this.sprintDaysDate = sprintDaysDate;
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.wposs.scrum_back.employe.entity;
 
 import com.wposs.scrum_back.board.entity.Board;
+import com.wposs.scrum_back.sprint.entity.Sprint;
+import com.wposs.scrum_back.sprintemployee.entity.SprintEmployee;
 import com.wposs.scrum_back.team.entity.Team;
 import com.wposs.scrum_back.area.entity.Area;
 import org.hibernate.annotations.GenericGenerator;
@@ -40,6 +42,9 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Board> boards;
 
+    @OneToMany(mappedBy = "employee",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REMOVE})
+    private List<SprintEmployee> sprintEmployees;
+
     public List<Board> getBoards() {
         return boards;
     }
@@ -66,6 +71,14 @@ public class Employee {
 
     public String getEmployeeName() {
         return employeeName;
+    }
+
+    public List<SprintEmployee> getSprintEmployees() {
+        return sprintEmployees;
+    }
+
+    public void setSprintEmployees(List<SprintEmployee> sprintEmployees) {
+        this.sprintEmployees = sprintEmployees;
     }
 
     public void setEmployeeName(String employeeName) {
@@ -103,5 +116,7 @@ public class Employee {
     public void setAreas(List<Area> areas) {
         this.areas = areas;
     }
+
+
 
 }
