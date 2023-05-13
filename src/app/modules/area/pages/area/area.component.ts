@@ -79,6 +79,7 @@ export class AreaComponent implements OnInit {
     }).then((result) => {
         if (result.isConfirmed) {
           this.areaService.deleteArea(id).subscribe(resp =>{
+
             Swal.fire({
               position: 'top-end',
               icon: 'success',

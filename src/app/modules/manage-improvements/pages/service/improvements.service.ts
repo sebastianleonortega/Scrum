@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import { ManageImprovements } from '../Interface/manage-improvements';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,15 @@ export class ImprovementsService {
     return this.httpClient.post(this.API_SERVER + 'saveimprovements', improvements)
   }
 
+  deleteImprovements(id: string):Observable<ManageImprovements[]>{
+    console.log(id);
+    return this.httpClient.delete<ManageImprovements[]>(this.API_SERVER +'deleteimprovements/'+id)
+  }
+
+  getImprovementsById(improvementsId: string):Observable<ManageImprovements[]>{
+    return this.httpClient.get<ManageImprovements[]>(this.API_SERVER+'improvementsId/'+improvementsId);
+  }
+
   getTeamArea(areaId: string): Observable<any>{
     return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
   }
@@ -33,8 +43,3 @@ export class ImprovementsService {
   }
 
 }
-
-
-
-
-

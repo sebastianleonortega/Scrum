@@ -37,6 +37,7 @@ export class EmployeeEditFormComponent implements OnInit {
   getEmployeeById(id: string | null) {
     this.employeesService.getEmployeeById(id).subscribe(resp => {
       this.employee = resp;
+
       this.employeeEditForm.patchValue({
         employeeName: resp.employeeName,
         employeeCharge: resp.employeeCharge,

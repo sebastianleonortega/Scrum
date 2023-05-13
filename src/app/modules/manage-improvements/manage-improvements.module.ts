@@ -4,12 +4,14 @@ import { ManageImprovementsRoutingModule } from './manage-improvements-routing.m
 import { ManageImprovementsComponent } from './pages/manage-improvements/manage-improvements.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { ImprovementsAddComponent } from './pages/improvements-add/improvements-add.component';
+import { ImprovementsSeeComponent } from './pages/improvements-see/improvements-see.component';
 
 
 @NgModule({
   declarations: [
     ManageImprovementsComponent,
-    ImprovementsAddComponent
+    ImprovementsAddComponent,
+    ImprovementsSeeComponent
   ],
   imports: [
     CommonModule,

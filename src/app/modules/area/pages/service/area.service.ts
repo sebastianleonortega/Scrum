@@ -24,7 +24,7 @@ export class AreaService {
   updateArea(id:string,dataArea:any){
     return this.httpClient.put(this.API_SERVER+"/"+id,dataArea);
   }
-  deleteArea(id: string,){
-    return this.httpClient.delete(this.API_SERVER+"/deletearea/"+id);
+  deleteArea(id: string):Observable<AreaInterface[]>{
+    return this.httpClient.delete<AreaInterface[]>(this.API_SERVER+"/deletearea/"+id);
   }
 }

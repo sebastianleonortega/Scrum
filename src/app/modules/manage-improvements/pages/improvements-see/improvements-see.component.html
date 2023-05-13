@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="title">
+    <p>Visualizar Mejoras</p>
+  </div>
+
+
+    <div class="form-row align-items-center">
+      <form class="form" [formGroup]="improvementsForm" >
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">área</span>
+          </div>
+          <select class="form-control" formControlName="areaName">
+            <option value="{{item.areaId}}" *ngFor="let item of improvements">{{item.areaName}}</option>
+          </select>
+        </div>
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">equipo</span>
+          </div>
+          <label class="col-sm-3">
+            <input type="text" class="form-control" formControlName="teamId" >
+          </label>
+        </div>
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">historia de usuario</span>
+          </div>
+          <label class="col-sm-3">
+            <input type="text" class="form-control" formControlName="userStoryId" >
+          </label>
+        </div>
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">tarea</span>
+          </div>
+          <label class="col-sm-3">
+            <input type="text" class="form-control" formControlName="taskId" >
+          </label>
+        </div>
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">observación</span>
+          </div>
+          <label class="col-sm-3">
+            <input type="text" class="form-control" formControlName="observationId" >
+          </label>
+        </div>
+
+        <div class="input-group input-group-sm flex-column mb-3 ">
+          <div class="input-group-prepend">
+            <span class="mr-sm ">descripcion</span>
+          </div>
+          <label class="col-sm-3">
+            <input type="text" class="form-control" formControlName="observationn" >
+          </label>
+        </div>
+
+
+    <div class="form-group col-sm-4">
+      <span>Digite las observaciones</span>
+      <textarea class="form-control" rows="3" formControlName="observationn"></textarea>
+    </div>
+
+    <button class="btn btn btn-primary mb-2 "  >Guardar</button><br>
+      </form>
+    </div>
+
+</div>

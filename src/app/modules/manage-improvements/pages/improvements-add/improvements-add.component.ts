@@ -4,6 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { ImprovementsService } from '@app/modules/manage-improvements/pages/service/improvements.service';
 import { AreaService } from '@app/modules/area/pages/service/area.service';
 import { AreaInterface } from '@app/modules/area/pages/Interface/interface-area';
+import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ManageImprovementsComponent } from '../manage-improvements/manage-improvements.component';
 
 @Component({
   selector: 'app-improvements-add',
@@ -30,11 +33,13 @@ export class ImprovementsAddComponent implements OnInit{
   userStorys: any;
   observations: any;
   areas : AreaInterface[]= [];
+  improvements: any;
 
   constructor(
     private userStoryService: User_storyService,
     private areaService : AreaService,
-    private improvementsService:ImprovementsService
+    private improvementsService:ImprovementsService,
+    private dialogRef : MatDialogRef<ManageImprovementsComponent>
   ) {
   }
 
@@ -76,6 +81,11 @@ export class ImprovementsAddComponent implements OnInit{
     })
   }
 
+  getAllImprovements(){
+    this.improvementsService.getAllImprovements().subscribe(resp => {
+      this.improvements = resp;
+    })
+  }
 
 
   saveImprovements(): void {
@@ -89,8 +99,28 @@ export class ImprovementsAddComponent implements OnInit{
         observationn: this.improvementsForm.get('observationn')?.value
       }
       this.improvementsService.saveImprovements(improvements).subscribe((resp=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Mejora agregado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        this.dialogRef.close();
+        this.improvementsForm.reset();
+        this.getAllImprovements();
+        location.reload();
+
       }))
 
     }
   }
+  CloseModal(): void {
+    this.dialogRef.close();
+
+
+  }
+
+
 }
