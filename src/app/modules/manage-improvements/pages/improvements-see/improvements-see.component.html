@@ -7,30 +7,64 @@
     <div class="form-row align-items-center">
       <form class="form" [formGroup]="improvementsForm" >
 
-        <div class="input-group input-group-sm flex-column mb-3 ">
-          <div class="input-group-prepend">
-            <span class="mr-sm ">área</span>
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label >Area</label>
+              <input type="text" id="areaName" class="form-control" formControlName="areaName">
+            </div>
           </div>
-          <select class="form-control" formControlName="areaName">
-            <option value="{{item.areaId}}" *ngFor="let item of improvements">{{item.areaName}}</option>
-          </select>
+          <div class="form-col">
+            <div class="form-group">
+              <label>Equipo</label>
+              <input type="text" id="teamName" class="form-control" formControlName="teamName">
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              <label for="teamName">Historia de usuario</label>
+              <input type="text" id="teamName" class="form-control" formControlName="userStoryName">
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              <label>Tarea</label>
+              <input type="text" id="teamName" class="form-control" formControlName="nameTask">
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              <label>Tipo de observación</label>
+              <input type="text" id="teamName" class="form-control" formControlName="observationName">
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              <label >descripción</label>
+              <input  type="text" id="teamName" class="form-control" formControlName="observationn">
+            </div>
+          </div>
+
+
+
+
+
         </div>
 
-        <div class="input-group input-group-sm flex-column mb-3 ">
-          <div class="input-group-prepend">
-            <span class="mr-sm ">equipo</span>
-          </div>
-          <label class="col-sm-3">
-            <input type="text" class="form-control" formControlName="teamId" >
-          </label>
-        </div>
+
+
+        <!--
 
         <div class="input-group input-group-sm flex-column mb-3 ">
           <div class="input-group-prepend">
             <span class="mr-sm ">historia de usuario</span>
           </div>
           <label class="col-sm-3">
-            <input type="text" class="form-control" formControlName="userStoryId" >
+            <input type="text" class="form-control" formControlName="userStoryName" >
           </label>
         </div>
 
@@ -39,7 +73,7 @@
             <span class="mr-sm ">tarea</span>
           </div>
           <label class="col-sm-3">
-            <input type="text" class="form-control" formControlName="taskId" >
+            <input type="text" class="form-control" formControlName="nameTask" >
           </label>
         </div>
 
@@ -48,7 +82,7 @@
             <span class="mr-sm ">observación</span>
           </div>
           <label class="col-sm-3">
-            <input type="text" class="form-control" formControlName="observationId" >
+            <input type="text" class="form-control" formControlName="observationName" >
           </label>
         </div>
 
@@ -57,15 +91,12 @@
             <span class="mr-sm ">descripcion</span>
           </div>
           <label class="col-sm-3">
-            <input type="text" class="form-control" formControlName="observationn" >
+            <input type="text" class="form-control"  formControlName="observationn" >
           </label>
-        </div>
+        </div> -->
 
 
-    <div class="form-group col-sm-4">
-      <span>Digite las observaciones</span>
-      <textarea class="form-control" rows="3" formControlName="observationn"></textarea>
-    </div>
+
 
     <button class="btn btn btn-primary mb-2 "  >Guardar</button><br>
       </form>

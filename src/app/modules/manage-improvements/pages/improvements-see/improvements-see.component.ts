@@ -13,14 +13,14 @@ export class ImprovementsSeeComponent implements OnInit{
 
   improvementsForm: FormGroup = new FormGroup({
     areaName: new FormControl({value:null, disabled: true }),
-    teamName: new FormControl(null, [Validators.required]),
-    userStoryName: new FormControl(null, [Validators.required]),
-    nameTask: new FormControl(null, [Validators.required]),
-    observationName: new FormControl(null, [Validators.required]),
-    observationn: new FormControl(null, [Validators.required, Validators.maxLength(200)])
+    teamName: new FormControl({value:null, disabled: true }),
+    userStoryName: new FormControl({value:null, disabled: true }),
+    nameTask: new FormControl({value:null, disabled: true }),
+    observationName: new FormControl({value:null, disabled: true }),
+    observationn: new FormControl({value:null, disabled: true })
   });
 
-  improvements : ManageImprovements[]=[];
+  improvements : any;
   improvementsId: any;
 
   constructor(
@@ -39,14 +39,14 @@ export class ImprovementsSeeComponent implements OnInit{
     this.improvementsService.getImprovementsById(id).subscribe(resp => {
       this.improvements = resp;
 
-        // this.improvementsForm.patchValue({
-        //   areaName: this.improvements.areaName,
-        //   teamName: this.improvements.teamName,
-        //   userStoryName: this.improvements.userStoryName,
-        //   nameTask: this.improvements.nameTask,
-        //   observationName: this.improvements.observationName,
-        //   observationn: this.improvements.observationn,
-        // });
+        this.improvementsForm.patchValue({
+          areaName: this.improvements.areaName,
+          teamName: this.improvements.teamName,
+          userStoryName: this.improvements.userStoryName,
+          nameTask: this.improvements.nameTask,
+          observationName: this.improvements.observationName,
+          observationn: this.improvements.observationn,
+        });
     })
   }
 
