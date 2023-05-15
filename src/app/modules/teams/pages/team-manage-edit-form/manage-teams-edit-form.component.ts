@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Team} from "@app/modules/teams/pages/interface/team";
 import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TeamManageComponent } from '../team-manage/team-manage.component';
 
 @Component({
   selector: 'app-teams-edit-form',
@@ -11,45 +13,46 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-teams-edit-form.component.css']
 })
 export class ManageTeamsEditFormComponent implements OnInit {
-  teamsEditForm: FormGroup = new FormGroup({});
-  id: any;
+  teamsEditForm: FormGroup = new FormGroup({
+    teamName: new FormControl(null, [Validators.required]),
+  });
+
+  id: string= '';
   team: any;
-  data : Team | any;
 
   constructor(
-    private formBuilder: FormBuilder,
     public manageTeamService: TeamsService,
     private route: ActivatedRoute,
-    public route1: Router
+    public route1: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef : MatDialogRef<TeamManageComponent>,
   ) {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('teamId');
-    this.getManageTeamById(this.id);
-    this.teamsEditForm =  new FormGroup({
-      teamName: new FormControl(null, [Validators.required]),
-    });
+    this.id = this.data.teamId;
+    this.getTeamById(this.id);
 
 
   }
 
-  getManageTeamById(id: string | null) {
-    this.manageTeamService.getTeamById(id).subscribe(resp => {
+getTeamById(id: string | null){
+  this.manageTeamService.getTeamById(id).subscribe({
+    next: (resp)=>{
       this.team = resp;
+
       this.teamsEditForm.patchValue({
         teamName: this.team.teamName,
-      });
-
-
-    })
-  }
+      })
+    }
+  })
+}
 
   edit() {
 
     if (this.teamsEditForm.valid) {
 
-      this.data = {
+      const data = {
         teamName: this.teamsEditForm.get('teamName')?.value,
 
       }
@@ -58,13 +61,22 @@ export class ManageTeamsEditFormComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Nombre del equipo aditada',
+            title: 'Area editada',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
+
           })
+          this.dialogRef.close();
           this.teamsEditForm.reset();
-          this.route1.navigateByUrl('app/teams').then();
       });
     }
   }
+
 }

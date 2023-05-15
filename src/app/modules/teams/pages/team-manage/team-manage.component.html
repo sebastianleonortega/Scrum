@@ -37,9 +37,9 @@
       <tr *ngFor="let item of team;let i = index">
         <td>{{i + 1}}</td>
         <td>{{item.teamName}}</td>
-        <td>{{item.areaId}}</td>
+        <td>{{item.areaName}}</td>
         <td class="icon">
-          <button class="btn btn-success" [routerLink]="['teams-edit',item.teamId]">
+          <button class="btn btn-success" (click)="editTeamModal(item.teamId)">
             <i class="fas fa-edit"></i></button>
           <button class="btn btn-success" [routerLink]="['add-employee.ts-team',item.teamId]">
             <i class="fa-solid fa-user-plus"></i></button>

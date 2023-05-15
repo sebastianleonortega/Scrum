@@ -18,7 +18,7 @@ export class TeamTasksEditFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private teamTasksService: TeamTasksService,
     private route: ActivatedRoute,
-    private route1: Router
+    private route1: Router,
     ) {
   }
 

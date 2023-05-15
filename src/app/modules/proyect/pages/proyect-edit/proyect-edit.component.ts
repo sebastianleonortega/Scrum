@@ -81,7 +81,6 @@ export class ProyectEditComponent implements OnInit {
       }
       this.proyectService.updateProyect(this.projectId, data).subscribe(
         (resp) => {
-          this.proyectEditForm.reset();
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -97,6 +96,7 @@ export class ProyectEditComponent implements OnInit {
             background: '#E6F4EA',
           })
           this.dialogRef.close();
+          this.proyectEditForm.reset();
         },
         error => (console.error(error)));
     }

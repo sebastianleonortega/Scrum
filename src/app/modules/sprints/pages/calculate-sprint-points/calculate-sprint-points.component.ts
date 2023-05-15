@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SprintsService} from "@app/modules/sprints/pages/service/sprints.service";
 import {ActivatedRoute} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import Swal from "sweetalert2";
 
@@ -12,8 +12,15 @@ import Swal from "sweetalert2";
   styleUrls: ['./calculate-sprint-points.component.css']
 })
 export class CalculateSprintPointsComponent implements OnInit {
-  calculateSprintForm: FormGroup = new FormGroup({})
-  teamId: string | null = '';
+  calculateSprintForm: FormGroup = new FormGroup({
+    employeeId: new FormControl(null, [Validators.required]),
+    sprintEmployeePercentage: new FormControl(null, [Validators.required]),
+    sprintEmployeeDescription: new FormControl(null, [Validators.required]),
+    sprintEmployeeDay: new FormControl(null, [Validators.required])
+
+  });
+
+  teamId: string | null='';
   employees: any;
   sprintId: string | null = '';
   sprintDays: any;
@@ -28,7 +35,6 @@ export class CalculateSprintPointsComponent implements OnInit {
 
   constructor(
     public teamService: TeamsService,
-    public formBuilder: FormBuilder,
     public sprintService: SprintsService,
     public route: ActivatedRoute
   ) {
@@ -38,13 +44,7 @@ export class CalculateSprintPointsComponent implements OnInit {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
     this.sprintId = this.route.snapshot.paramMap.get('sprintId');
 
-    this.calculateSprintForm = this.formBuilder.group({
-      employeeId: new FormControl(null, [Validators.required]),
-      sprintEmployeePercentage: new FormControl(null, [Validators.required]),
-      sprintEmployeeDescription: new FormControl(null, [Validators.required]),
-      sprintEmployeeDay: new FormControl(null, [Validators.required])
 
-    })
     this.getAllCalculationPercentageEmployee();
     this.getEmployeeByTeam();
     this.getBySprintId();

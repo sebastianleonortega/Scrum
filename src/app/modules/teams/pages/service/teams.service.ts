@@ -27,7 +27,7 @@ export class TeamsService {
     return this.httpClient.get(this.API_SERVER + "/" + id);
   }
 
-  updateTeam(id: string, team: Team) {
+  updateTeam(id: string, team: any) {
     return this.httpClient.put(this.API_SERVER + "/" + id, team);
   }
 
