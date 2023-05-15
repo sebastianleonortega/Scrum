@@ -35,14 +35,14 @@ public class ProjectDto {
     private String clientId;
 
     @JsonProperty(value = "archive")
-    @NotBlank
-    private String archive;
+    @NotNull
+    private Byte[] archive;
 
-    public String getArchive() {
+    public Byte[] getArchive() {
         return archive;
     }
 
-    public void setArchive(String archive) {
+    public void setArchive(Byte[] archive) {
         this.archive = archive;
     }
 

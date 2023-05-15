@@ -4,6 +4,7 @@ import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.client.entity.Client;
 import com.wposs.scrum_back.subProject.entity.SubProject;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.core.codec.ByteArrayEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Project {
     private String clientId;
 
     @Column(name = "project_img")
-    private String archive;
+    private Byte[] archive;
 
     @ManyToOne
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
@@ -42,11 +43,11 @@ public class Project {
     @OneToMany(mappedBy = "project",cascade ={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
 
-    public String getArchive() {
+    public Byte[] getArchive() {
         return archive;
     }
 
-    public void setArchive(String archive) {
+    public void setArchive(Byte[] archive) {
         this.archive = archive;
     }
 
