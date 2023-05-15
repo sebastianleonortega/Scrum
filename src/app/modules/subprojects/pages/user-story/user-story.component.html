@@ -1,9 +1,9 @@
 <div class="container">
   <span class="title">Historias de ususario</span>
   <nav class="navbar navbar-light bg-light">
-    <p>Realice la busqueda correspondiente de los proyectos para listar</p>
+    <p>Realice la busqueda de la correspondiente Historia de usuariopara listar</p>
     <div class="search">
-      <input class="form-control mr-sm" type="search" placeholder="Buscar proyecto" aria-label="Search">
+      <input class="form-control mr-sm" type="search" placeholder="historia de usuario" aria-label="Search">
       <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
   </nav>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="content">
-    <button type="button" class="btn btn-primary mb-2" (click)="abrirModalUserStory()">Agregar historia de usuario</button>
+    <button type="button" class="btn btn-primary mb-2" (click)="addUserStoryModal()">Agregar historia de usuario</button>
   </div>
 
   <div class="table-responsive">
@@ -37,7 +37,7 @@
         <td>{{item.fechaMaxima}}</td>
         <td>{{item.userStoryScore}}</td>
         <td class="icon">
-          <button type="button" class="btn btn-success" [routerLink]="['user_story_management_form',item.userStoryId]">
+          <button type="button" class="btn btn-success" (click)="editUserStoryModal(item.userStoryId)">
             <i class="fas fa-edit"></i></button>
         </td>
       </tr>

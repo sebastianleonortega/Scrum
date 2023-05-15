@@ -28,6 +28,10 @@ export class ProyectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllProject();
+  }
+
+  getAllProject():void{
     this.proyectService.getAllProyect().subscribe(resp => {
       resp.forEach(item => {
         this.customerService.getCustomerById(item.clientId).forEach(customer => {
@@ -43,17 +47,18 @@ export class ProyectComponent implements OnInit {
     });
   }
 
-  abrirModalProjet(): void {
+  addProjetModal(): void {
     const dialogRef = this.dialog.open(ProyectAddComponent, {width: '500px' });
 
     dialogRef.afterClosed().subscribe(resul =>  {
+      this.getAllProject();
     })
   }
 
   editProjetModal(proyectId: number) {
     const dialogRef = this.dialog.open(ProyectEditComponent, {width: '500px',    data:{projectId: proyectId }});
      dialogRef.afterClosed().subscribe(resul => {
-
+      this.getAllProject();
      })
   }
 }

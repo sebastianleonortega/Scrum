@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { User_storyService } from "@app/modules/subprojects/pages/service/user_story.service";
 import { ActivatedRoute } from "@angular/router";
 import { UserStoyStatusService } from '@app/modules/subprojects/pages/service/user-stoy-status.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { UserStoryComponent } from '../user-story/user-story.component';
 
 @Component({
   selector: 'app-user-story-management',
@@ -12,31 +14,33 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-story-management.component.css']
 })
 export class UserStoryManagementComponent implements OnInit {
-  userStoryForm: FormGroup = new FormGroup({});
+  userStoryForm: FormGroup = new FormGroup({
+    userStoryName: new FormControl(null, [Validators.required]),
+    userStoryArchive: new FormControl(null, []),
+    userStoryStateId: new FormControl(null, [Validators.required]),
+    userStoryScore: new FormControl(null, [Validators.required]),
+    fechaMaxima: new FormControl(null, [Validators.required])
+  });
+
   userStory: any;
   id: any;
   userStoryState;
 
 
   constructor(
-    private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
     private route: ActivatedRoute,
     private userStoryStateService: UserStoyStatusService,
     private route1:Router,
+    private dialogRef: MatDialogRef<UserStoryComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     ){
   }
 
   ngOnInit(): void {
-    this.userStoryForm = this.formBuilder.group({
-      userStoryName: new FormControl(null, [Validators.required]),
-      userStoryArchive: new FormControl(null, []),
-      userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryScore: new FormControl(null, [Validators.required]),
-      fechaMaxima: new FormControl(null, [Validators.required])
-    });
 
-    this.id = this.route.snapshot.paramMap.get('userStoryId');
+
+    this.id = this.data.userStoryId;
     this.getUserStoryById(this.id)
     this.getUserStoryState()
   }
@@ -74,15 +78,24 @@ export class UserStoryManagementComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Historia de usuario editada  ',
+            title: 'Historia de Usuario editada',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
         },
         );
-        this.route1.navigateByUrl('app/user-story').then();
         this.userStoryForm.reset();
+        this.dialogRef.close();
     }
 
   }
+
+
 }

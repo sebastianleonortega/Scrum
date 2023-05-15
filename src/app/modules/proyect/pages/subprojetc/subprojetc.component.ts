@@ -21,16 +21,19 @@ export class SubprojetcComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.getAllSubproject();
+  }
+  getAllSubproject():void{
     this.subprojectService.getAllSubprojects().subscribe(resp => {
       this.subproject = resp;
     });
   }
 
-abrirModalSubprojetc(): void {
+addSubprojetModal(): void {
   const dialogRef = this.dialog.open(SubprojetcAddComponent, {width: '500px'});
 
   dialogRef.afterClosed().subscribe(resul => {
+    this.getAllSubproject();
   })
 }
 
@@ -39,13 +42,14 @@ editSubProjetModal(subProyectId: number) {
   const dialogRef = this.dialog.open(SubprojetcEditComponent, {width: '500px',    data:{subProjectId: subProyectId }});
 
    dialogRef.afterClosed().subscribe(resul => {
-
+    this.getAllSubproject();
    })
 }
-abrirModalUserStory(): void {
+addUserStoryModal(): void {
   const dialogRef = this.dialog.open(UserStoryAddComponent, {width: '500px', maxHeight: '600px' });
 
   dialogRef.afterClosed().subscribe(resul =>  {
+
   })
 }
 

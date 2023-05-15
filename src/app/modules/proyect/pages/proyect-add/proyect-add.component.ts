@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { Area } from '@app/modules/area/pages/Interface/interface-area';
 import { Client } from '@app/modules/customer/pages/Interface/customer-interface';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ProyectModule } from '../../proyect.module';
 
 
 @Component({
@@ -14,10 +16,11 @@ import Swal from 'sweetalert2';
 })
 export class ProyectAddComponent implements OnInit {
 
-  proyectAddForm: FormGroup = new FormGroup({
-    proyectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-      proyectClient: new FormControl(null, [Validators.required]),
-      proyectArea: new FormControl(null, [Validators.required]),
+  projectAddForm: FormGroup = new FormGroup({
+  projectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+  projectClient: new FormControl(null, [Validators.required]),
+  projectArea: new FormControl(null, [Validators.required]),
+  // archive: new FormControl(),
   });
 
   public clients : Client[] = [];
@@ -27,45 +30,63 @@ export class ProyectAddComponent implements OnInit {
 
     private projectService: ProjectService,
     private route: Router,
+    private dialogRef: MatDialogRef<ProyectModule>,
   ) {
   }
 
   ngOnInit(): void {
 
-    this.projectService.getClient().subscribe((data) => {
-      this.clients = data;
-    }, );
-
-    this.projectService.getArea().subscribe((data) => {
-      this.areas = data;
-    },
-     );
+    this.getAllClient();
+    this.getAllAreas();
   }
 
-  saveProyect(): void {
-    if (this.proyectAddForm.valid) {
+  getAllAreas():void {
+    this.projectService.getArea().subscribe({
+      next: (resp)=> {
+        this.areas = resp;
+
+      }})
+  }
+  getAllClient():void{
+    this.projectService.getClient().subscribe({
+      next: (resp)=> {
+        this.clients = resp;
+      }
+    })
+  }
+
+  saveProject(): void {
+    if (this.projectAddForm.valid) {
       const data = {
-        projectName: this.proyectAddForm.get('proyectName')?.value,
-        clientId: this.proyectAddForm.get('proyectClient')?.value,
-        areaId: this.proyectAddForm.get('proyectArea')?.value,
+        projectName: this.projectAddForm.get('projectName')?.value,
+        clientId: this.projectAddForm.get('projectClient')?.value,
+        areaId: this.projectAddForm.get('projectArea')?.value,
+        // archive: this.projectAddForm.get('archive')?.value,
       }
       this.projectService.saveProyect(data).subscribe((resp) => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Proyecto agregado',
+          title: 'Proyecto creado',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+          },
+          background: '#E6F4EA',
         })
-
-        this.proyectAddForm.reset()
-        location.reload();
-
+        this.dialogRef.close();
+        this.projectAddForm.reset()
       }, );
     }
   }
 
-
+  CloseModal(): void {
+    this.dialogRef.close();
+  }
 
   upload_image(event: any) {
     let archive = event.target.files

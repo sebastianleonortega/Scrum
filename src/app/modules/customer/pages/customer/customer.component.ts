@@ -15,8 +15,8 @@ export class CustomerComponent implements OnInit {
 
   customerForm: FormGroup = new FormGroup({
     clientNit: new FormControl(null, [Validators.required]),
-      clientName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-      clientId: new FormControl()
+    clientName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+    clientId: new FormControl()
   });
 
   customer: CustomerInterface | any;
@@ -31,9 +31,7 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.customerService.getAllCustomer().subscribe(resp => {
-      this.customer = resp;
-    })
+   this.getAllCustomer();
 
   }
 
@@ -56,7 +54,14 @@ export class CustomerComponent implements OnInit {
             icon: 'success',
             title: 'Cliente creado',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
           this.customerForm.reset();
           this.getAllCustomer();
@@ -69,7 +74,7 @@ export class CustomerComponent implements OnInit {
     editCustomerModal(clientNit: string){
       const dialogRef = this.dialog.open(CustomerEditFormComponent, {width: '500px', data:{clientNit: clientNit}})
       dialogRef.afterClosed().subscribe(resp =>{
-
+        this.getAllCustomer();
       })
     }
 

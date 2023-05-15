@@ -29,9 +29,7 @@ export class AreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.areaService.getAllArea().subscribe(resp => {
-      this.area = resp;
-    })
+    this.getAllAreas();
   }
 
   getAllAreas(){
@@ -52,11 +50,18 @@ export class AreaComponent implements OnInit {
       this.areaService.saveArea(data).subscribe(
         () => {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Area guardada',
-            showConfirmButton: false,
-            timer: 1500
+              position: 'top-end',
+              icon: 'success',
+              title: 'Area guardada',
+              showConfirmButton: false,
+              timer: 1500,
+              toast: true,
+              customClass: {
+                container: 'my-swal-container',
+                title: 'my-swal-title',
+                icon: 'my-swal-icon',
+              },
+              background: '#E6F4EA',
           })
           this.areaForm.reset();
           this.getAllAreas();
@@ -82,27 +87,36 @@ export class AreaComponent implements OnInit {
 
             Swal.fire({
               position: 'top-end',
-              icon: 'success',
-              title: 'Area eliminada',
-              showConfirmButton: false,
-               timer: 1500
-             })
-              this.areaForm.reset();
-              this.getAllAreas();
+                icon: 'success',
+                title: 'Area eliminada',
+                showConfirmButton: false,
+                timer: 1500,
+                toast: true,
+                customClass: {
+                  container: 'my-swal-container',
+                  title: 'my-swal-title',
+                  icon: 'my-swal-icon',
+                  popup: 'my-swal-popup',
+                },
+                background: '#F44336',
+
            })
 
-        }
-      })
+        })
+      }})
 
 
   }
+
 
   editAreaModal(areaId: string) {
     const dialogRef = this.dialog.open(AreaEditComponent, {width: '500px',    data:{areaId: areaId }});
      dialogRef.afterClosed().subscribe(resul => {
-
+      this.getAllAreas();
      })
-  }
+
+
+    }
 
 
 }

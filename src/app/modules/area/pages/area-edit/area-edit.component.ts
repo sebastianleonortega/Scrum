@@ -61,14 +61,20 @@ export class AreaEditComponent implements OnInit {
       this.areaService.updateArea(this.areaId, data).subscribe(
         (resp) => {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Area aditada',
-            showConfirmButton: false,
-            timer: 1500
+          position: 'top-end',
+          icon: 'success',
+          title: 'Area editada',
+          showConfirmButton: false,
+          timer: 1500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+          },
+          background: '#E6F4EA',
           })
           this.dialogRef.close();
-          location.reload();
           this.areaEditForm.reset();
           this.getAllArea();
         },

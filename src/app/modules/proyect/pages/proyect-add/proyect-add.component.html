@@ -4,18 +4,18 @@
   </div>
 
   <div class="form-row align-items-center">
-    <form class="project-form" [formGroup]="proyectAddForm" (ngSubmit)="saveProyect()">
+    <form class="project-form" [formGroup]="projectAddForm" (ngSubmit)="saveProject()">
 
       <div class="form-group">
         <label>Nombre del proyecto</label>
         <input type="text" class="form-control" placeholder="Ingrese el nombre del proyecto"
-               formControlName="proyectName">
+               formControlName="projectName">
       </div>
 
       <div class="form-group mb-3" >
         <span class="mr-sm">Seleccione el cliente</span>
         <div class="label-text">
-          <select class="form-control" formControlName="proyectClient">
+          <select class="form-control" formControlName="projectClient">
             <option  *ngFor="let client of clients" value="{{client.clientNit}}">{{ client.client_name}}</option>
          </select>
         </div>
@@ -23,7 +23,7 @@
 
       <div class="form-group">
         <label>Seleccione el área</label>
-        <select class="form-control" formControlName="proyectArea">
+        <select class="form-control" formControlName="projectArea">
           <option value="{{area.areaId}}" *ngFor="let area of areas">{{area.areaName}}</option>
         </select>
       </div>
@@ -32,12 +32,12 @@
         <form>
           <div class="form-group">
             <span class="mr-sm">Archivo</span>
-            <input type="file" class="form-control-file" formControlName="userStoryArchive" (change)="upload_image($event)">
+            <input type="file" class="form-control-file" formControlName="archive" (change)="upload_image($event)">
           </div>
         </form>
       </div>
 
-      <button class="button btn btn btn-primary mb-2" type="submit" [disabled]="proyectAddForm.invalid" >Agregar</button>
+      <button class="button btn btn btn-primary mb-2" type="submit" [disabled]="projectAddForm.invalid" >Agregar</button>
     </form>
   </div>
 </div>

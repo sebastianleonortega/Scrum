@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {User_storyService} from "@app/modules/subprojects/pages/service/user_story.service";
 import {UserStory} from "@app/modules/subprojects/pages/Interface/userStory";
 import {SubprojectService} from "@app/modules/proyect/pages/service/subproject.service";
 import { MatDialog } from '@angular/material/dialog';
 import { UserStoryAddComponent } from '../user-story-add/user-story-add.component';
+import { UserStoryManagementComponent } from '../user-story-management/user-story-management.component';
 
 @Component({
   selector: 'app-user-story',
@@ -13,12 +14,21 @@ import { UserStoryAddComponent } from '../user-story-add/user-story-add.componen
 })
 export class UserStoryComponent implements OnInit {
 
-  userStoryForm: FormGroup = new FormGroup({});
+  userStoryForm: FormGroup = new FormGroup({
+    subProjectId: new FormControl(null, [Validators.required]),
+    userStoryName: new FormControl(null, [Validators.required]),
+    userStoryArchive: new FormControl(null, [Validators.required]),
+    userStoryStateId: new FormControl(null, [Validators.required]),
+    userStoryStateName: new FormControl(null, [Validators.required]),
+    userStoryScore: new FormControl(null, Validators.required),
+    fechaMaxima: new FormControl(null, [Validators.required])
+  });
+
   userStory: UserStory | any;
   subProjects: any;
+  userStoryId: string='';
 
   constructor(
-    private formBuilder: FormBuilder,
     private userStoryService: User_storyService,
     private subProjectService : SubprojectService,
     private dialog: MatDialog,
@@ -26,19 +36,7 @@ export class UserStoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.userStoryForm = this.formBuilder.group({
-      subProjectId: new FormControl(null, [Validators.required]),
-      userStoryName: new FormControl(null, [Validators.required]),
-      userStoryArchive: new FormControl(null, [Validators.required]),
-      userStoryStateId: new FormControl(null, [Validators.required]),
-      userStoryStateName: new FormControl(null, [Validators.required]),
-      userStoryScore: new FormControl(null, Validators.required),
-      fechaMaxima: new FormControl(null, [Validators.required] )
-    });
-
-    this.getAllSubprojects()
-    this. getAllUserStory()
+    this. getAllUserStory();
   }
 
   // fechaActualValidator(control: FormControl): { [s: string]: boolean } {
@@ -49,6 +47,7 @@ export class UserStoryComponent implements OnInit {
   //   }
 
   // }
+
   getAllUserStory(){
     this.userStoryService.getAllUser_story().subscribe(resp => {
         this.userStory = resp;
@@ -93,10 +92,21 @@ export class UserStoryComponent implements OnInit {
 
   }
 
-  abrirModalUserStory(): void {
+  addUserStoryModal(): void {
     const dialogRef = this.dialog.open(UserStoryAddComponent, {width: '500px', maxHeight: '600px' });
 
     dialogRef.afterClosed().subscribe(resul =>  {
+    this. getAllUserStory();
+    })
+  }
+
+  editUserStoryModal(userStoryId: string): void{
+    const dialogRef = this.dialog.open(UserStoryManagementComponent, {width: '500px', maxHeight: '600px', data:{userStoryId: userStoryId } });
+
+    dialogRef.afterClosed().subscribe({
+      next: (resp)=> {
+        this.getAllUserStory();
+      }
     })
   }
 

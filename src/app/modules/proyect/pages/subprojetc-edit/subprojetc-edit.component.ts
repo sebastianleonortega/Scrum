@@ -67,16 +67,22 @@ export class SubprojetcEditComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Subproyecto editado',
+            title: 'Subproyecto editada',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
 
 
           this.dialogRef.close();
           this.subprojectEditForm.reset();
-          //this.getAllSubproject();
-          location.reload();
+
         },
         error => (console.error(error)));
     }

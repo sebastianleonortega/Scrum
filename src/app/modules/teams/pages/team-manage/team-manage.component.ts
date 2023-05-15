@@ -12,7 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class TeamManageComponent implements OnInit {
 
-  manageTeamsForm: FormGroup = new FormGroup({});
+  manageTeamsForm: FormGroup = new FormGroup({
+    areaId: new FormControl(null, [Validators.required]),
+    teamName: new FormControl(null, [Validators.required,]),
+    teamId: new FormControl(null),
+  });
+
   areas: any;
   team: Team | any;
   employees = [];
@@ -26,16 +31,8 @@ export class TeamManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.manageTeamsForm = this.formBuilder.group(
-      {
-        areaId: new FormControl(null, [Validators.required]),
-        teamName: new FormControl(null, [Validators.required,]),
-        teamId: new FormControl(null),
-
-      },
-    );
     this.getAllTeams();
-    this.getAllAreaSelect();
+    this.getAllArea();
   }
 
   getAllTeams() {
@@ -51,7 +48,7 @@ export class TeamManageComponent implements OnInit {
     })
   }
 
-  getAllAreaSelect() {
+  getAllArea() {
     this.areaService.getAllArea().subscribe(resp => {
       this.areas = resp;
     });
@@ -70,9 +67,16 @@ export class TeamManageComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Equipo creado',
+            title: 'Area editada',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
           this.manageTeamsForm.reset();
           this.getAllTeams();

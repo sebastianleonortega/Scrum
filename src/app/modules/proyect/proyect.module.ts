@@ -9,7 +9,6 @@ import { ProyectAddComponent } from './pages/proyect-add/proyect-add.component';
 import { SubprojetcComponent } from './pages/subprojetc/subprojetc.component';
 import { SubprojetcEditComponent } from './pages/subprojetc-edit/subprojetc-edit.component';
 import { SubprojetcAddComponent } from './pages/subprojetc-add/subprojetc-add.component';
-import { SubprojetcSeeComponent } from './pages/subprojetc-see/subprojetc-see.component';
 
 
 
@@ -21,7 +20,6 @@ import { SubprojetcSeeComponent } from './pages/subprojetc-see/subprojetc-see.co
     SubprojetcComponent,
     SubprojetcEditComponent,
     SubprojetcAddComponent,
-    SubprojetcSeeComponent,
   ],
   imports: [
     CommonModule,

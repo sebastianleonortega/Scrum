@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "@app/modules/customer/pages/service/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CustomerComponent } from '../customer/customer.component';
 
 @Component({
   selector: 'app-customer-edit-form',
@@ -23,6 +24,7 @@ export class CustomerEditFormComponent implements OnInit {
     private customerService: CustomerService,
     private route: ActivatedRoute,
     private route1: Router,
+    private dialogRef : MatDialogRef<CustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
   }
@@ -56,13 +58,24 @@ export class CustomerEditFormComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Cliente aditado',
+            title: 'Cliente editado',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
           this.customerForm.reset();
-          this.route1.navigateByUrl('app/customer').then();
+          this.dialogRef.close();
         },);
     }
+  }
+
+  CloseModal(): void {
+    this.dialogRef.close();
   }
 }
