@@ -13,17 +13,18 @@ import { TeamManageComponent } from '../team-manage/team-manage.component';
   styleUrls: ['./manage-teams-edit-form.component.css']
 })
 export class ManageTeamsEditFormComponent implements OnInit {
+
+
   teamsEditForm: FormGroup = new FormGroup({
-    teamName: new FormControl(null, [Validators.required]),
+  teamName: new FormControl(null, [Validators.required]),
   });
 
   id: string= '';
-  team: any;
 
   constructor(
-    public manageTeamService: TeamsService,
+    private manageTeamService: TeamsService,
     private route: ActivatedRoute,
-    public route1: Router,
+    private route1: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef : MatDialogRef<TeamManageComponent>,
   ) {
@@ -38,10 +39,9 @@ export class ManageTeamsEditFormComponent implements OnInit {
 getTeamById(id: string | null){
   this.manageTeamService.getTeamById(id).subscribe({
     next: (resp)=>{
-      this.team = resp;
 
       this.teamsEditForm.patchValue({
-        teamName: this.team.teamName,
+        teamName: resp.teamName,
       })
     }
   })
@@ -50,17 +50,16 @@ getTeamById(id: string | null){
   edit() {
 
     if (this.teamsEditForm.valid) {
-
       const data = {
         teamName: this.teamsEditForm.get('teamName')?.value,
 
       }
-      this.manageTeamService.updateTeam(this.id, this.data).subscribe(
+      this.manageTeamService.updateTeam(this.id, data).subscribe(
         (resp) => {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Area editada',
+            title: 'Equipo editada',
             showConfirmButton: false,
             timer: 1500,
             toast: true,
