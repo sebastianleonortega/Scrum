@@ -33,7 +33,6 @@ export class ManageTeamsEditFormComponent implements OnInit {
     this.id = this.data.teamId;
     this.getTeamById(this.id);
 
-
   }
 
 getTeamById(id: string | null){
