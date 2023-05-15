@@ -1,7 +1,6 @@
 package com.wposs.scrum_back.sprint.entity;
 
 import com.wposs.scrum_back.area.entity.Area;
-import com.wposs.scrum_back.employe.entity.Employee;
 import com.wposs.scrum_back.scoresprintdays.entity.ScoringSprintDays;
 import com.wposs.scrum_back.sprintemployee.entity.SprintEmployee;
 import com.wposs.scrum_back.team.entity.Team;

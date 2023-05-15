@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface BoardRepository extends JpaRepository<Board, UUID> {
+public interface BoardRepository extends JpaRepository<Board, UUID>,BoardRepositoryCustom {
     Boolean existsByTeamIdAndUserStoryIdAndTaskTeamIdAndEmployeeId(UUID idTeam,UUID idUserStory,UUID idTaskTeam,UUID idEmployee);
 }

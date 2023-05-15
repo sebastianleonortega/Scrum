@@ -9,19 +9,14 @@ import java.util.UUID;
 @Entity
 @Table(name = "sprints_employee",schema = "wposs")
 public class SprintEmployee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sprintsEmployeeId;
-    @Column(name = "fk_employee_id",nullable = false)
-    private UUID employeeId;
-    @Column(name = "fk_Sprint_id")
-    private UUID sprintId;
+    @EmbeddedId
+    private SprintEmployeePk id;
     @Column(name = "percentage",nullable = false)
     private Double percentage;
     @Column(name = "daysLeave",nullable = false)
     private Integer daysLeave;
     @Column(name = "Observations",nullable = false)
-    private String Observations;
+    private String observations;
 
     @ManyToOne
     @JoinColumn(name = "fk_Sprint_id",insertable = false,updatable = false)
@@ -29,14 +24,6 @@ public class SprintEmployee {
     @ManyToOne
     @JoinColumn(name = "fk_employee_id",insertable = false,updatable = false)
     private Employee employee;
-
-    public Long getSprintsEmployeeId() {
-        return sprintsEmployeeId;
-    }
-
-    public void setSprintsEmployeeId(Long sprintsEmployeeId) {
-        this.sprintsEmployeeId = sprintsEmployeeId;
-    }
 
     public Double getPercentage() {
         return percentage;
@@ -55,11 +42,11 @@ public class SprintEmployee {
     }
 
     public String getObservations() {
-        return Observations;
+        return observations;
     }
 
     public void setObservations(String observations) {
-        Observations = observations;
+        this.observations = observations;
     }
 
     public Sprint getSprint() {
@@ -78,19 +65,11 @@ public class SprintEmployee {
         this.employee = employee;
     }
 
-    public UUID getEmployeeId() {
-        return employeeId;
+    public SprintEmployeePk getId() {
+        return id;
     }
 
-    public void setEmployeeId(UUID employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public UUID getSprintId() {
-        return sprintId;
-    }
-
-    public void setSprintId(UUID sprintId) {
-        this.sprintId = sprintId;
+    public void setId(SprintEmployeePk id) {
+        this.id = id;
     }
 }

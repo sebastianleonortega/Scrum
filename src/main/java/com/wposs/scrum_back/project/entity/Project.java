@@ -28,6 +28,9 @@ public class Project {
     @Column(name = "client_id")
     private String clientId;
 
+    @Column(name = "project_img")
+    private String archive;
+
     @ManyToOne
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
     private Area area;
@@ -38,6 +41,14 @@ public class Project {
 
     @OneToMany(mappedBy = "project",cascade ={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
+
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
+    }
 
     public UUID getProjectId() {
         return projectId;

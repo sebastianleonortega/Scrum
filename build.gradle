@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.7.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    //Faltan los servicios de Sprint: el de fechas y empleados por sprint, lo demas esta funcionando.
+    //Y.S
 }
 
 group = 'com.wposs.scrum_back'

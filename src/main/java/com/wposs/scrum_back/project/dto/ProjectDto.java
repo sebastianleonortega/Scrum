@@ -34,6 +34,18 @@ public class ProjectDto {
     @Pattern(regexp = "\\d+",message = "El campo cliente solo se admiten numeros")
     private String clientId;
 
+    @JsonProperty(value = "archive")
+    @NotBlank
+    private String archive;
+
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
+    }
+
     public UUID getProjectId() {
         return projectId;
     }
