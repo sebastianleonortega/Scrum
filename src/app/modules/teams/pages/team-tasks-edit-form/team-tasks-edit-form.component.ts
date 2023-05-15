@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit, Inject} from '@angular/core';
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-team-tasks-edit-form',
@@ -10,23 +11,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./team-tasks-edit-form.component.css']
 })
 export class TeamTasksEditFormComponent implements OnInit {
-  tasksFormEdit: FormGroup = new FormGroup({})
+
+  tasksFormEdit: FormGroup = new FormGroup({
+    taskTeamName: new FormControl(null, [Validators.required])
+  })
   id: any;
   taskTeamEdit: any;
 
   constructor(
-    private formBuilder: FormBuilder,
     private teamTasksService: TeamTasksService,
     private route: ActivatedRoute,
     private route1: Router,
+    @Inject (MAT_DIALOG_DATA) public data: any,
     ) {
   }
 
   ngOnInit(): void {
-    this.tasksFormEdit = new FormGroup({
-      taskTeamName: new FormControl(null, [Validators.required])
-    });
-    this.id = this.route.snapshot.paramMap.get('taskTeamId');
+
+    this.id = this.data.taskTeamId;
     this.getTaskTeamById(this.id);
   }
 
@@ -49,10 +51,18 @@ export class TeamTasksEditFormComponent implements OnInit {
             this.tasksFormEdit.reset();
             Swal.fire({
               position: 'top-end',
-              icon: 'success',
-              title: 'Area editada',
-              showConfirmButton: false,
-              timer: 1500
+                icon: 'success',
+                title: 'Area editada',
+                showConfirmButton: false,
+                timer: 1500,
+                toast: true,
+                customClass: {
+                  container: 'my-swal-container',
+                  title: 'my-swal-title',
+                  icon: 'my-swal-icon',
+                  popup: 'my-swal-popup',
+                },
+                background: '#F44336',
             })
             this.route1.navigateByUrl('app/teams/team-task').then();
           }

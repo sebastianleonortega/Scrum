@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamsService} from "@app/modules/teams/pages/service/teams.service";
 import {Tasks} from "@app/modules/teams/pages/interface/tasks";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import {Team} from "@app/modules/teams/pages/interface/team";
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { TeamTasksEditFormComponent } from '../team-tasks-edit-form/team-tasks-edit-form.component';
 
 @Component({
   selector: 'app-team-tasks',
@@ -12,32 +14,34 @@ import Swal from 'sweetalert2';
   styleUrls: ['./team-tasks.component.css']
 })
 export class TeamTasksComponent implements OnInit {
-  tasksForm: FormGroup = new FormGroup({})
-  filterTaskTeamForm:FormGroup=new FormGroup({})
+  tasksForm: FormGroup = new FormGroup({
+    taskName: new FormControl(null, [Validators.required]),
+    teamId: new FormControl(null, [Validators.required]),
+    taskTeamId: new FormControl(null,)
+  })
+
+  filterTaskTeamForm:FormGroup=new FormGroup({
+    teamIdFilter: new FormControl(null, [Validators.required])
+  })
   teams: any;
   tasks: Tasks | any;
   tasksTeams: any;
+  taskTeamId: any;
 
 
 
   constructor(
     private manageTeamsService: TeamsService,
-    private formBuilder: FormBuilder,
-    private teamTasksService: TeamTasksService
+    private teamTasksService: TeamTasksService,
+    private dialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
-    this.tasksForm = this.formBuilder.group({
-      taskName: new FormControl(null, [Validators.required]),
-      teamId: new FormControl(null, [Validators.required]),
-      taskTeamId: new FormControl(null,)
-    })
+
     this.getAllTeamsSelect();
     this.getAllTasksTeams();
-    this.filterTaskTeamForm = this.formBuilder.group({
-      teamIdFilter: new FormControl(null, [Validators.required])
-    })
+
   }
 
   getAllTeamsSelect() {
@@ -69,7 +73,14 @@ export class TeamTasksComponent implements OnInit {
           icon: 'success',
           title: 'Tarea creada',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+            popup: 'my-swal-popup',
+          },
         })
         this.getAllTasksTeams();
       })
@@ -94,9 +105,17 @@ export class TeamTasksComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Area  eliminada',
+            title: 'Tarea eliminada',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+              popup: 'my-swal-popup',
+            },
+            background: '#F44336',
           })
           this.tasksForm.reset();
           this.getAllTasksTeams();
@@ -112,5 +131,9 @@ export class TeamTasksComponent implements OnInit {
       this.tasks=resp;
     })
 
+  }
+
+  editTaskModal(taskTeamId: string){
+    const dialogRef = this.dialog.open(TeamTasksEditFormComponent, {width: '500px', data:{taskTeamId: taskTeamId}});
   }
 }

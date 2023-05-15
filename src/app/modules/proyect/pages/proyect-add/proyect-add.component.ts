@@ -20,7 +20,7 @@ export class ProyectAddComponent implements OnInit {
   projectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
   projectClient: new FormControl(null, [Validators.required]),
   projectArea: new FormControl(null, [Validators.required]),
-  // archive: new FormControl(),
+  archive: new FormControl(null, [Validators.required]),
   });
 
   public clients : Client[] = [];
@@ -61,7 +61,7 @@ export class ProyectAddComponent implements OnInit {
         projectName: this.projectAddForm.get('projectName')?.value,
         clientId: this.projectAddForm.get('projectClient')?.value,
         areaId: this.projectAddForm.get('projectArea')?.value,
-        // archive: this.projectAddForm.get('archive')?.value,
+        archive: this.projectAddForm.get('archive')?.value,
       }
       this.projectService.saveProyect(data).subscribe((resp) => {
         Swal.fire({
@@ -88,13 +88,28 @@ export class ProyectAddComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  // upload_image(event: any) {
+  //   let archive = event.target.files
+  //   let reader = new FileReader();
+
+  //   reader.readAsDataURL(archive[0])
+  //   reader.onloadend = () => {
+  //   }
+
+  // }
+
   upload_image(event: any) {
-    let archive = event.target.files
-    let reader = new FileReader();
-
-    reader.readAsDataURL(archive[0])
-    reader.onloadend = () => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        this.projectAddForm.patchValue({ archive: base64String });
+        this.projectAddForm.get('archive')?.updateValueAndValidity();
+      };
+      reader.readAsDataURL(file);
     }
-
   }
+
+
 }
