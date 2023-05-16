@@ -1,4 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit, Inject,} from '@angular/core';
+import {CommonModule } from "@angular/common";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import {ActivatedRoute, Router} from "@angular/router";

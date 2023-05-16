@@ -1,11 +1,13 @@
 
 <div class="container">
+  <nav class="navbar navbar-light bg-light">
   <div class="title">
     <p>Gestión de Áreas</p>
   </div>
+</nav>
   <div>
     <form class="area-form" [formGroup]="areaForm" (ngSubmit)="saveArea()">
-      <div class="paragraph">agregar una nueva area</div>
+      <div class="paragraph">agregar una nueva area:</div>
       <div class="input-group mb-4">
         <label class="col-sm-6">
           <input type="text" class="form-control" placeholder="Ingrese el nombre del área" formControlName="areaName">

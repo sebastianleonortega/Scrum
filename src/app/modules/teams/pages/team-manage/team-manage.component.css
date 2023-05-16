@@ -1,4 +1,6 @@
-.title {
+
+
+  .title {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -66,12 +68,15 @@ button:focus {
   margin-top: 10px;
   width: 300px;
 }
+
+
+.form-control{
+  width: 25%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 .btn-success{
  margin-left: 20px;
   width: 50px;
-}
-.container-select{
-  width: 100%;
-  text-align: center;
 }
 
