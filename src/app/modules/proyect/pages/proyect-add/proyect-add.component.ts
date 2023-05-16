@@ -20,7 +20,7 @@ export class ProyectAddComponent implements OnInit {
   projectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
   projectClient: new FormControl(null, [Validators.required]),
   projectArea: new FormControl(null, [Validators.required]),
-  archive: new FormControl(null, [Validators.required]),
+  archive: new FormControl(null),
   });
 
   public clients : Client[] = [];

@@ -103,6 +103,7 @@ export class BoardSeeComponent implements OnInit{
       );
     }
   }
+
   deleteBoard(id: string): void{
     Swal.fire({
       title: 'Desea eliminar este tablero?',
