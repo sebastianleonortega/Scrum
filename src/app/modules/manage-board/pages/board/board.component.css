@@ -78,6 +78,7 @@ textarea:focus {
 
 .form-group{
   margin-top: 20px;
+  width: 100%;
 }
 
 .form-control-file{
@@ -92,3 +93,4 @@ textarea:focus {
   background-color: rgb(18, 158, 18);
   color: white;
 }
+

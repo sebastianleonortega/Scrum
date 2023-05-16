@@ -94,3 +94,7 @@ textarea:focus {
   color: white;
 }
 
+.btn-new{
+  display: flex;
+  justify-content: space-between;
+}

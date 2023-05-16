@@ -32,8 +32,12 @@
             <option value="{{item.userStoryId}}" *ngFor="let item of userStorys">{{item.userStoryName}}</option>
           </select>
         </div>
-        <button class="btn btn-primary mx-2 mb-2" (click)="filterboard()">Filtrar</button>
-    </form>
+        <div class="btn-new">
+          <button class="btn btn-primary mx-2 mb-2" (click)="filterboard()">Filtrar</button>
+          <button class="btn btn-primary mx-2 mb-2 bnt" (click)="addBoardModal()">añadir tablero</button>
+        </div>
+        
+      </form>
     <div class="table-responsive">
       <table class="table table-bordered table-hover">
         <thead class="thead-ligth">
