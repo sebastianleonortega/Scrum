@@ -88,28 +88,28 @@ export class ProyectAddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // upload_image(event: any) {
-  //   let archive = event.target.files
-  //   let reader = new FileReader();
-
-  //   reader.readAsDataURL(archive[0])
-  //   reader.onloadend = () => {
-  //   }
-
-  // }
-
   upload_image(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        this.projectAddForm.patchValue({ archive: base64String });
-        this.projectAddForm.get('archive')?.updateValueAndValidity();
-      };
-      reader.readAsDataURL(file);
+    let archive = event.target.files
+    let reader = new FileReader();
+
+    reader.readAsDataURL(archive[0])
+    reader.onloadend = () => {
     }
+
   }
+
+  // upload_image(event: any) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       const base64String = reader.result as string;
+  //       this.projectAddForm.patchValue({ archive: base64String });
+  //       this.projectAddForm.get('archive')?.updateValueAndValidity();
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
 
 }

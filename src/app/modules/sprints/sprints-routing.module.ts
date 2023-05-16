@@ -5,6 +5,7 @@ import { SprintsUpdateComponent } from "@app/modules/sprints/pages/add-userStory
 import {CalculateSprintPointsComponent} from "@app/modules/sprints/pages/calculate-sprint-points/calculate-sprint-points.component";
 import {EditEmployeeSprintComponent} from "@app/modules/sprints/pages/edit-employee-sprint/edit-employee-sprint.component";
 import {ScoreSprintDaysComponent} from "@app/modules/sprints/pages/score-sprint-days/score-sprint-days.component";
+import { SprintAddComponent } from './pages/sprint-add/sprint-add.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'score-sprint-days/:sprintId',
     component: ScoreSprintDaysComponent
+  },
+  {
+    path: 'sprint-add',
+    component: SprintAddComponent
   },
 ];
 

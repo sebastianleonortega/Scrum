@@ -135,5 +135,10 @@ export class TeamTasksComponent implements OnInit {
 
   editTaskModal(taskTeamId: string){
     const dialogRef = this.dialog.open(TeamTasksEditFormComponent, {width: '500px', data:{taskTeamId: taskTeamId}});
+    dialogRef.afterClosed().subscribe({
+      next: (resp)=> {
+        this.getAllTasksTeams();
+      }
+    })
   }
 }
