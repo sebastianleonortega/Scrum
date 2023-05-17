@@ -30,7 +30,7 @@ public class Project {
     private String clientId;
 
     @Column(name = "project_img")
-    private Byte[] archive;
+    private String archive;
 
     @ManyToOne
     @JoinColumn(name = "area_id", insertable = false, updatable = false)
@@ -43,11 +43,11 @@ public class Project {
     @OneToMany(mappedBy = "project",cascade ={CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE})
     private List<SubProject> subProjects;
 
-    public Byte[] getArchive() {
+    public String getArchive() {
         return archive;
     }
 
-    public void setArchive(Byte[] archive) {
+    public void setArchive(String archive) {
         this.archive = archive;
     }
 

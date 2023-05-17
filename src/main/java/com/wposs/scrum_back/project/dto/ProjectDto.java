@@ -14,14 +14,14 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProjectDto {
 
-    @JsonProperty(value ="projectId", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "projectId", access = JsonProperty.Access.READ_ONLY)
     private UUID projectId;
 
     @JsonProperty(value = "projectName")
     @NotNull(message = "el nombre del proyecto no puede ser null")
     @NotEmpty
-    @Size(max = 100,message = "el nombre del proyecto no puede sobre pasar los 100 caracter")
-    @Pattern(regexp = "^[a-zA-Z ]+$",message = "El campo projectName solo admite letras")
+    @Size(max = 100, message = "el nombre del proyecto no puede sobre pasar los 100 caracter")
+    @Pattern(regexp = "^[a-zA-Z ]+$", message = "El campo projectName solo admite letras")
     private String projectName;
 
     @JsonProperty(value = "areaId")
@@ -31,18 +31,17 @@ public class ProjectDto {
     @JsonProperty(value = "clientId")
     @NotNull(message = "el cliente no puede ser null")
     @NotEmpty
-    @Pattern(regexp = "\\d+",message = "El campo cliente solo se admiten numeros")
+    @Pattern(regexp = "\\d+", message = "El campo cliente solo se admiten numeros")
     private String clientId;
 
     @JsonProperty(value = "archive")
-    @NotNull
-    private Byte[] archive;
+    private String archive;
 
-    public Byte[] getArchive() {
+    public String getArchive() {
         return archive;
     }
 
-    public void setArchive(Byte[] archive) {
+    public void setArchive(String archive) {
         this.archive = archive;
     }
 
