@@ -8,6 +8,7 @@ import { AreaInterface } from '@app/modules/area/pages/Interface/interface-area'
 import { TeamTasksEditFormComponent } from '../team-tasks-edit-form/team-tasks-edit-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ManageTeamsEditFormComponent } from '../team-manage-edit-form/manage-teams-edit-form.component';
+import { TeamAddManageComponent } from '../team-add-manage/team-add-manage.component';
 
 @Component({
   selector: 'app-teams',
@@ -16,15 +17,10 @@ import { ManageTeamsEditFormComponent } from '../team-manage-edit-form/manage-te
 })
 export class TeamManageComponent implements OnInit {
 
-  manageTeamsForm: FormGroup = new FormGroup({
-    areaId: new FormControl(null, [Validators.required]),
-    teamName: new FormControl(null, [Validators.required,]),
-    teamId: new FormControl(null),
-  });
+ 
 
   areas: AreaInterface[]=[];
   team: Team[]=[];
-  employees = [];
   area: any;
   teamId: string='';
 
@@ -37,7 +33,6 @@ export class TeamManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllTeams();
-    this.getAllArea();
   }
 
   getAllTeams() {
@@ -53,47 +48,18 @@ export class TeamManageComponent implements OnInit {
     })
   }
 
-  getAllArea() {
-    this.areaService.getAllArea().subscribe(resp => {
-      this.areas = resp;
-    });
-  }
-
-
-  saveTeams(): void {
-    if (this.manageTeamsForm.valid) {
-      const data = {
-        areaId: this.manageTeamsForm.get('areaId')?.value,
-        teamName: this.manageTeamsForm.get('teamName')?.value,
-
-      }
-      this.manageTeamsService.saveTeam(data).subscribe(
-        () => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Equipo creado',
-            showConfirmButton: false,
-            timer: 1500,
-            toast: true,
-            customClass: {
-              container: 'my-swal-container',
-              title: 'my-swal-title',
-              icon: 'my-swal-icon',
-            },
-            background: '#E6F4EA',
-          })
-          this.manageTeamsForm.reset();
-          this.getAllTeams();
-        },
-      );
-    }
-
-  }
-
 
 editTeamModal(teamId: string): void{
   const dialogRef = this.dialog.open(ManageTeamsEditFormComponent, {width: '500px', maxHeight: '600px', data:{teamId: teamId } });
+  dialogRef.afterClosed().subscribe({
+    next: (resp)=> {
+    this.getAllTeams();
+    }
+  })
+}
+
+addTeamModal(): void{
+  const dialogRef = this.dialog.open(TeamAddManageComponent, {width: '500px', maxHeight: '600px' });
   dialogRef.afterClosed().subscribe({
     next: (resp)=> {
     this.getAllTeams();

@@ -35,6 +35,6 @@ export class TeamsService {
     return this.httpClient.put(this.API_SERVER + "/saveemployetoteam/"+teamId, teamEmployee  );
   }
   getTeamArea(areaId: string): Observable<any>{
-    return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
+    return this.httpClient.get(this.API_SERVER+'/area/'+areaId);
   }
 }

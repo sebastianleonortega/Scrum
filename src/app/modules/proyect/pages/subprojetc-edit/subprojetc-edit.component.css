@@ -1,12 +1,13 @@
 
 .title {
-  display: flex;
+  text-align: center;
   align-items: center;
   font-weight: 600;
   font-size: 25px;
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   margin-top: 5px;
 }
+
 
 .span-text{
   padding-left: 10px;
@@ -54,10 +55,10 @@ select:focus {
   margin-right: 20px;
 }
 
-.btn-primary{
+/* .btn-primary{
   background-color: #219ebc;
   border: 1px solid #219ebc;
-}
+} */
 
 .icon{
   text-align: center;
@@ -67,7 +68,6 @@ select:focus {
 .form-control{
   width: 100%;
   margin-top: 10px;
-  margin-bottom: 20px;
 }
 
 .form-group{
@@ -81,3 +81,5 @@ select:focus {
 .btn{
   margin-top: 50px;
 }
+
+
