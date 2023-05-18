@@ -86,6 +86,7 @@ textarea:focus {
 
 .btn{
   margin-top: 50px;
+  margin-top: 20px;
 }
 
 .btn-green {
@@ -93,3 +94,7 @@ textarea:focus {
   color: white;
 }
 
+.btn-new{
+  display: flex;
+  justify-content: space-between;
+}

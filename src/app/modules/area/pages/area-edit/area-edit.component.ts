@@ -11,6 +11,7 @@ import { AreaComponent } from '../area/area.component';
   styleUrls: ['./area-edit.component.css']
 })
 export class AreaEditComponent implements OnInit {
+
   areaEdit: any;
   areaId: string = '';
 

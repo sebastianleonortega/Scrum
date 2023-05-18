@@ -7,7 +7,7 @@
 
     <form class="sprints-form" [formGroup]="boardFrom" (ngSubmit)="saveBoard()">
 
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-4" >
       <label>Seleccionar equipo</label>
       <select class="form-select" formControlName="teamId" (change)="selectTeam()">
         <option value="{{team.teamId}}" *ngFor="let team of teams">{{team.teamName}}</option>
@@ -45,7 +45,6 @@
     </div>
 
     <button class="btn btn btn-primary mb-2 " type="submit" [disabled]="boardFrom.invalid">Guardar</button>
-    <button class="btn btn btn-green mb-2 mx-2" [routerLink]="['/app/board/Boardsee']">Visuaizar</button>
     </form>
 
 

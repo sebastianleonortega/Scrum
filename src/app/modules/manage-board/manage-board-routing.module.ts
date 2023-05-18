@@ -8,11 +8,11 @@ import { BoardSeeComponent } from './pages/board-see/board-see.component';
 const routes: Routes = [
   {
     path: '',
-    component: BoardComponent
+    component: BoardSeeComponent
   },
   {
     path: 'Boardsee',
-    component: BoardSeeComponent
+    component: BoardComponent
   }
 ];
 

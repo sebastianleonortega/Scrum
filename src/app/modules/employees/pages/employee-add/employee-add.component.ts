@@ -3,6 +3,8 @@ import {EmployeesService} from "@app/modules/employees/pages/service/employees.s
 import {Employee} from "@app/modules/employees/pages/Interface/employee";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
+import { EmployeeComponent } from '../employee/employee.component';
 
 @Component({
   selector: 'app-employee-add',
@@ -13,29 +15,25 @@ export class EmployeeAddComponent implements OnInit {
 
   employeeForm: FormGroup = new FormGroup({
     employeeName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-      employeeCharge: new FormControl(null, [Validators.required]),
-      employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
-      employeeKnowledge: new FormControl(null, [Validators.required]),
-      employeeId: new FormControl()
+    employeeCharge: new FormControl(null, [Validators.required]),
+    employeeEmail: new FormControl(null, [Validators.required, Validators.email]),
+    employeeKnowledge: new FormControl(null, [Validators.required]),
+    employeeId: new FormControl()
   });
   employee: Employee | any;
 
   constructor(
     private employeesService: EmployeesService,
+    private dialogRef : MatDialogRef<EmployeeComponent>,
   ) {
   }
 
   ngOnInit(): void {
 
-    this.getAllEmployee();
+
   }
 
-  getAllEmployee() {
-    this.employeesService.getAllEmployee().subscribe(resp => {
-      this.employee = resp;
-      console.log(this.employee)
-    })
-  }
+
 
   saveEmployee() {
     if(this.employeeForm.valid) {
@@ -52,11 +50,17 @@ export class EmployeeAddComponent implements OnInit {
             icon: 'success',
             title: 'Empleado creado',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            toast: true,
+            customClass: {
+              container: 'my-swal-container',
+              title: 'my-swal-title',
+              icon: 'my-swal-icon',
+            },
+            background: '#E6F4EA',
           })
         this.employeeForm.reset();
-        this.getAllEmployee();
-        location.reload();
+        this.dialogRef.close();
       }))
     }
   }

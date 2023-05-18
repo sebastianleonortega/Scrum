@@ -102,9 +102,16 @@ export class ImprovementsAddComponent implements OnInit{
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Mejora agregado',
+          title: 'Mejora Guardada',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+          },
+          background: '#E6F4EA',
         })
 
         this.dialogRef.close();

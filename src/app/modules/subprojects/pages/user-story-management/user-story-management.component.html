@@ -14,7 +14,7 @@
       <div class="form-group mb-3" >
         <span class="mr-sm">Estado</span>
         <div class="label-text">
-          <select class="form-control" formControlName="userStoryStateId">
+          <select class="form-control form-select" formControlName="userStoryStateId">
             <option  *ngFor="let item of userStoryState" value="{{item.userStoryStateId}}">{{ item.userStoryStateName}}</option>
          </select>
         </div>
@@ -38,10 +38,9 @@
           </div>
         </form>
       </div>
-
-
-
-      <button class="btn btn btn-primary mb-2 " type="submit" >Editar</button>
+      <div class="text-center">
+        <button class="btn btn btn-primary mb-2 " type="submit" >Editar</button>
+      </div>
     </form>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import {customerRoutingModule} from "@app/modules/customer/customer-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CustomerEditFormComponent} from "@app/modules/customer/pages/customer-edit-form/customer-edit-form.component";
+import { CustomerAddComponent } from './pages/customer-add/customer-add.component';
 
 
 
@@ -11,7 +12,8 @@ import {CustomerEditFormComponent} from "@app/modules/customer/pages/customer-ed
 @NgModule({
   declarations: [
     CustomerComponent,
-    CustomerEditFormComponent
+    CustomerEditFormComponent,
+    CustomerAddComponent
   ],
     imports: [
         CommonModule,

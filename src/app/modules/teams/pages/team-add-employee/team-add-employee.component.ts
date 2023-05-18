@@ -16,10 +16,12 @@ export interface TeamEmployee {
 })
 export class TeamAddEmployeeComponent implements OnInit {
 
-  employees: any;
+  
   teamId: string | null = '';
-  employeesAddTeam:any;
   teamEmployee: string[] = [];
+
+  employees: any;
+  employeesAddTeam:any;
 
 
   constructor(
@@ -30,48 +32,51 @@ export class TeamAddEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.teamId = this.route.snapshot.paramMap.get('teamId');
+  
+    // this.getAllEmployeesAddToTeam(this.teamId);
 
     this.getAllEmployees();
-    this.getAllEmployeesAddToTeam(this.teamId);
-    console.log(this.getAllEmployeesAddToTeam(this.teamId))
-    this.AddEmployeeTeam();
 
   }
 
+
   getAllEmployees() {
-    this.employeesService.getAllEmployee().subscribe(resp => {
+    this.employeesService.getAllEmployee().subscribe(
+      resp => { //Todos los empleados
       this.employees = resp;
       this.employees.map(r => {
         r.checked = false;
       })
     })
+
   }
+
 
   AddEmployeeTeam() {
     let employeesAdd = this.employees.filter(resp => resp.checked === true);
     employeesAdd.forEach((element) => {
       let item = element.employeeId
-
-
+      
+      
       this.teamEmployee.push(item);
+      
 
       this.employees = this.employees.filter(resp => resp.checked === false)
+      console.log(this.teamEmployee);
 
-
-    });console.log(this.teamEmployee)
+    });
     this.teamService.addEmployeeTeam(this.teamId, this.teamEmployee).subscribe(resp=>{
-      this.getAllEmployeesAddToTeam(this.teamId);
+       this.getAllEmployeesAddToTeam(this.teamId);
     })
-
-
   }
+
+
   getAllEmployeesAddToTeam(teamId){
-    this.employeesService.getEmployeesAddToTeam(teamId).subscribe(resp=>{
-      this.employeesAddTeam=resp
-
+    this.employeesService.getEmployeesAddToTeam(teamId).subscribe(resp=>{ //empleados que pertenecen a un equipo
+      this.employeesAddTeam=resp;
     })
-
   }
 
 }

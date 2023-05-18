@@ -16,6 +16,7 @@ import {TeamEmployeesListComponent} from "@app/modules/teams/team-employees-list
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
+import { TeamAddManageComponent } from './pages/team-add-manage/team-add-manage.component';
 
 
 
@@ -27,6 +28,7 @@ import {MatSortModule} from "@angular/material/sort";
     TeamTasksComponent,
     TeamTasksEditFormComponent,
     TeamEmployeesListComponent,
+    TeamAddManageComponent,
   ],
   imports: [
     CommonModule,

@@ -1,9 +1,11 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit, Inject,} from '@angular/core';
+import {CommonModule } from "@angular/common";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamTasksService} from "@app/modules/teams/pages/service/team-tasks.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TeamTasksComponent } from '../team-tasks/team-tasks.component';
 
 @Component({
   selector: 'app-team-tasks-edit-form',
@@ -13,15 +15,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class TeamTasksEditFormComponent implements OnInit {
 
   tasksFormEdit: FormGroup = new FormGroup({
-    taskTeamName: new FormControl(null, [Validators.required])
+    taskName: new FormControl(null, [Validators.required])
   })
   id: any;
-  taskTeamEdit: any;
 
   constructor(
     private teamTasksService: TeamTasksService,
     private route: ActivatedRoute,
     private route1: Router,
+    private dialogRef: MatDialogRef<TeamTasksComponent>,
     @Inject (MAT_DIALOG_DATA) public data: any,
     ) {
   }
@@ -34,9 +36,8 @@ export class TeamTasksEditFormComponent implements OnInit {
 
   getTaskTeamById(id: string | null) {
     this.teamTasksService.getTeamTasks(id).subscribe(resp => {
-      this.taskTeamEdit = resp;
       this.tasksFormEdit.patchValue({
-        taskTeamName: this.taskTeamEdit.taskTeamName
+        taskName: resp.taskName
       })
     });
 
@@ -45,14 +46,14 @@ export class TeamTasksEditFormComponent implements OnInit {
   editTasks() {
     if (this.tasksFormEdit.valid) {
       const data = {
-        taskTeamName: this.tasksFormEdit.get('taskTeamName')?.value,
+        taskName: this.tasksFormEdit.get('taskName')?.value,
       }
       this.teamTasksService.updateTeamTasks(this.id, data).subscribe((resp => {
             this.tasksFormEdit.reset();
             Swal.fire({
               position: 'top-end',
                 icon: 'success',
-                title: 'Area editada',
+                title: 'Tarea editada',
                 showConfirmButton: false,
                 timer: 1500,
                 toast: true,
@@ -62,9 +63,8 @@ export class TeamTasksEditFormComponent implements OnInit {
                   icon: 'my-swal-icon',
                   popup: 'my-swal-popup',
                 },
-                background: '#F44336',
             })
-            this.route1.navigateByUrl('app/teams/team-task').then();
+            this.dialogRef.close();
           }
         )
       )

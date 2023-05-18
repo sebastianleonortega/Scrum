@@ -8,6 +8,7 @@ import { SprintsUpdateComponent } from "@app/modules/sprints/pages/add-userStory
 import { CalculateSprintPointsComponent } from './pages/calculate-sprint-points/calculate-sprint-points.component';
 import { EditEmployeeSprintComponent } from './pages/edit-employee-sprint/edit-employee-sprint.component';
 import { ScoreSprintDaysComponent } from './pages/score-sprint-days/score-sprint-days.component';
+import { SprintAddComponent } from './pages/sprint-add/sprint-add.component';
 
 
 
@@ -21,7 +22,8 @@ import { ScoreSprintDaysComponent } from './pages/score-sprint-days/score-sprint
     SprintsUpdateComponent,
     CalculateSprintPointsComponent,
     EditEmployeeSprintComponent,
-    ScoreSprintDaysComponent
+    ScoreSprintDaysComponent,
+    SprintAddComponent
   ],
     imports: [
         CommonModule,

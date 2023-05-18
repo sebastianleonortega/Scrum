@@ -28,6 +28,9 @@ export class BoardService {
   getUserStoryTeam(teamId: string): Observable<any>{
     return this.httpClient.get('http://localhost:8020/userstory/userstoryteam/'+teamId);
   }
+  getTeamArea(areaId: string): Observable<any>{
+    return this.httpClient.get('http://localhost:8020/team/area/'+areaId);
+  }
 
   deleteBoard(id: string):Observable<IBoard[]>{
     return this.httpClient.delete<IBoard[]>(this.API_SERVER+"/deleteboard/"+id);

@@ -6,6 +6,7 @@
   font-size: 25px;
   margin-bottom: 5px;
   margin-top: 5px;
+  justify-content: space-between;
 }
 
 .space{
@@ -16,9 +17,7 @@
   padding-left: 10px;
 }
 
-.subtitle{
-  margin-top: 25px;
-}
+
 
 
 .title_table{
@@ -86,6 +85,18 @@ button:focus {
 
 .content{
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: flex-end;
+}
+
+.navbar{
+  margin-top: 5px;
+  margin-bottom: 40px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 1px #999;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid #ccc;
 }

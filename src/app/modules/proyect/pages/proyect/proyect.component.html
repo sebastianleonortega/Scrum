@@ -1,7 +1,8 @@
 <div class="container">
-  <span class="title">Gestionar proyectos</span>
+
+
   <nav class="navbar navbar-light bg-light">
-    <p>Realice la busqueda correspondiente de los proyectos para listar</p>
+    <span class="title">Gestionar proyectos</span>
     <div class="search">
       <input class="form-control mr-sm" type="search" placeholder="Buscar proyecto" aria-label="Search">
       <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -11,11 +12,11 @@
 
   <div class="title">
     <p>Lista de proyectos</p>
+    <div>
+      <button type="button" class="btn btn-primary mb-2 mx-2" (click)="addProjetModal()">Agregar proyecto</button>
+    </div>
   </div>
-  <div class="content">
 
-    <button type="button" class="btn btn-primary mb-2 mx-2" (click)="addProjetModal()">Agregar proyecto</button>
-  </div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="thead-ligth">
