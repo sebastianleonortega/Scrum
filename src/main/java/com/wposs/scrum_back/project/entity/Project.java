@@ -30,6 +30,7 @@ public class Project {
     private String clientId;
 
     @Column(name = "project_img")
+    @Lob
     private String archive;
 
     @ManyToOne

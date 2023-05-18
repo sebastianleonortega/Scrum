@@ -8,6 +8,7 @@ import com.wposs.scrum_back.area.entity.Area;
 import com.wposs.scrum_back.client.dto.ClientDto;
 import com.wposs.scrum_back.client.entity.Client;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 import java.util.UUID;
 
@@ -35,6 +36,7 @@ public class ProjectDto {
     private String clientId;
 
     @JsonProperty(value = "archive")
+    @Lob
     private String archive;
 
     public String getArchive() {
