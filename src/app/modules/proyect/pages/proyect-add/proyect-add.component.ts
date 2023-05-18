@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from '../service/project.service';
 import { Router } from "@angular/router";
 import { Area } from '@app/modules/area/pages/Interface/interface-area';
@@ -17,14 +17,16 @@ import { ProyectModule } from '../../proyect.module';
 export class ProyectAddComponent implements OnInit {
 
   projectAddForm: FormGroup = new FormGroup({
-  projectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-  projectClient: new FormControl(null, [Validators.required]),
-  projectArea: new FormControl(null, [Validators.required]),
-  archive: new FormControl(null, [Validators.required]),
+    projectName: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+    projectClient: new FormControl(null, [Validators.required]),
+    projectArea: new FormControl(null, [Validators.required]),
+    archive: new FormControl(null)
   });
 
-  public clients : Client[] = [];
-  public areas : Area[] = [];
+  public clients: Client[] = [];
+  public areas: Area[] = [];
+  public archivos: any = [];
+  public base64String: any;
 
   constructor(
 
@@ -40,16 +42,17 @@ export class ProyectAddComponent implements OnInit {
     this.getAllAreas();
   }
 
-  getAllAreas():void {
+  getAllAreas(): void {
     this.projectService.getArea().subscribe({
-      next: (resp)=> {
+      next: (resp) => {
         this.areas = resp;
 
-      }})
+      }
+    })
   }
-  getAllClient():void{
+  getAllClient(): void {
     this.projectService.getClient().subscribe({
-      next: (resp)=> {
+      next: (resp) => {
         this.clients = resp;
       }
     })
@@ -61,7 +64,7 @@ export class ProyectAddComponent implements OnInit {
         projectName: this.projectAddForm.get('projectName')?.value,
         clientId: this.projectAddForm.get('projectClient')?.value,
         areaId: this.projectAddForm.get('projectArea')?.value,
-        archive: this.projectAddForm.get('archive')?.value,
+        archive: this.base64String,
       }
       this.projectService.saveProyect(data).subscribe((resp) => {
         Swal.fire({
@@ -80,7 +83,7 @@ export class ProyectAddComponent implements OnInit {
         })
         this.dialogRef.close();
         this.projectAddForm.reset()
-      }, );
+      },);
     }
   }
 
@@ -88,18 +91,45 @@ export class ProyectAddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // upload_image(event: any) {
-  //   let archive = event.target.files
-  //   let reader = new FileReader();
+  upload_image(event) {
+    let archive = event.target.files;
+    let reader = new FileReader();
+  
+    reader.readAsDataURL(archive[0]);
+    reader.onloadend = () => {
+      // Obtener la URL de datos codificada en base64 de la imagen cargada
+      let imageDataURL = reader.result;
+      this.base64String = imageDataURL;
+      console.log(imageDataURL);
+  
+      // Mostrar la imagen en la interfaz de usuario
+      let imageElement = document.createElement('img');
+      //imageElement.src = imageDataURL;
+      document.body.appendChild(imageElement);
+    };
+  }
+  
 
-  //   reader.readAsDataURL(archive[0])
-  //   reader.onloadend = () => {
-  //   }
+  /*upload_image(event): any {
+    //const archive = event.target.file[0];
+    //this.archivos.push(archive);
+    //console.log(archive);
+    let archive = event.target.files
+    let reader = new FileReader();
 
-  // }
+    reader.readAsDataURL(archive[0])
+    reader.onloadend = () => {
+    }
+  }*/
 
-  upload_image(event: any) {
-    const file = event.target.files[0];
+  /*upload_image(event: any) {
+    let archive = event.target.files
+    let reader = new FileReader();
+
+    reader.readAsDataURL(archive[0])
+    reader.onloadend = () => {
+    }
+    /*const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -109,7 +139,7 @@ export class ProyectAddComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
-  }
+  }*/
 
 
 }
